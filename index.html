@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dejargonizer — plain language for building software with AI agents</title>
+<meta name="description" content="A jargon-free dictionary of the coding terms non-engineers hit when building with an AI agent. Search a word — merge, deploy, smoke test, migration — and get it in plain English.">
+<style>
+  :root{
+    --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
+    --ink:#16211f; --ink-soft:#4c5b58; --ink-faint:#7c8a87;
+    --line:#dde3e3; --line-soft:#e8eded;
+    --accent:#0f766e; --accent-ink:#0b5952; --accent-wash:#dcede9;
+    --good:#15803d; --good-wash:#dcefe0;
+    --look:#b45309; --look-wash:#f5e7d5;
+    --chip-bg:#eef2f2; --chip-ink:#274c47; --chip-line:#d3dedb;
+    --shadow:0 1px 2px rgba(20,40,36,.04), 0 8px 30px rgba(20,40,36,.05);
+    --font-voice:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-human:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-machine:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0d1211; --surface:#141c1b; --surface-2:#101817;
+      --ink:#e9efee; --ink-soft:#a7b6b3; --ink-faint:#6f7e7b;
+      --line:#243230; --line-soft:#1c2827;
+      --accent:#33b3a6; --accent-ink:#5fd2c6; --accent-wash:#132a27;
+      --good:#4ade80; --good-wash:#12271b;
+      --look:#e0a458; --look-wash:#2a2113;
+      --chip-bg:#17211f; --chip-ink:#8fded3; --chip-line:#26332f;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
+    --ink:#16211f; --ink-soft:#4c5b58; --ink-faint:#7c8a87;
+    --line:#dde3e3; --line-soft:#e8eded;
+    --accent:#0f766e; --accent-ink:#0b5952; --accent-wash:#dcede9;
+    --good:#15803d; --good-wash:#dcefe0; --look:#b45309; --look-wash:#f5e7d5;
+    --chip-bg:#eef2f2; --chip-ink:#274c47; --chip-line:#d3dedb;
+    --shadow:0 1px 2px rgba(20,40,36,.04), 0 8px 30px rgba(20,40,36,.05);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0d1211; --surface:#141c1b; --surface-2:#101817;
+    --ink:#e9efee; --ink-soft:#a7b6b3; --ink-faint:#6f7e7b;
+    --line:#243230; --line-soft:#1c2827;
+    --accent:#33b3a6; --accent-ink:#5fd2c6; --accent-wash:#132a27;
+    --good:#4ade80; --good-wash:#12271b; --look:#e0a458; --look-wash:#2a2113;
+    --chip-bg:#17211f; --chip-ink:#8fded3; --chip-line:#26332f;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-human);
+    line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent-ink)}
+
+  .brandbar{position:fixed;top:14px;left:16px;z-index:20;display:flex;align-items:center;gap:8px;
+    font-family:var(--font-machine);font-size:13px;color:var(--ink-soft);
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:var(--shadow)}
+  .brandbar b{color:var(--ink);font-weight:600}
+  .brandbar .dot{color:var(--accent)}
+
+  header.hero{padding:104px 0 40px;position:relative;overflow:hidden}
+  .eyebrow{font-family:var(--font-machine);font-size:12.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 22px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--accent);display:inline-block}
+  h1{font-family:var(--font-voice);font-weight:700;font-size:clamp(38px,6.4vw,68px);
+    line-height:1.02;letter-spacing:-.015em;margin:0 0 24px;text-wrap:balance;max-width:15ch}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:clamp(17px,2.2vw,20px);color:var(--ink-soft);max-width:62ch;margin:0 0 14px}
+  .lede strong{color:var(--ink);font-weight:600}
+
+  .translate{margin:38px 0 6px;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;max-width:680px}
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .tcard .tlabel{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 8px}
+  .tcard.machine .tval{font-family:var(--font-machine);font-size:14px;color:var(--ink-soft)}
+  .tcard.human .tval{font-family:var(--font-voice);font-size:18px;color:var(--ink)}
+  .tarrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px}
+  @media(max-width:620px){.translate{grid-template-columns:1fr;max-width:420px}
+    .tarrow{transform:rotate(90deg);height:14px}}
+
+  .toggle{position:fixed;top:14px;right:16px;z-index:20;background:var(--surface);
+    border:1px solid var(--line);color:var(--ink-soft);border-radius:999px;padding:7px 14px;
+    font-family:var(--font-machine);font-size:12px;cursor:pointer;box-shadow:var(--shadow)}
+  .toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+  .searchbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);padding:14px 0;margin-top:26px}
+  .searchrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .searchbox{flex:1;min-width:220px;position:relative}
+  .searchbox input{width:100%;font-family:var(--font-human);font-size:15px;color:var(--ink);
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px 11px 40px;outline:none}
+  .searchbox input:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  .searchbox::before{content:"\2315";position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    color:var(--ink-faint);font-size:18px}
+  .count{font-family:var(--font-machine);font-size:12px;color:var(--ink-faint);white-space:nowrap}
+
+  main{padding:20px 0 40px}
+  .section{margin:40px 0 8px}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin:0 0 6px}
+  .section-num{font-family:var(--font-machine);font-size:13px;color:var(--accent);font-weight:600}
+  .section-head h2{font-family:var(--font-voice);font-size:clamp(22px,3.2vw,29px);
+    font-weight:700;letter-spacing:-.01em;margin:0;text-wrap:balance}
+  .section-blurb{color:var(--ink-soft);max-width:70ch;margin:2px 0 20px;font-size:15.5px}
+  .section-blurb strong{color:var(--ink);font-weight:600}
+
+  .term{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;margin:0 0 12px;box-shadow:var(--shadow)}
+  .term-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .chip{font-family:var(--font-machine);font-size:14px;font-weight:600;color:var(--chip-ink);
+    background:var(--chip-bg);border:1px solid var(--chip-line);border-radius:8px;padding:3px 10px}
+  .aka{font-size:12.5px;color:var(--ink-faint);font-style:italic}
+  .meaning{font-size:16.5px;color:var(--ink);margin:0 0 10px;font-weight:500}
+  .picture{font-family:var(--font-voice);font-size:15.5px;color:var(--ink-soft);
+    border-left:2px solid var(--accent-wash);padding-left:14px;margin:0 0 10px;font-style:italic}
+  .picture b{font-style:normal;font-weight:600;color:var(--ink-soft)}
+  .note{font-size:14.5px;color:var(--ink-soft);background:var(--surface-2);
+    border-radius:9px;padding:10px 13px;margin:0}
+  .note b{color:var(--ink)}
+  .note .who{color:var(--accent-ink);font-weight:600}
+  .term.good{border-left:3px solid var(--good)}
+  .term.look{border-left:3px solid var(--look)}
+  .pill{display:inline-block;font-family:var(--font-machine);font-size:11px;font-weight:600;
+    padding:1px 8px;border-radius:999px;vertical-align:1px}
+  .pill.g{color:var(--good);background:var(--good-wash)}
+  .pill.l{color:var(--look);background:var(--look-wash)}
+
+  .noresults{display:none;text-align:center;padding:60px 0;color:var(--ink-faint);font-family:var(--font-voice);font-size:18px}
+
+  .closer{background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:34px 32px;margin:44px 0 20px;box-shadow:var(--shadow)}
+  .closer h2{font-family:var(--font-voice);font-size:26px;margin:0 0 8px;letter-spacing:-.01em}
+  .closer p{color:var(--ink-soft);max-width:66ch;margin:0 0 22px}
+  .questions{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+  @media(max-width:640px){.questions{grid-template-columns:1fr}}
+  .q{border:1px solid var(--line);border-radius:12px;padding:16px 16px;background:var(--surface-2)}
+  .q .qn{font-family:var(--font-machine);font-size:12px;color:var(--accent);margin:0 0 8px}
+  .q .qt{font-family:var(--font-voice);font-size:17px;color:var(--ink);font-style:italic;margin:0}
+
+  footer{padding:28px 0 70px;color:var(--ink-faint);font-size:13.5px;border-top:1px solid var(--line-soft)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer b{color:var(--ink-soft);font-weight:600}
+
+  .fade{opacity:0;transform:translateY(12px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.fade{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="brandbar"><span class="dot">◑</span> <b>The&nbsp;Dejargonizer</b></div>
+<button class="toggle" id="themeToggle" aria-label="Toggle light or dark theme">◐ theme</button>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow fade">The missing translation layer</p>
+    <h1 class="fade" style="animation-delay:.05s">You don't need to be an engineer. You need a <em>translator.</em></h1>
+    <p class="lede fade" style="animation-delay:.1s">AI coding agents are astonishing — and they talk like engineers, because they learned from engineers. So you get sentences like <strong>"I'll squash-merge the PR once CI is green, then verify the deploy."</strong></p>
+    <p class="lede fade" style="animation-delay:.13s">Every word of that means something specific and simple. Nobody ever told you what. This is where they tell you.</p>
+    <div class="translate fade" style="animation-delay:.18s">
+      <div class="tcard machine"><p class="tlabel">Engineer says</p><p class="tval">squash-merge the PR once CI is green</p></div>
+      <div class="tarrow">&#8594;</div>
+      <div class="tcard human"><p class="tlabel">Which means</p><p class="tval">once the automatic checks pass, make the change official.</p></div>
+    </div>
+  </div>
+</header>
+
+<div class="searchbar">
+  <div class="wrap searchrow">
+    <div class="searchbox"><input id="search" type="search" placeholder="Search a word — merge, deploy, smoke test, migration…" aria-label="Search the glossary"></div>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+<div class="wrap"><p class="noresults" id="noresults"></p></div>
+
+<div class="wrap">
+  <section class="closer">
+    <h2>Three questions you can always ask</h2>
+    <p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation.</p>
+    <div class="questions">
+      <div class="q"><p class="qn">01</p><p class="qt">"Say that again with no jargon."</p></div>
+      <div class="q"><p class="qn">02</p><p class="qt">"What's about to happen, in one sentence?"</p></div>
+      <div class="q"><p class="qn">03</p><p class="qt">"Is this reversible?"</p></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span><b>The Dejargonizer.</b> Free to copy, share, and adapt (MIT).</span>
+    <span>Green is good · red means look · "verified" means it checked.</span>
+  </div>
+</footer>
+
+<script>
+const DATA=[
+ {n:"1",title:"Saving & sharing your work",blurb:"This whole family of words comes from <strong>Git</strong> — a time machine plus a shared filing cabinet for your project. It remembers every version, and it lets more than one person (or agent) work without clobbering each other.",terms:[
+  {t:"Repository",aka:"repo",m:"Your project's folder — plus its entire history, every version it's ever been.",p:"The filing cabinet itself. One repo = one project.",note:'"The repo" just means "this project." Nothing to do.'},
+  {t:"Commit",m:"A saved snapshot of your work, with a short note saying what changed.",p:'Pressing "save" in a video game — but it also writes a diary entry: "reached level 3, got the key."',note:'<span class="who">The agent</span> saying "I committed the change" = it saved a checkpoint. Your work is safely recorded. <span class="pill g">good news</span>',tone:"good"},
+  {t:"Push",m:"Sending your saved snapshots up from your machine to the shared copy online.",p:"Uploading your saved game to the cloud so others can see it.",note:'"I pushed" = your work is now on the shared server, not just one machine. This is how it becomes visible to others and to the systems that put it live.'},
+  {t:"Pull",m:"The opposite of push — bringing the latest shared changes down onto your machine.",p:"Downloading everyone else's progress so you're caught up."},
+  {t:"Branch",m:"A separate copy of the project where you can try changes safely, without touching the real thing.",p:"A sandbox universe. If the experiment works you bring it back; if not, you throw the whole universe away and nothing was harmed.",note:'"I made a branch" = "I\'m working in a safe side-copy." This is the responsible thing to do. Relax. <span class="pill g">good</span>',tone:"good"},
+  {t:"Main",aka:"master",m:"The branch that is the real, official project. The one that counts.",p:"The master copy of the manuscript. Branches are drafts; main is what gets published.",note:"Changes on main are the ones that generally go live. That's why agents are careful with it."},
+  {t:"Merge",m:"Taking the changes from a branch and folding them into another (usually into main).",p:"Your sandbox experiment worked, so you copy it back into the real project.",note:'"I\'ll merge this" = "I\'m about to make these changes official." Often the moment right before something goes live.'},
+  {t:"Merge conflict",m:"Git got confused because two people changed the same line two different ways, and it stops to ask which you want.",p:"Two editors wrote different sentences in the same spot. Someone has to pick.",note:'Not a disaster — a normal traffic jam. Let the agent resolve it; ask it to explain the choice if the change matters to you. <span class="pill l">routine</span>',tone:"look"},
+  {t:"Pull request",aka:"PR, merge request",m:'A formal proposal: "here are my changes; please review before we make them official." The polite knock before merging.',p:"Handing in an edited draft with a cover note, asking for approval before it goes to print.",note:'"I opened a PR" = the change is ready and waiting for a yes. Often <span class="who">you</span> are the one who says yes. Nothing goes live until it\'s merged.'},
+  {t:"Clone",m:"Making your own full copy of a project onto your machine to work on it.",p:"Photocopying the entire filing cabinet to take home."},
+  {t:"Fork",m:"Your own personal copy of someone else's project, so you can change it without affecting theirs.",p:"Photocopying a library book so you can scribble in the margins."},
+  {t:"Revert",m:"Undo a specific past change — cleanly, on the record.",p:'"Undo," but it also writes a note saying "we undid that, on purpose, here\'s why."',note:'Safe and reversible. The calm way to back out of a mistake. <span class="pill g">safe</span>',tone:"good"},
+  {t:"Rollback",m:"Put the live product back to an earlier working version because the new one is causing problems.",p:"The new recipe is making people sick — go back to last week's recipe right now, fix the new one later.",note:'Usually said under pressure: "something\'s wrong live; get back to safety first." <span class="pill l">look</span>',tone:"look"},
+  {t:"Diff",m:"The exact list of what changed — what lines were added, what was removed.",p:'"Track changes" in a Word document. Red for deleted, green for added.',note:'When the agent says "here\'s the diff," it\'s showing you precisely what it touched. Your answer to "what did you actually change?"'},
+  {t:"Stash",m:"Temporarily set half-finished work aside to deal with something urgent, then bring it back.",p:"Sweeping your in-progress puzzle onto a tray so you can use the table, then sliding it back."},
+ ]},
+ {n:"2",title:"Checking the work is actually good",blurb:'Before code goes live it gets <strong>checked</strong> — automatically and repeatedly. This family is all about "did we break anything?" When a check comes back <span class="pill g">green</span> that\'s good; <span class="pill l">red</span> means something needs attention.',terms:[
+  {t:"Test",m:"A small piece of code whose only job is to check that another piece does what it should.",p:'A taste-tester who takes one bite and says "yes, this is soup" or "this is not soup."',note:'"The tests pass" = "the automatic checkers all say the work is behaving correctly." <span class="pill g">reassuring</span>',tone:"good"},
+  {t:"Test suite",m:"The whole collection of tests, run together.",p:"The full panel of taste-testers, not just one.",note:'"The full suite is green, 2,805 passing" = every automatic checker approved. One of the strongest "it\'s fine" signals there is.',tone:"good"},
+  {t:"Unit test",m:"A test that checks one tiny piece in isolation.",p:"Testing the doorbell by itself, before checking whether the whole house works."},
+  {t:"Smoke test",m:"A quick, shallow check that the basics work at all — before bothering with the detailed checks.",p:"Turning the car key to confirm the engine starts. You haven't tested the air-con — just that it's not dead. (The name is from electronics: turn it on, see if smoke comes out.)",note:'"Smoke test passed" = the obvious this-is-alive checks are fine. Basic confidence, not a full guarantee.'},
+  {t:"Regression",m:"A thing that used to work but a new change accidentally broke. A step backward.",p:'You fix the kitchen tap, and now the shower is cold. The shower "regressed."',note:'A <b>regression test</b> is a checker added so a fixed bug can never quietly come back. Agents write these on purpose — a sign of care. <span class="pill g">good</span>',tone:"good"},
+  {t:"CI",aka:"continuous integration",m:"The robot that automatically runs all the checks every time code changes — so nobody has to remember to.",p:"An automatic quality-control line in a factory. Every item off the belt gets inspected, no exceptions.",note:'"Waiting for CI" / "CI is green" = waiting for (or got) the robot inspector\'s all-clear. <b>Green = passed. Red = look before proceeding.</b>'},
+  {t:"Build",m:"Turning the written code into the actual runnable product.",p:"Baking. The code is the recipe; the build is the finished cake. A failed build means it didn't come out of the oven.",note:'"The build passed" = the product assembled successfully. A failed build can\'t even be put together yet, let alone go live.'},
+  {t:"Lint",aka:"linter",m:"An automatic proofreader for code — catches sloppy style and small mistakes.",p:"Spellcheck and grammar-check, but for code.",note:'"Lint is clean" = no style complaints. Minor, but tidy.'},
+  {t:"Type check",aka:"tsc, typecheck",m:"An automatic check that the pieces of code fit together — that you're not handing a phone number where a name was expected.",p:"Checking that every plug matches its socket before you switch the power on.",note:'"Type check clean" = the pieces are wired together correctly. If it fails, two parts don\'t fit and it would break.'},
+  {t:"Verify",aka:"verification",m:"Actually confirming something works — not just assuming it does.",p:'The difference between "I mailed the invitation" and "I called and they said they got it."',note:'"Verified" = it checked with its own tools rather than guessing. The good, careful kind of claim. If it says <b>"not verified,"</b> respect that — it\'s being honest it didn\'t confirm.',tone:"good"},
+  {t:"Flaky test",m:"A checker that sometimes passes and sometimes fails for the same code — usually luck or timing, not a real problem.",p:"A smoke alarm that occasionally beeps for no reason. Annoying; not a fire.",note:"It's flagging that a red result might be noise, not a genuine break. Worth a second run to confirm."},
+  {t:"Green / red",m:"Green = checks passed, all clear. Red = something failed.",p:'Traffic lights. "It\'s green" = good to go. "It\'s red" = stop and look.',note:'If you remember one thing from this whole page, remember this. <span class="pill g">green = go</span> <span class="pill l">red = look</span>'},
+ ]},
+ {n:"3",title:"Putting it live",blurb:"Getting your work in front of real people. This is where the stakes go up — mistakes here are visible to users. Agents slow down and get careful around these words, and so should you.",terms:[
+  {t:"Deploy",aka:"deployment",m:"Putting your code live where real people can use it.",p:"Opening the shop doors. Up to now you were rehearsing inside; deploy is unlocking the front door.",note:'"Deploying" / "deployed" = your change is going (or has gone) live. The real-consequences moment.'},
+  {t:"Production",aka:"prod",m:"The real, live version that actual users touch. The real world.",p:"Opening night, full audience — not the dress rehearsal.",note:'"In prod" / "on production" = the live thing, where mistakes are visible to users. Extra care warranted. <span class="pill l">careful</span>',tone:"look"},
+  {t:"Staging",m:"A private practice copy that looks exactly like the live product, for final rehearsal before going live.",p:"The dress rehearsal on the real stage, but with no audience yet."},
+  {t:"Environment",aka:"dev / staging / prod",m:"Which copy of the world you're in: dev (your private workshop), staging (dress rehearsal), prod (live, real users).",p:"Three identical kitchens — one to make a mess in, one to rehearse the final plating, one that actually serves customers."},
+  {t:"Localhost",m:"The version running privately on your own machine only. Nobody else can see it.",p:'Cooking with the curtains drawn. "It works on localhost" = "it works on my machine" — not yet proof it works for everyone.'},
+  {t:"Release",m:"A packaged, named version of the product that you hand to the world.",p:'A book edition. "Version 2.0" is a release.'},
+  {t:"Hotfix",m:"An urgent, small repair pushed live fast because something is broken right now.",p:"A plumber coming out at midnight for a burst pipe. Not elegant — necessary and immediate.",note:'Something live is broken and it\'s fixing it quickly. Read the explanation — hotfixes skip some of the usual patience because time matters. <span class="pill l">urgent</span>',tone:"look"},
+  {t:"Ship",aka:"ship it",m:'Casual slang for "release it / put it live."',p:"The product literally leaving the warehouse on a truck.",note:'"Ready to ship" = the work is done and it\'s proposing to make it live. Often your cue to say go or wait.'},
+  {t:"Server",m:"A computer, always on, somewhere else, that runs your product for everyone.",p:"The restaurant's kitchen — you don't see it, but it's where the food actually gets made for every table."},
+  {t:"Endpoint / API",m:'A specific "door" your product exposes so other programs can ask it for something.',p:'A drive-through window. You ask for a specific thing and get it handed back. An API is the whole set of windows; an endpoint is one window.'},
+  {t:"Downtime",aka:"outage",m:"A stretch when the live product isn't working for users.",p:"The shop lights are off during opening hours. The thing agents work hard to avoid.",tone:"look"},
+ ]},
+ {n:"4",title:"When something breaks",blurb:"Nothing here means the sky is falling. Software breaks constantly — the whole craft is built around finding and fixing breaks calmly. These words are the vocabulary of <strong>diagnosis</strong>.",terms:[
+  {t:"Bug",m:"A mistake in the code that makes it behave wrong.",p:'A typo in a recipe that says "salt" where it meant "sugar." (The name: a real moth stuck in a computer in 1947.)'},
+  {t:"Error",aka:"exception",m:"The code hit a problem and stopped, usually with a message explaining what went wrong.",p:'The "does not compute" moment — the program throws its hands up.',note:"The message is a clue, not a verdict. Agents read these to find the cause. You don't need to decode it yourself."},
+  {t:"Crash",m:"The program didn't just stumble — it fell over completely and stopped.",p:"The engine cutting out mid-drive, versus just a warning light."},
+  {t:"Stack trace",aka:"traceback",m:"The detailed trail showing exactly where things went wrong, step by step backward.",p:'A "black box" flight recorder — it shows the sequence that led to the crash, so you can find the cause.',note:"When the agent pastes a wall of this, it's the evidence, not a demand on you. Let it read. Curious? Ask \"what does that trace tell you?\""},
+  {t:"Log",aka:"logs",m:"The running diary a program writes about what it's doing — invaluable when hunting a problem.",p:"A ship's logbook. When something goes wrong, you read back through it to see what happened."},
+  {t:"Root cause",m:"The actual underlying reason something broke — not just the symptom.",p:"The puddle on the floor is the symptom; the leaking pipe behind the wall is the root cause. Mopping forever doesn't help.",note:'"Let me find the root cause" = it\'s refusing a surface patch and finding the real problem. Exactly what you want, even though it takes a bit longer. <span class="pill g">good</span>',tone:"good"},
+  {t:"Reproduce",aka:"repro",m:"Make the bug happen again on purpose, so it can be studied and fixed.",p:"A doctor triggering the symptom in the office so they can actually see it, instead of taking your word for it.",note:'"I reproduced it" = it can now see the problem directly, so it can fix with confidence rather than guessing. <span class="pill g">good</span>',tone:"good"},
+  {t:"Edge case",m:"A rare, unusual situation the code didn't expect — where things go wrong.",p:"The vending machine works fine, until someone pays entirely in foreign coins. That weird case is the edge."},
+  {t:"Breaking change",m:"A change that will break things that depend on it, unless they're updated too.",p:"Changing the locks on a building — necessary sometimes, but now everyone's old keys stop working.",note:"Flagging a knock-on cost. Worth pausing to understand what else is affected.",tone:"look"},
+  {t:"Patch / fix",m:"A repair for a bug.",p:"A patch on a tyre. Small, targeted, gets you rolling again."},
+ ]},
+ {n:"5",title:"The building blocks",blurb:"The nouns. When your agent mentions one of these, it's naming a part of the machine.",terms:[
+  {t:"Code",aka:"source code",m:"The written instructions that tell the computer what to do.",p:"The recipe. The computer follows it exactly, literally, with zero improvisation."},
+  {t:"Function",m:"A named, reusable chunk of instructions that does one job.",p:'A single kitchen appliance — "the blender." Give it inputs, it does its one job, hands back a result.'},
+  {t:"Variable",m:"A named container that holds a piece of information, which can change.",p:'A labelled box. It says customerName on the outside; inside, today "Amir," tomorrow "Dana."'},
+  {t:"Library / package",aka:"dependency",m:"Pre-built code written by someone else that your project uses so it doesn't reinvent the wheel.",p:"Buying a pre-made pastry base instead of making it from scratch. Your project depends on this outside piece to work.",note:'"I need to add a dependency" = it wants to pull in an outside building block. Reasonable — but each one is a thing your project now relies on, which is why careful agents ask before adding new ones.'},
+  {t:"Framework",m:"A big, opinionated starter kit that gives your whole project its shape and structure.",p:"A pre-fab house frame — walls, plumbing routes, wiring already laid out. You build your specific home inside it."},
+  {t:"Database",m:"The organized store where your product keeps its information, permanently.",p:"A giant, well-indexed set of spreadsheets that never forgets and can be searched instantly."},
+  {t:"Schema",m:"The agreed shape of your data — what fields exist and what type each one is.",p:'The blank form\'s structure: "Name (text), Age (number)." The schema is the form\'s design; the data is what people fill in.'},
+  {t:"Migration",m:"A recorded, repeatable change to the shape of your database.",p:'A renovation plan for the filing system — "add a phone-number column to every record" — written down so it can be applied cleanly and reversed.',note:'"I\'ll run a migration" = it\'s carefully changing how data is stored. Careful is the operative word — these touch real stored information. <span class="pill l">careful</span>',tone:"look"},
+  {t:"Secret / API key / token",aka:"environment variable",m:"A private setting or password your product needs to work — kept out of the code so it can't leak.",p:"The keys to the building and the alarm codes. You don't write them on the front door.",note:"Treat these like passwords, because they are. Never paste them anywhere public. Good agents refuse to print them.",tone:"look"},
+  {t:"Frontend / backend",m:"Frontend = the part users see and touch (buttons, screens). Backend = the engine behind the scenes (the logic, the database).",p:"A restaurant. Frontend is the dining room and menu; backend is the kitchen and supply room."},
+  {t:"Config",aka:"configuration",m:"The settings that control how your product behaves, without changing the code itself.",p:"The dials and switches on a machine. Same machine, different behavior depending on the settings."},
+ ]},
+ {n:"6",title:"How agents describe their own work",blurb:"These describe the manner of a change, or the agent's own process. They come up constantly and mean less than they sound.",terms:[
+  {t:"Refactor",m:"Tidying and reorganizing code so it's cleaner — without changing what it does.",p:"Reorganizing your closet. Same clothes, better arranged. Nothing thrown out, nothing new bought.",note:'"Just a refactor" = "I cleaned up the structure but the behavior is identical." Low-risk by definition — though a careful agent still checks it didn\'t change anything.'},
+  {t:"Idempotent",m:"Doing it twice has the same effect as doing it once — running it again does no extra harm.",p:"Pressing a lift call button. Pressing it five times doesn't call five lifts. Safe to repeat.",note:"Reassuring you that re-running something won't double up or cause damage.",tone:"good"},
+  {t:"Deprecated",m:"Officially on the way out — still works for now, but you're meant to stop using it.",p:"A product being discontinued. Still on the shelf, but don't build new plans around it."},
+  {t:"Boilerplate",m:"Standard, repetitive setup code that's basically the same in every project.",p:'The "Dear ___, thank you for your letter" opening you paste into every reply. Necessary, unoriginal.'},
+  {t:"Stub / mock",m:"A fake stand-in used during testing, so you can test one thing without the real other thing.",p:"A crash-test dummy. Not a real person — but good enough to test the airbag safely."},
+  {t:"Stack",m:"The whole set of technologies a project is built from, top to bottom.",p:"The full list of ingredients and equipment behind the restaurant — the entire operation, not one dish."},
+ ]},
+];
+
+const main=document.getElementById('main');
+function render(filter=""){
+  const q=filter.trim().toLowerCase();
+  let shown=0;
+  main.innerHTML="";
+  DATA.forEach(sec=>{
+    const matches=sec.terms.filter(t=>{
+      if(!q)return true;
+      return (t.t+" "+(t.aka||"")+" "+t.m+" "+t.p+" "+(t.note||"")).toLowerCase().includes(q);
+    });
+    if(!matches.length)return;
+    const el=document.createElement('section');
+    el.className='section';
+    el.innerHTML='<div class="section-head"><span class="section-num">'+sec.n+'</span><h2>'+sec.title+'</h2></div>'
+      +(q?"":'<p class="section-blurb">'+sec.blurb+'</p>');
+    matches.forEach(t=>{
+      shown++;
+      const div=document.createElement('article');
+      div.className='term'+(t.tone?' '+t.tone:'');
+      div.innerHTML='<div class="term-head"><span class="chip">'+t.t+'</span>'+(t.aka?'<span class="aka">also: '+t.aka+'</span>':'')+'</div>'
+        +'<p class="meaning">'+t.m+'</p>'
+        +'<p class="picture"><b>Picture:</b> '+t.p+'</p>'
+        +(t.note?'<p class="note">'+t.note+'</p>':'');
+      el.appendChild(div);
+    });
+    main.appendChild(el);
+  });
+  const total=DATA.reduce((a,s)=>a+s.terms.length,0);
+  document.getElementById('count').textContent = q? shown+' of '+total+' terms' : total+' terms';
+  const nr=document.getElementById('noresults');
+  if(shown===0){nr.style.display="block";nr.textContent='No match for "'+filter+'" — try a simpler word, like "merge" or "deploy".';}
+  else nr.style.display="none";
+}
+render();
+document.getElementById('search').addEventListener('input',function(e){render(e.target.value);});
+
+const root=document.documentElement, tog=document.getElementById('themeToggle');
+tog.addEventListener('click',function(){
+  const cur=root.getAttribute('data-theme')
+    || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  root.setAttribute('data-theme', cur==='dark'?'light':'dark');
+});
+</script>
+</body>
+</html>
