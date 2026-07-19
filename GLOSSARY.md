@@ -346,6 +346,42 @@ A specific address inside your product that does a specific thing.
 
 ---
 
+## 7. How agents keep themselves honest and out of each other's way
+
+As agents do more real work — fixing their own bugs, running things on a schedule, working alongside other agents — a second layer of jargon shows up: not about the code itself, but about the *process* the agent uses to stay careful. These four ideas come up constantly once an agent is doing real, ongoing work rather than a single one-off task.
+
+**Fix-on-fix review** (also: *adversarial review*)
+After an agent fixes a bug, someone — often another agent, deliberately unbiased because it didn't write the fix — reviews the *fix itself* with fresh eyes, not just the original bug. A repair can introduce its own brand-new problems that the original bug never had.
+*Picture:* a surgeon who, after finishing an operation, has a second surgeon check the stitches — not because they doubt the diagnosis, but because a repair is its own new thing that can go wrong in its own new ways.
+*When your agent says it:* "running a fix-on-fix review" = it's double-checking its own repair, not the original problem. A sign of real care, not a delay.
+
+**Suppression safety**
+The rule that decides when something — a notification, a dismissed task, an old alert — is allowed to disappear "for good" versus just "for now." Getting this wrong in either direction causes a real problem: too eager and it hides work that still matters; too weak and something that's genuinely finished keeps coming back to bother you.
+*Picture:* a spam filter. Too aggressive and it eats real mail; too weak and spam keeps landing. Suppression safety is getting that balance right, on purpose, in a rule you could actually explain out loud.
+*When your agent says it:* it checked both failure directions — "did I hide something I shouldn't have?" *and* "will this keep coming back when it shouldn't?" — not just one of them.
+
+**Scheduler contract** (also: *time-boundary design*)
+The exact rule for when something that repeats on its own — a daily reminder, a nightly check — is and isn't allowed to fire, so it doesn't run twice by accident, skip a day, or fire at the wrong moment.
+*Picture:* a train timetable. The "contract" is the precise departure rule — not "sometime in the morning" but "8:02am, once, by the local clock, not some other clock." State the rule loosely and you get two trains at once, or none.
+*When your agent says it:* it's being precise about a repeating job's exact boundary — which clock it's using, what counts as "already ran today," what happens if it fires a few minutes late.
+
+**Verification-boundary honesty**
+Being precise about exactly what an agent actually *confirmed* versus what it's *assuming*. "I watched this work in the real, live system" is a stronger claim than "the automated tests passed" — a careful agent never blurs the two together.
+*Picture:* the difference between a chef who tasted the soup themselves and one who only read the recipe and assumes it's right. Both might be telling the truth — but only one actually tasted it, and a good agent always tells you which one it is.
+*When your agent says "not yet verified live" or "not confirmed in production":* that is the honest, correct thing to say, not a failure. It means the automatic checks passed, but nobody has watched the real thing work yet. Read it as the agent refusing to guess — exactly what you want.
+
+**Live-proof planning**
+Deciding, *before* a change ships, exactly how you're going to go watch the real thing actually work — rather than just trusting that passed checks mean it works.
+*Picture:* planning the taste test before you cook, not hoping you'll remember to check afterward.
+*When your agent says it:* it's telling you there's a specific, concrete plan for confirming the fix in the real world — not just "the tests are green, ship it and hope."
+
+**Shared-checkout discipline** (also: *high-velocity branch racing*)
+The habits that keep multiple agents (or people) working in the same project folder from stepping on each other — especially when the official shared version of the project changes so often that a change can go stale before the safety checks on it even finish.
+*Picture:* two chefs sharing one cutting board. If one wipes it clean mid-chop, the other's ingredients go with it. The fix isn't "work faster" — it's "get your own board" (a separate, isolated copy) for anything that matters.
+*When your agent says it:* it might be explaining why a merge kept getting rejected and needing a re-sync — "the shared version moved again while the checks were still running." That's not a mistake; it's a busy shared project. The honest fix is either a faster path (turning on auto-merge, so the platform keeps re-syncing on its own) or working in a genuinely separate copy so a concurrent change can't destroy in-progress work.
+
+---
+
 ## How to use this with your agent
 
 - **When a word stops you, just ask.** "What does *merge* mean, in plain English?" is always a fair question. A good agent will answer it the way this glossary does.

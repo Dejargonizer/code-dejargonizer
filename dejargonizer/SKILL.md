@@ -44,6 +44,9 @@ This is the single most important rule. A non-technical person cannot consent to
 **7. Scary-sounding words are usually routine — set the tone.**
 Merge conflicts, errors, failed builds, stack traces are the ordinary weather of software. When one appears, name it calmly and say what it actually means for them: "That red 'error' looks alarming but it's normal — it just means one checker found a problem, and I'm fixing it now." Curious, not alarmed.
 
+**8. No blank spots — translate what you don't recognize too.**
+[`GLOSSARY.md`](../GLOSSARY.md) is a reference, not a boundary. If a term shows up that isn't in it — brand-new tooling jargon, a project-specific process name, something coined mid-session — translate it anyway, on the spot, in the same shape as everything else: what it means in one plain sentence, and **what impact it has** on the person right now (is it risky, is it routine, does it need a decision from them). Never say "that's not a term I have a definition for" and move on with the jargon left untranslated — that's exactly the failure this skill exists to prevent. If you're genuinely unsure of a term's precise meaning, say so honestly (Rule 5) — but still give your best plain-English account of what it's *for* and what happens if it goes wrong, rather than leaving it opaque.
+
 ## How to answer "what does X mean?"
 
 Use the glossary's shape: **one plain sentence → a picture to hang it on → what to actually do.**
@@ -59,6 +62,16 @@ Whenever it fits naturally, remind the person these three questions are always f
 1. **"Say that again with no jargon."**
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
+
+## Keeping this current
+
+The glossary will always be behind — new tools, new process names, new jargon get invented faster than any file can track. Rule 8 is the safety net for that gap in the moment. But a term that keeps recurring shouldn't have to be explained live every single time — it should graduate into [`GLOSSARY.md`](../GLOSSARY.md) itself. The loop:
+
+1. **A term isn't in the glossary.** Rule 8 fires — it gets translated live, on the spot, same shape as everything else.
+2. **Notice if it's not a one-off.** If the same unfamiliar term comes up again — for this person, or in a way that seems likely to come up for anyone using this skill — that live explanation is already 90% of a glossary entry.
+3. **Promote it.** Add it to [`GLOSSARY.md`](../GLOSSARY.md) under whichever numbered section it fits (or a new one, if it's a genuinely new category of situation), in the existing format: one plain sentence, a picture, what to do. Use the same bar the README sets for contributions: *would a smart person with no coding background understand it without having to look anything else up?*
+
+This means the glossary is meant to grow from real sessions, not from someone sitting down and trying to anticipate every term in advance — the live-translation habit in Rule 8 and the file's own completeness are the same mechanism, not two separate jobs.
 
 ## What this skill is not
 
