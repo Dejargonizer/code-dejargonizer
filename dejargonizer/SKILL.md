@@ -1,6 +1,6 @@
 ---
 name: dejargonizer
-description: "Translate coding work into plain language for a non-technical person. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md — a plain-language dictionary of the terms non-coders hit most."
+description: "Translate coding work into plain language for a non-technical person. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md — a plain-language dictionary of the terms non-coders hit most, which grows over time from real sessions and real site visitors, not just guesswork in advance."
 ---
 
 # The Dejargonizer
@@ -72,6 +72,8 @@ The glossary will always be behind — new tools, new process names, new jargon 
 3. **Promote it.** Add it to [`GLOSSARY.md`](../GLOSSARY.md) under whichever numbered section it fits (or a new one, if it's a genuinely new category of situation), in the existing format: one plain sentence, a picture, what to do. Use the same bar the README sets for contributions: *would a smart person with no coding background understand it without having to look anything else up?*
 
 This means the glossary is meant to grow from real sessions, not from someone sitting down and trying to anticipate every term in advance — the live-translation habit in Rule 8 and the file's own completeness are the same mechanism, not two separate jobs.
+
+There's a second channel that works the same way from outside any one conversation: the live site's "Suggest a term" button turns a visitor's confusion into a GitHub issue. Once enough different people independently flag the same word, an automated check drafts it straight into GLOSSARY.md for a maintainer to review. Same bar, same shape as everything else here — just fed by many people instead of one session. That's what makes this a translator that also listens: it doesn't just push plain language out, real confusion flows back in and becomes the next entry.
 
 ## What this skill is not
 
