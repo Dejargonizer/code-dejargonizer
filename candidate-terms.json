@@ -7,12 +7,13 @@
       "meaning": "A command that checks your project's dependencies for known security problems and tells you how many it found.",
       "picture": "A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.",
       "note": "It's just running a routine check, not fixing or changing anything in your code yet.",
-      "count": 2,
+      "count": 3,
       "issues": [
         1,
-        2
+        2,
+        3
       ],
-      "status": "pending"
+      "status": "drafted"
     }
   ]
 }
