@@ -65,9 +65,22 @@ jobs:
             --head "$BRANCH")
           echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
 
-      - name: Reply on the original issue
-        if: steps.process.outputs.drafted == 'true'
+      - name: Close the suggestion issue
+        if: always() && steps.process.outcome == 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh issue comment ${{ github.event.issue.number }} --body "Thanks for flagging this - enough people have independently suggested it now that it has been auto-drafted into GLOSSARY.md here: ${{ steps.draftpr.outputs.pr_url }}. A maintainer will review and merge it soon."
+          STATUS="${{ steps.process.outputs.status }}"
+          TERM="${{ steps.process.outputs.term }}"
+          COUNT="${{ steps.process.outputs.count }}"
+          THRESHOLD="${{ steps.process.outputs.threshold }}"
+          if [ "$STATUS" = "already-in-glossary" ]; then
+            MSG="\"$TERM\" is already documented in GLOSSARY.md - thanks for flagging it! Closing since it's already covered."
+          elif [ "${{ steps.process.outputs.drafted }}" = "true" ]; then
+            MSG="Enough people have independently suggested \"$TERM\" now ($COUNT of $THRESHOLD) that it has been auto-drafted into GLOSSARY.md here: ${{ steps.draftpr.outputs.pr_url }}. A maintainer will review and merge it soon."
+          elif [ "$STATUS" = "drafted" ]; then
+            MSG="\"$TERM\" already crossed the review threshold from earlier suggestions and has a draft PR open. Thanks for confirming it's a real gap - closing this as tracked there already."
+          else
+            MSG="Got it - this is suggestion $COUNT of $THRESHOLD for \"$TERM\". Once enough people independently flag the same word, a draft entry opens automatically for review. No action needed from you - thanks for helping build the glossary!"
+          fi
+          gh issue close ${{ github.event.issue.number }} --comment "$MSG"
