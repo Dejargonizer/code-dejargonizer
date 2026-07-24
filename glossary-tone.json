@@ -1,0 +1,20 @@
+{
+    "Commit": "good",
+    "Branch": "good",
+    "Revert": "good",
+    "Test": "good",
+    "Test suite": "good",
+    "Regression": "good",
+    "Verify / verification": "good",
+    "Root cause": "good",
+    "Reproduce": "good",
+    "Idempotent": "good",
+    "Merge conflict": "look",
+    "Rollback": "look",
+    "Production": "look",
+    "Hotfix": "look",
+    "Downtime / outage": "look",
+    "Breaking change": "look",
+    "Migration": "look",
+    "Environment variable / secret / API key / token": "look"
+}
