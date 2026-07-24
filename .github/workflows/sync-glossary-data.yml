@@ -1,0 +1,38 @@
+name: Sync glossary-data.js
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - GLOSSARY.md
+      - glossary-tone.json
+      - scripts/build-glossary-data.mjs
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate glossary-data.js from GLOSSARY.md
+        run: node scripts/build-glossary-data.mjs
+
+      - name: Commit glossary-data.js if it changed
+        run: |
+          if git diff --quiet -- glossary-data.js; then
+            echo "glossary-data.js is already up to date."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add glossary-data.js
+            git commit -m "Auto-update glossary-data.js from GLOSSARY.md [skip ci]"
+            git push
+          fi
