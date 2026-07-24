@@ -12,7 +12,7 @@
 
 ---
 
-AI coding agents — Claude Code, Cursor, and the rest — just handed millions of people the power to build software. Then they kept talking like engineers, because that's who they learned from. So a person with a real idea and no computer-science degree opens the tool and reads this:
+AI coding agents — Claude Code, Cursor, and the rest — just handed millions of people the power to build software. Then they kept talking like engineers, because that's who they learned from. You can already talk to them in plain English — that direction works fine. It's the direction coming back that's broken: the status update, the error, the question, all delivered in software language. So a person with a real idea and no computer-science degree opens the tool and reads this:
 
 > "I'll squash-merge the PR once CI is green, then verify the deploy."
 
