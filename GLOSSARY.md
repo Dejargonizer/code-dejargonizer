@@ -390,3 +390,14 @@ The habits that keep multiple agents (or people) working in the same project fol
 - **Scary-sounding words are usually routine.** Merge conflicts, errors, stack traces, failed builds — these are the ordinary weather of software, and agents handle them all day. The tone to have is curious, not alarmed.
 
 You do not need to become an engineer to build real things. You need a translator. This is it.
+
+---
+
+## Suggested new terms (pending review)
+
+_Proposed independently by 3+ people via the "Suggest a term" form. A maintainer still needs to review the wording and move each entry into the right numbered section above before it counts as official._
+
+**npm audit**
+A command that checks your project's dependencies for known security problems and tells you how many it found.
+*Picture:* A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.
+*When your agent says it:* It's just running a routine check, not fixing or changing anything in your code yet.
