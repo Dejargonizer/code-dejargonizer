@@ -1,5 +1,17 @@
 {
   "_comment": "Tracks terms suggested via the site's 'Suggest a term' form. A GitHub Action (term-suggestion-intake.yml) updates this automatically when a labeled issue comes in. When a term is independently suggested 'threshold' times, the Action drafts a pending entry at the bottom of GLOSSARY.md and opens a PR for a maintainer to review - nothing here is ever merged into the real glossary automatically.",
   "threshold": 3,
-  "candidates": []
+  "candidates": [
+    {
+      "term": "npm audit",
+      "meaning": "A command that checks your project's dependencies for known security problems and tells you how many it found.",
+      "picture": "A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.",
+      "note": "It's just running a routine check, not fixing or changing anything in your code yet.",
+      "count": 1,
+      "issues": [
+        1
+      ],
+      "status": "pending"
+    }
+  ]
 }
