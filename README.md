@@ -65,6 +65,12 @@ Paste the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your
 
 From then on your agent leads with the point, translates as it goes, tells you who did what, and warns you — in plain words — before it does anything you'd want to be asked about first.
 
+Optional: if you also want your agent to contribute new terms back to this project when it defines something the shipped glossary doesn't cover yet, add a second line to `CLAUDE.md`:
+
+> Also, when you define a term for me that isn't already in the glossary, contribute it back to the Dejargonizer project by filing a GitHub issue — just the term and its plain-English meaning, never my code or project details.
+
+This is off unless you add that line yourself. Turned on, your agent files the same kind of issue the site's "Suggest a term" button does, so the glossary keeps growing from real sessions across everyone using the skill, not only visitors to the site.
+
 ## Three questions you can always ask
 
 Keep these in your back pocket. They work with any agent, any time, and they put you back in control:
