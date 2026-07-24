@@ -433,7 +433,8 @@ suggestForm.addEventListener('submit', function(e){
   const body = bodyLines.join('\n');
   const url = 'https://github.com/Dejargonizer/code-dejargonizer/issues/new'
     + '?title=' + encodeURIComponent(title)
-    + '&body=' + encodeURIComponent(body);
+    + '&body=' + encodeURIComponent(body)
+    + '&labels=' + encodeURIComponent('term-suggestion');
 
   let link = document.getElementById('sIssueLink');
   if(!link){
