@@ -1,6 +1,6 @@
 <h1 align="center">The Dejargonizer</h1>
 
-<p align="center"><strong>Plain-English translation for anyone building software with an AI coding agent.</strong></p>
+<p align="center"><strong>Plain-English translation for anyone building software with an AI coding agent — a dictionary that grows from what actually trips people up.</strong></p>
 
 <p align="center"><em>You don't need to be an engineer. You need a translator.</em></p>
 
@@ -18,13 +18,16 @@ AI coding agents — Claude Code, Cursor, and the rest — just handed millions 
 
 Every word means something specific and simple. The gap between that sentence and a person who could act on it is not intelligence. It's **vocabulary** — and vocabulary is fixable.
 
-**The Dejargonizer is the fix.** Two things in one small folder:
+**The Dejargonizer is the fix.** Three things, working together:
 
 ### 📖 A dictionary — [`GLOSSARY.md`](GLOSSARY.md)
 Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, a **picture to hang it on**, and **what to actually do when your agent says it.** Read it on its own — no agent required.
 
 ### 🗣️ A switch for your agent — [`dejargonizer/`](dejargonizer/SKILL.md)
 Drop-in instructions that make your coding agent *talk to you this way by default*: the point first, every term defined in the same breath, an honest heads-up in plain words before anything risky, and a clear line on who did what. It turns the agent from a brilliant colleague who forgets you're new into one who never does.
+
+### 🔁 A loop that keeps it honest
+The dictionary isn't a one-time snapshot someone tried to write in advance. Hit a word on the live site that isn't in it yet? The "Suggest a term" button turns your confusion into a pre-filled GitHub issue in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
 
 ---
 
@@ -76,7 +79,7 @@ Founders, designers, writers, operators, students — anyone who is *building* w
 
 ## Contributing
 
-The most useful thing you can add is **the word that tripped *you* up.** Open an issue with the term (and, if you like, a first attempt at the plain-language version), or open a pull request adding it to [`GLOSSARY.md`](GLOSSARY.md). One rule sets the bar:
+The most useful thing you can add is **the word that tripped *you* up.** Easiest way: use the "Suggest a term" button on the live site — it drafts the issue for you, and if enough other people hit the same word, it's automatically drafted into the glossary for review. Or open an issue yourself with the term (and, if you like, a first attempt at the plain-language version), or open a pull request adding it to [`GLOSSARY.md`](GLOSSARY.md). One rule sets the bar:
 
 > Would a smart person with no coding background understand it — **without having to look anything else up?**
 
@@ -86,4 +89,4 @@ The most useful thing you can add is **the word that tripped *you* up.** Open an
 
 ---
 
-<p align="center"><em>Built so that millions of people who aren't engineers can still build.</em></p>
+<p align="center"><em>Built so that millions of people who aren't engineers can still build — and so every one of them makes it a little better for the next person.</em></p>
