@@ -187,6 +187,12 @@ window.GLOSSARY_DATA = [
         "m": "Green = checks passed, all clear. Red = something failed.",
         "p": "",
         "note": "good to go. \"It's red\": stop and look."
+      },
+      {
+        "t": "npm audit",
+        "m": "A command that checks your project's dependencies for known security problems and tells you how many it found.",
+        "p": "A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.",
+        "note": "It's just running a routine check, not fixing or changing anything in your code yet."
       }
     ]
   },
@@ -484,12 +490,6 @@ window.GLOSSARY_DATA = [
         "p": "two chefs sharing one cutting board. If one wipes it clean mid-chop, the other's ingredients go with it. The fix isn't \"work faster\" — it's \"get your own board\" (a separate, isolated copy) for anything that matters.",
         "aka": "high-velocity branch racing",
         "note": "it might be explaining why a merge kept getting rejected and needing a re-sync — \"the shared version moved again while the checks were still running.\" That's not a mistake; it's a busy shared project. The honest fix is either a faster path (turning on auto-merge, so the platform keeps re-syncing on its own) or working in a genuinely separate copy so a concurrent change can't destroy in-progress work."
-      },
-      {
-        "t": "npm audit",
-        "m": "A command that checks your project's dependencies for known security problems and tells you how many it found.",
-        "p": "A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.",
-        "note": "It's just running a routine check, not fixing or changing anything in your code yet."
       }
     ]
   }
