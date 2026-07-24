@@ -14,6 +14,17 @@
         3
       ],
       "status": "drafted"
+    },
+    {
+      "term": "eslint-disable directive",
+      "meaning": "A comment in the code that tells the linter (an automatic style checker) to ignore a specific rule on that line, on purpose.",
+      "picture": "A sticky note on one drawer saying \"skip inspecting this one, I already checked it.\"",
+      "note": "It's turning off one specific warning deliberately, not disabling all checks or hiding a real problem.",
+      "count": 1,
+      "issues": [
+        5
+      ],
+      "status": "pending"
     }
   ]
 }
