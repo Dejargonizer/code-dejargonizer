@@ -1,0 +1,73 @@
+name: Term suggestion intake
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  intake:
+    if: startsWith(github.event.issue.title, 'Glossary term:') || contains(github.event.issue.labels.*.name, 'term-suggestion')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Process the suggestion
+        id: process
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: node scripts/process-term-suggestion.mjs
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit candidate tracking file
+        run: |
+          git add candidate-terms.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Track term suggestion from issue #${{ github.event.issue.number }} [skip ci]"
+            git push
+          else
+            echo "No change to candidate-terms.json"
+          fi
+
+      - name: Open a draft PR once a term is confirmed by enough people
+        id: draftpr
+        if: steps.process.outputs.drafted == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TERM="${{ steps.process.outputs.term }}"
+          SLUG=$(echo "$TERM" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/-*$//')
+          BRANCH="term-suggestion/$SLUG-$(date +%s)"
+          git checkout -b "$BRANCH"
+          git add GLOSSARY.md
+          git commit -m "Draft glossary entry: $TERM"
+          git push -u origin "$BRANCH"
+          PR_URL=$(gh pr create \
+            --title "Draft glossary entry: $TERM" \
+            --body "This term was independently suggested by enough people via the site's Suggest a term form to cross the auto-draft threshold in candidate-terms.json. It has been appended to a Suggested new terms (pending review) section at the bottom of GLOSSARY.md. Please review the wording, move it into the right numbered section above, and delete it from the pending section before merging." \
+            --base main \
+            --head "$BRANCH")
+          echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Reply on the original issue
+        if: steps.process.outputs.drafted == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "Thanks for flagging this - enough people have independently suggested it now that it has been auto-drafted into GLOSSARY.md here: ${{ steps.draftpr.outputs.pr_url }}. A maintainer will review and merge it soon."
