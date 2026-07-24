@@ -25,6 +25,17 @@
         5
       ],
       "status": "pending"
+    },
+    {
+      "term": "RLS",
+      "meaning": "A database setting that limits which rows of a table someone is allowed to see or change, even though everyone is querying the same shared table.",
+      "picture": "A shared filing cabinet where each drawer only opens for the person whose name is on it, even though the cabinet itself is one piece of furniture everyone uses.",
+      "note": "It's telling you the database itself enforces who can touch which data, not just the app's code -- so even a bug in the app can't leak someone else's rows.",
+      "count": 1,
+      "issues": [
+        6
+      ],
+      "status": "pending"
     }
   ]
 }
