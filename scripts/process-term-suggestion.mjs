@@ -120,4 +120,7 @@ if (shouldDraftPR) {
 if (process.env.GITHUB_OUTPUT) {
   appendFileSync(process.env.GITHUB_OUTPUT, 'drafted=' + shouldDraftPR + '\n');
   appendFileSync(process.env.GITHUB_OUTPUT, 'term=' + term.replace(/\n/g, ' ') + '\n');
+  appendFileSync(process.env.GITHUB_OUTPUT, 'status=' + entry.status + '\n');
+  appendFileSync(process.env.GITHUB_OUTPUT, 'count=' + entry.count + '\n');
+  appendFileSync(process.env.GITHUB_OUTPUT, 'threshold=' + store.threshold + '\n');
 }
