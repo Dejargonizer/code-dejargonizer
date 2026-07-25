@@ -336,7 +336,7 @@ window.GLOSSARY_DATA = [
   },
   {
     "n": "5",
-    "title": "The building blocks (what things *are*)",
+    "title": "The building blocks (what things are)",
     "blurb": "The nouns. When your agent mentions one of these, it's naming a part of the machine.",
     "terms": [
       {
@@ -404,7 +404,7 @@ window.GLOSSARY_DATA = [
   },
   {
     "n": "6",
-    "title": "Words agents use about *how they work*",
+    "title": "Words agents use about how they work",
     "blurb": "These describe the manner of a change or the agent's own process. They come up constantly and mean less than they sound.",
     "terms": [
       {
