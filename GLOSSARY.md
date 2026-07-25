@@ -262,7 +262,7 @@ A repair for a bug.
 
 ---
 
-## 5. The building blocks (what things *are*)
+## 5. The building blocks (what things are)
 
 The nouns. When your agent mentions one of these, it's naming a part of the machine.
 
@@ -315,7 +315,7 @@ The settings that control how your product behaves, without changing the code it
 
 ---
 
-## 6. Words agents use about *how they work*
+## 6. Words agents use about how they work
 
 These describe the *manner* of a change or the agent's own process. They come up constantly and mean less than they sound.
 
