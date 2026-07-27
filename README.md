@@ -48,6 +48,10 @@ Same facts. Same rigor. One of them you can act on.
 
 ## Turn it on for your agent
 
+**Quickest version, works everywhere:** copy [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) and paste it into your agent, or hit **Copy the instructions** on the [live site](https://dejargonizer.github.io/code-dejargonizer/). It is one short block, deliberately small enough for a custom-instructions box with a character limit, and it needs no files and no install. That covers Lovable, Replit, Bolt, v0, ChatGPT and anything else where you only get a chat window.
+
+The rest of this section is the fuller version, for when you have a project you can put files in.
+
 The skill is one plain-text file of instructions — [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md). It isn't tied to any one tool or model. Whatever agent you use, the job is the same: **get those instructions in front of it, and tell it you're not an engineer.** The simplest universal way, which works everywhere:
 
 > Paste the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your chat at the start of a session, then add: *"Follow these for everything from here on. I am not an engineer — explain in plain English, define any technical term in the same sentence, and give me a plain heads-up before anything risky or hard to undo."*
@@ -67,6 +71,13 @@ Copy the `dejargonizer` folder into your project's `.claude/skills/` folder. The
 <summary><strong>Cursor</strong></summary>
 
 Paste the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your project's rules file (`.cursor/rules`, or the older `.cursorrules`). It then applies to every session automatically.
+
+</details>
+
+<details>
+<summary><strong>Anything that reads AGENTS.md (the cross-tool convention)</strong></summary>
+
+A growing number of agents look for a file called `AGENTS.md` in the project root and follow it with no configuration at all. If yours does, that is the least work available: copy this repo's [`AGENTS.md`](AGENTS.md) into your own project root, or add a line to yours pointing at the instructions.
 
 </details>
 
@@ -97,7 +108,11 @@ Founders, designers, writers, operators, students — anyone who is *building* w
 
 ## Contributing
 
-The most useful thing you can add is **the word that tripped *you* up.** Easiest way: use the "Suggest a term" button on the live site — it drafts the issue for you, and if enough other people hit the same word, it's automatically drafted into the glossary for review. Or open an issue yourself with the term (and, if you like, a first attempt at the plain-language version), or open a pull request adding it to [`GLOSSARY.md`](GLOSSARY.md). One rule sets the bar:
+The most useful thing you can add is **the word that tripped *you* up** — and you do **not** need to know what it means to contribute it. That is worth saying twice, because the obvious design gets this backwards: the person who cannot define a word is exactly the person whose confusion the dictionary needs, so a bare word with no definition is a complete, valid contribution.
+
+Easiest way: search for it on the live site. If it is not there, the empty result offers to flag it and writes the issue for you. Once enough different people flag the same word, it is drafted into the glossary for a maintainer to write up and review.
+
+If you *do* know the plain-language version, all the better — add it to the issue, or open a pull request straight onto [`GLOSSARY.md`](GLOSSARY.md). One rule sets the bar:
 
 > Would a smart person with no coding background understand it — **without having to look anything else up?**
 
