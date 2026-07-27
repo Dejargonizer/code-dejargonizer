@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-07-27",
+  "method": "Every number here is computed by scripts/build-metrics.mjs from GLOSSARY.md and data/corpus.json. Nothing is entered by hand. \"Explained\" means a word marked as jargon resolves to a glossary entry.",
+  "dictionary": {
+    "terms": 199,
+    "sections": 17,
+    "aliases": 367,
+    "decisionPhrases": 15,
+    "tells": 18
+  },
+  "coverage": {
+    "lines": 35,
+    "markedWords": 82,
+    "explained": 79,
+    "exact": 76,
+    "partial": 3,
+    "coveragePct": 96.3,
+    "linesFullyExplained": 32,
+    "linesFullyExplainedPct": 91.4
+  },
+  "review": {
+    "linesCarryingADecision": 2,
+    "linesCarryingATell": 4,
+    "linesCarryingEither": 6
+  },
+  "gaps": [
+    "CDN",
+    "byte",
+    "workflow"
+  ],
+  "notProven": [
+    "Whether builders ship fewer defects with this installed. No study run.",
+    "Whether agents comply with the rules over long sessions. Not measured.",
+    "Any aggregate effect across users. We collect nothing, so we cannot claim it."
+  ]
+}
