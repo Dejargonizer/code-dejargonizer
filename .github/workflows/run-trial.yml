@@ -25,7 +25,7 @@ on:
         required: true
         default: '37'
       model:
-        description: 'Which model to ask, by its exact name. There is no default on purpose: a wrong guess here would quietly change the result.'
+        description: 'Which model to ask, by its exact name. No default on purpose - a wrong guess would quietly change the result. Doing a dry run? Type any word, it is not used.'
         required: true
       arms:
         description: 'What to compare. Leave this alone unless you have a reason.'
