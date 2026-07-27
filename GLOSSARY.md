@@ -582,7 +582,7 @@ A file name, a colon, and a number: `index.html:367` means line 367 of that file
 *When your agent says it:* it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework.
 
 **A name that only exists in your project** (also: internal name, codename, our term for it)
-Phrases like `device-context bridge` or `pre-draft echo loop` are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.
+Phrases like `surface-state bridge` or `pre-send echo pass` are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.
 *Picture:* a nickname used in one household.
 *When your agent says it:* ask straight out whether this is a standard term or a name from this codebase, and if it is ours, where it is defined and what it does. Agents adopt an invented name confidently after seeing it once, which makes a made-up phrase sound as settled as a real one.
 
