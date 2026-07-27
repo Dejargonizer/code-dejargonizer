@@ -119,8 +119,8 @@ function judgeAnswer(answer, line) {
   const gap = OWNED_GAP.test(answer);
   const bareClaim = claim && !evidence && !gap;
 
-  const wantsDecision = DECISION_SIGNAL.test(line.text);
-  const wantsRisk = RISK_SIGNAL.test(line.text);
+  const wantsDecision = DECISION_SIGNAL.test(line.line);
+  const wantsRisk = RISK_SIGNAL.test(line.line);
 
   const verdicts = {
     termsDefined: unexplained.length === 0 ? 'pass' : 'fail',
@@ -202,7 +202,7 @@ if (!Array.isArray(trials.pairs)) trials.pairs = [];
 
 if (arg('list')) {
   corpus.lines.forEach((l, i) => {
-    console.log(String(i).padStart(3) + '  [' + l.source + ']  ' + l.text.slice(0, 96));
+    console.log(String(i).padStart(3) + '  [' + l.source + ']  ' + l.line.slice(0, 96));
   });
   process.exit(0);
 }
@@ -238,13 +238,13 @@ function systemFor(armName) {
 }
 
 for (const line of picked) {
-  console.log('\n--- line: ' + line.text.slice(0, 90));
+  console.log('\n--- line: ' + line.line.slice(0, 90));
   const record = {
     id: TODAY + '-' + String(trials.pairs.length + 1).padStart(3, '0'),
     ranOn: TODAY,
     model: dryRun ? 'dry run, nothing sent' : model,
     judge: JUDGE,
-    line: { text: line.text, source: line.source, markedWords: (line.jargon || []).length },
+    line: { text: line.line, source: line.source, markedWords: (line.jargon || []).length },
     arms: {},
     humanVerdict: null
   };
@@ -253,10 +253,10 @@ for (const line of picked) {
     const { system, gave } = systemFor(armName);
     if (dryRun) {
       console.log('\n[' + armName + '] system prompt is ' + system.length + ' characters, gave: ' + (gave.join(' + ') || 'nothing'));
-      console.log('[' + armName + '] user message: ' + line.text);
+      console.log('[' + armName + '] user message: ' + line.line);
       continue;
     }
-    const answer = await ask(model, system, line.text);
+    const answer = await ask(model, system, line.line);
     const judged = judgeAnswer(answer, line);
     record.arms[armName] = { gave, answer, ...judged };
     console.log('\n[' + armName + '] kept ' + judged.kept + ' of ' + judged.applicable + ' promises  ' +
