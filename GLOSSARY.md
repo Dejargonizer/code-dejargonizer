@@ -90,7 +90,6 @@ Put the live product back to an earlier working version because the new one is c
 The exact list of what changed — what lines were added, what was removed.
 *Picture:* "track changes" in a Word document. Red for deleted, green for added.
 *When your agent says "here's the diff":* it's showing you precisely what it touched. If you want to know "what did you actually change?", this is the answer.
-*When your agent says it:* ask to see it. The diff is the shortest honest answer to what did you actually change, and it is much harder to overstate than a summary.
 
 **Stash**
 Temporarily set your half-finished work aside so you can deal with something urgent, then bring it back.
@@ -111,8 +110,7 @@ A small piece of code whose only job is to check that another piece of code does
 **Test suite**
 The whole collection of tests, run together.
 *Picture:* the full panel of taste-testers, not just one.
-*When your agent says "the full suite is green, 2,805 passing":* every automatic checker approved. This is one of the strongest "it's fine" signals there is.
-*When your agent says it:* ask how many ran and how many passed. A green suite means nothing if part of it is switched off.
+*When your agent says "the full suite is green, 2,805 passing":* every automatic checker approved. This is one of the strongest "it's fine" signals there is. Worth asking how many actually ran, not just that it came back green — a suite with parts switched off is still green.
 
 **Unit test**
 A test that checks one tiny piece in isolation.
@@ -134,31 +132,26 @@ A thing that *used* to work but a new change accidentally broke. A step backward
 The robot that automatically runs *all* the checks every time code changes — so nobody has to remember to.
 *Picture:* an automatic quality-control line in a factory. Every item that comes off the belt gets inspected, no exceptions.
 *When your agent says "waiting for CI" or "CI is green":* it's waiting for (or has received) the robot inspector's all-clear. **Green = passed. Red = something failed, look before proceeding.**
-*When your agent says it:* the checks ran on a machine that is not your agent's, which makes the result harder to fudge. Ask what CI said, rather than what the agent expects it to say.
 
 **Build**
 Turning the written code into the actual runnable product.
 *Picture:* baking. The code is the recipe and ingredients; the build is the finished cake. "The build failed" means something went wrong in the oven — the cake didn't come out.
 *When your agent says "the build passed":* the product assembled successfully. A failed build means it can't even be put together yet, let alone go live.
-*When your agent says it:* it builds only means the product could be assembled. It says nothing about whether the thing does what you asked for.
 
 **Lint / linter**
 An automatic proofreader for code — catches sloppy style and small mistakes.
 *Picture:* spellcheck and grammar-check, but for code.
 *When your agent says "lint is clean":* no style complaints. Minor, but tidy.
-*When your agent says it:* lint is about tidiness, not correctness. A clean linter and a broken feature sit together quite happily.
 
 **Type check** (agents may say *tsc*, *typecheck*)
 An automatic check that the pieces of code fit together — that you're not accidentally handing a phone number where a name was expected.
 *Picture:* checking that every plug matches its socket before you switch the power on.
 *When your agent says "type check clean" or "tsc passes":* the pieces are wired together correctly. If it fails, two parts don't fit and it would break.
-*When your agent says it:* the pieces fit together. Whether they do the right thing is a separate question needing a separate check.
 
 **Verify / verification**
 Actually confirming something works — not just assuming it does.
 *Picture:* the difference between "I mailed the invitation" and "I called and they said they got it."
-*When your agent says "verified":* it checked with its own eyes/tools, rather than guessing. This is the good, careful kind of claim. If it says *"not verified,"* respect that — it's being honest that it didn't confirm.
-*When your agent says it:* ask what it ran and what came back. Verified with nothing shown is a claim, not evidence.
+*When your agent says "verified":* it checked with its own eyes/tools, rather than guessing. This is the good, careful kind of claim. If it says *"not verified,"* respect that — it's being honest that it didn't confirm. And ask what it ran and what came back — verified with nothing shown is a claim, not evidence.
 
 **Flaky test**
 A checker that sometimes passes and sometimes fails *for the same code* — usually because of timing or luck, not a real problem.
@@ -167,9 +160,8 @@ A checker that sometimes passes and sometimes fails *for the same code* — usua
 
 **Green / red**
 Green = checks passed, all clear. Red = something failed.
-*When your agent says "it's green":* good to go. "It's red": stop and look.
+*When your agent says "it's green":* good to go. "It's red": stop and look. Worth asking green on what — green on the checks that exist is not green on the checks that ought to exist.
 *Picture:* traffic lights. Green means the checks let the work through; red means it is stopped until somebody deals with it.
-*When your agent says it:* ask green on what. Green on the checks that exist is not the same as green on the checks that ought to exist.
 
 **npm audit**
 A command that checks your project's dependencies for known security problems and tells you how many it found.
@@ -191,13 +183,11 @@ Getting your work in front of real people. This is where the stakes go up — mi
 Putting your code live where real people can use it.
 *Picture:* opening the shop doors. Up to now you were rehearsing inside; deploy is unlocking the front door.
 *When your agent says "deploying" or "deployed":* your change is going (or has gone) live. This is the real-consequences moment.
-*When your agent says it:* real people can reach it now. Ask which environment — putting something on a practice copy and putting it in front of users are very different events.
 
 **Production (prod)**
 The real, live version that actual users touch. The real world.
 *Picture:* opening night, full audience — not the dress rehearsal.
 *When your agent says "in prod" or "on production":* it's talking about the live thing, where mistakes are visible to users. Extra care warranted.
-*When your agent says it:* mistakes here are visible to your users, not just to you. Anything called fine for now in production deserves a date attached.
 
 **Staging**
 A private practice copy that looks exactly like the live product, for final rehearsal before going live.
@@ -228,7 +218,6 @@ An urgent, small repair pushed live fast because something is broken *right now*
 Casual slang for "release it / put it live."
 *Picture:* the product literally leaving the warehouse on a truck.
 *When your agent says "ready to ship":* the work is done and it's proposing to make it live. Often your cue to say go or wait.
-*When your agent says it:* it is calling the work done and out the door. Ask what it decided to leave out in order to say that.
 
 **Server**
 A computer, always on, somewhere else, that runs your product for everyone.
@@ -281,14 +270,12 @@ The running diary a program writes about what it's doing — invaluable when hun
 **Root cause**
 The *actual underlying reason* something broke — not just the symptom.
 *Picture:* the puddle on the floor is the symptom; the leaking pipe behind the wall is the root cause. Mopping the puddle forever doesn't help.
-*When your agent says "let me find the root cause":* it's refusing to slap on a surface patch and instead finding the real problem. This is exactly what you want — even though it takes a bit longer.
-*When your agent says it:* ask how it knows. A root cause you can state in one sentence and a symptom you have covered over look identical from the outside.
+*When your agent says "let me find the root cause":* it's refusing to slap on a surface patch and instead finding the real problem. This is exactly what you want — even though it takes a bit longer. When it says it has found one, ask how it knows: a root cause you can state in a sentence and a symptom you have covered over look identical from the outside.
 
 **Reproduce (repro)**
 Make the bug happen again on purpose, so it can be studied and fixed.
 *Picture:* a doctor trying to trigger the symptom in the office so they can actually see it, instead of taking your word for it.
-*When your agent says "I reproduced it":* good — it can now see the problem directly, which means it can fix it with confidence rather than guessing.
-*When your agent says it:* if it cannot make the problem happen on demand, any fix is a guess. Steps that reliably trigger the fault are worth more than a fast patch.
+*When your agent says "I reproduced it":* good — it can now see the problem directly, which means it can fix it with confidence rather than guessing. The reverse matters just as much — if it cannot make the problem happen on demand, any fix that follows is a guess.
 
 **Edge case**
 A rare, unusual situation the code didn't expect — where things go wrong.
@@ -331,7 +318,6 @@ A named container that holds a piece of information, which can change.
 Pre-built code written by someone else that your project uses so it doesn't reinvent the wheel.
 *Picture:* buying a pre-made pastry base instead of making it from scratch. A **dependency** is exactly that — your project *depends* on this outside piece to work.
 *When your agent says "I need to add a dependency":* it wants to pull in an outside building block. Reasonable — but each one is a thing your project now relies on, which is why careful agents ask before adding new ones.
-*When your agent says it:* you are now relying on someone else's code. Ask how widely used and how actively maintained it is, because you inherit its problems along with its help.
 
 **Framework**
 A big, opinionated starter kit that gives your whole project its shape and structure.
@@ -351,8 +337,7 @@ The agreed shape of your data — what fields exist and what type each one is.
 **Migration**
 A recorded, repeatable change to the shape of your database.
 *Picture:* a renovation plan for the filing system — "add a 'phone number' column to every customer record" — written down so it can be applied cleanly and, if needed, reversed.
-*When your agent says "I'll run a migration":* it's carefully changing how data is stored. Careful is the operative word — these are done deliberately because they touch real stored information.
-*When your agent says it:* existing data is being reshaped. Ask what happens to the records already in there, and whether the step can be undone.
+*When your agent says "I'll run a migration":* it's carefully changing how data is stored. Careful is the operative word — these are done deliberately because they touch real stored information. Ask what happens to the records already in there, and whether the step can be undone.
 
 **Environment variable / secret / API key / token** (also: env var, envvar, dotenv, credentials)
 A private setting or password your product needs to work — kept out of the code so it can't leak.
@@ -384,8 +369,7 @@ The agent has stopped because it needs something from you — an answer, a decis
 **Refactor**
 Tidying and reorganizing code so it's cleaner — *without changing what it does*.
 *Picture:* reorganizing your closet. Same clothes, better arranged, easier to find. Nothing was thrown out; nothing new was bought.
-*When your agent says "just a refactor":* it's saying "I cleaned up the structure but the behavior is identical." Low-risk by definition — though a careful agent still checks it didn't accidentally change anything.
-*When your agent says it:* the shape changed and the behavior is meant to be identical. Ask what it ran afterwards to show that nothing moved.
+*When your agent says "just a refactor":* it's saying "I cleaned up the structure but the behavior is identical." Low-risk by definition — though a careful agent still checks it didn't accidentally change anything. Ask what it ran afterwards to show that nothing moved.
 
 **Idempotent**
 Doing it twice has the same effect as doing it once — running it again does no extra harm.
@@ -442,7 +426,6 @@ The exact rule for when something that repeats on its own — a daily reminder, 
 Being precise about exactly what an agent actually *confirmed* versus what it's *assuming*. "I watched this work in the real, live system" is a stronger claim than "the automated tests passed" — a careful agent never blurs the two together.
 *Picture:* the difference between a chef who tasted the soup themselves and one who only read the recipe and assumes it's right. Both might be telling the truth — but only one actually tasted it, and a good agent always tells you which one it is.
 *When your agent says "not yet verified live" or "not confirmed in production":* that is the honest, correct thing to say, not a failure. It means the automatic checks passed, but nobody has watched the real thing work yet. Read it as the agent refusing to guess — exactly what you want.
-*When your agent says it:* it is drawing the line between what it watched happen and what it is assuming. Ask for that line out loud every time — the watched part is often smaller than the summary made it sound.
 
 **Live-proof planning**
 Deciding, *before* a change ships, exactly how you're going to go watch the real thing actually work — rather than just trusting that passed checks mean it works.
@@ -469,7 +452,6 @@ The address people type to reach your thing — `yourproject.com`.
 The internet's phone book: it turns your domain into the actual location of the machine serving your site.
 *Picture:* directory enquiries. You give a name, it gives back a number.
 *When your agent says "DNS is propagating":* your change is spreading around the world and is not instant. Minutes usually, up to a day at worst. Waiting is the fix, not a sign something failed.
-*When your agent says it:* names are being pointed at machines. Changes here can take hours to reach everyone, so it is not working yet may simply mean not yet.
 
 **HTTPS / SSL certificate**
 The padlock in the address bar: proof the site is really yours, and that what visitors send is scrambled on the way.
@@ -479,8 +461,7 @@ The padlock in the address bar: proof the site is really yours, and that what vi
 **CORS**
 A browser rule that stops one website quietly helping itself to another's data. When it is set up wrong, your own two halves cannot talk to each other.
 *Picture:* a bouncer with a guest list who simply has not been told your name yet.
-*When your agent says "a CORS error":* routine, and not an attack or a break-in. It is a permissions setting that needs your own address added to a list. Let it fix it.
-*When your agent says it:* a browser is refusing to let one site talk to another. Ask what got opened up to make it work, because the usual quick fix is opening it to everybody.
+*When your agent says "a CORS error":* routine, and not an attack or a break-in. It is a permissions setting that needs your own address added to a list. Let it fix it. Ask what it opened up to make it work, because the quick fix is opening it to everybody.
 
 **404**
 Nothing is at the address that was asked for.
@@ -495,8 +476,7 @@ The server tried and fell over. The problem is on your side, not the visitor's.
 **Cache**
 A saved copy kept close by so things load fast — which sometimes means you are shown an old version.
 *Picture:* leftovers in the fridge. Quick, but not necessarily today's cooking.
-*When your agent says "clear the cache" or "it's cached":* you are looking at yesterday's copy of your own site. Nothing is broken; you are just not seeing the newest version yet.
-*When your agent says it:* something is being served from an earlier copy. If a change appears not to have taken effect, suspect this first — it is also how an agent ends up reading an old result as proof that the new one worked.
+*When your agent says "clear the cache" or "it's cached":* you are looking at yesterday's copy of your own site. Nothing is broken; you are just not seeing the newest version yet. It is also how an agent fools itself: it re-checks, gets the copy from before the change, and reads that as proof the change worked.
 
 **Webhook**
 A way for another service to tap your project on the shoulder the moment something happens, instead of your project constantly asking.
@@ -506,8 +486,7 @@ A way for another service to tap your project on the shoulder the moment somethi
 **Rate limit**
 A cap on how many times you may ask another service for something in a given stretch of time.
 *Picture:* the free-sample stand. Two each, then come back later.
-*When your agent says "we're rate limited":* nothing is broken and nothing is your fault. It is being told to slow down and will wait, or spread the requests out.
-*When your agent says it:* there is a cap on how often something can be called. Ask what a real user sees when they hit the cap: being asked to wait is fine, silently losing their work is not.
+*When your agent says "we're rate limited":* nothing is broken and nothing is your fault. It is being told to slow down and will wait, or spread the requests out. Ask what a real user sees when they hit the cap: being asked to wait is fine, silently losing their work is not.
 
 **OAuth ("sign in with Google")**
 Letting people log in using an account they already have, so you never see or store their password.
@@ -544,7 +523,6 @@ A file or folder whose name starts with a dot. Almost always settings, and hidde
 The top level of your project folder, where the big settings files sit.
 *Picture:* the ground floor of a building. Everything else is upstairs, off it.
 *When your agent says "in the project root":* it means the outermost folder, not tucked inside any of the others.
-*When your agent says it:* it means the top folder, nothing to do with permissions. Harmless word, easily confused with the other root.
 
 **package.json**
 A project's list of ingredients and its list of shortcut commands, in one file.
@@ -554,8 +532,7 @@ A project's list of ingredients and its list of shortcut commands, in one file.
 **Script**
 A saved command that does a job in one go, so nobody has to remember the long version.
 *Picture:* a labelled button rather than a sequence of switches.
-*When your agent says "I'll run the build script":* it is triggering a job that was already written down and named, not inventing something new.
-*When your agent says it:* a small program was written to do one job, once or on demand. Ask what it does before letting it run against anything real.
+*When your agent says "I'll run the build script":* it is triggering a job that was already written down and named, not inventing something new. If it has just written a new one, ask what it does before letting it run against anything real.
 
 **Backticks / monospace**
 When your agent puts something in `this typeface`, it means "this is an exact literal name — copy it character for character."
