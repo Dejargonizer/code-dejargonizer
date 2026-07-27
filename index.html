@@ -129,6 +129,10 @@
   .pill.l{color:var(--look);background:var(--look-wash)}
 
   .noresults{display:none;text-align:center;padding:60px 0;color:var(--ink-faint);font-family:var(--font-voice);font-size:18px}
+  .noresults .nrAdd{font-family:var(--font-human);font-weight:600;font-size:15px;color:#fff;background:var(--accent);
+    border:0;border-radius:8px;padding:8px 14px;cursor:pointer;margin:0 2px;vertical-align:baseline}
+  .noresults .nrAdd:hover{background:var(--accent-ink)}
+  .noresults .nrHint{display:block;margin-top:16px;font-size:15px}
 
   .closer{background:var(--surface);border:1px solid var(--line);border-radius:18px;
     padding:34px 32px;margin:44px 0 20px;box-shadow:var(--shadow)}
@@ -365,8 +369,27 @@ function render(filter){
   countEl.textContent = q ? (shown + ' of ' + total + ' terms') : (total + ' terms');
 
   if(shown === 0){
+    // A search that finds nothing is the clearest signal a word is missing.
+    // Capture it instead of dead-ending the person.
     nrEl.style.display = 'block';
-    nrEl.textContent = 'No match for "' + filter + '" — try a simpler word, like "merge" or "deploy".';
+    nrEl.textContent = 'No entry for "' + filter + '" yet. ';
+
+    const add = document.createElement('button');
+    add.type = 'button';
+    add.className = 'nrAdd';
+    add.textContent = 'Add it \u2192';
+    add.addEventListener('click', function(){
+      const termInput = document.getElementById('sTerm');
+      if(termInput) termInput.value = filter;
+      document.getElementById('suggest').scrollIntoView({behavior:'smooth'});
+      if(termInput) setTimeout(function(){ termInput.focus(); }, 400);
+    });
+    nrEl.appendChild(add);
+
+    const hint = document.createElement('span');
+    hint.className = 'nrHint';
+    hint.textContent = 'Or try a simpler word, like "merge" or "deploy".';
+    nrEl.appendChild(hint);
   } else {
     nrEl.style.display = 'none';
   }
