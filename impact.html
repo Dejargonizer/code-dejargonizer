@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dejargonizer — what we can actually show</title>
+<meta name="description" content="Measured numbers for the Dejargonizer: how much agent language the dictionary explains, what it still misses, and an honest list of what we have not proven.">
+<style>
+  :root{
+    --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
+    --ink:#16211f; --ink-soft:#4c5b58; --ink-faint:#7c8a87;
+    --line:#dde3e3; --line-soft:#e8eded;
+    --accent:#0f766e; --accent-ink:#0b5952; --accent-wash:#dcede9;
+    --good:#15803d; --good-wash:#dcefe0;
+    --warn:#b45309; --warn-wash:#f7eddd;
+    --font-voice:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-human:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-machine:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --shadow:0 1px 2px rgba(20,40,36,.04), 0 8px 30px rgba(20,40,36,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#0d1211; --surface:#141c1b; --surface-2:#101817;
+      --ink:#e9efee; --ink-soft:#a7b6b3; --ink-faint:#6f7e7b;
+      --line:#243230; --line-soft:#1c2827;
+      --accent:#33b3a6; --accent-ink:#5fd2c6; --accent-wash:#132a27;
+      --good:#4ade80; --good-wash:#12271b;
+      --warn:#f0b45c; --warn-wash:#2a2113;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-human);line-height:1.6}
+  .wrap{max-width:820px;margin:0 auto;padding:28px 22px 80px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:38px;flex-wrap:wrap}
+  .home{font-family:var(--font-machine);font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px}
+  .stamp{font-family:var(--font-machine);font-size:12px;color:var(--ink-faint)}
+  h1{font-family:var(--font-voice);font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+  .lede{font-size:17px;color:var(--ink-soft);margin:0 0 8px}
+  h2{font-family:var(--font-voice);font-size:23px;margin:44px 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--ink-faint);font-size:14.5px;margin:0 0 18px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 6px}
+  @media (max-width:640px){ .cards{grid-template-columns:1fr} }
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  .big{font-family:var(--font-voice);font-size:40px;line-height:1;letter-spacing:-.02em;color:var(--accent)}
+  .lab{font-size:13.5px;color:var(--ink-faint);margin-top:8px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+  .rows{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+  .rows li{display:flex;justify-content:space-between;gap:14px;font-size:15px;border-bottom:1px dashed var(--line-soft);padding-bottom:9px}
+  .rows li:last-child{border-bottom:0;padding-bottom:0}
+  .rows b{font-family:var(--font-machine);font-weight:600;color:var(--ink);white-space:nowrap}
+  .note{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--ink-soft);margin-top:16px}
+  .warnbox{background:var(--warn-wash);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .warnbox h2{margin-top:0;color:var(--warn)}
+  .warnbox ul{margin:0;padding-left:20px}
+  .warnbox li{font-size:15px;color:var(--ink-soft);margin-bottom:9px}
+  .gaps{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .gap{font-family:var(--font-machine);font-size:13px;background:var(--warn-wash);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+  .none{color:var(--good);font-size:15px}
+  .ask{font-family:var(--font-machine);font-size:14px;background:var(--accent-wash);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;display:block;color:var(--ink)}
+  code{font-family:var(--font-machine);font-size:.92em;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:5px;padding:1px 5px}
+  a{color:var(--accent)}
+  footer{margin-top:52px;color:var(--ink-faint);font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <a class="home" href="./">&larr; the dictionary</a>
+    <span class="stamp" id="stamp">loading…</span>
+  </div>
+
+  <h1>What we can actually show</h1>
+  <p class="lede">This project is about telling a measured claim from a confident guess. It would be embarrassing to make unmeasured claims about it. So here is what is counted, how it is counted, and what we have not established.</p>
+
+  <div class="cards">
+    <div class="card"><div class="big" id="nTerms">—</div><div class="lab">terms in the dictionary, across <span id="nSections">—</span> sections</div></div>
+    <div class="card"><div class="big" id="nCoverage">—</div><div class="lab">of the jargon in real agent status lines has a plain-English entry</div></div>
+    <div class="card"><div class="big" id="nReview">—</div><div class="lab">phrases that hide a decision, or signal work that was never checked</div></div>
+  </div>
+
+  <h2>How that coverage number is made</h2>
+  <p class="sub">Not by opinion. By a script you can run yourself: <code>node scripts/build-metrics.mjs</code></p>
+  <div class="panel">
+    <ul class="rows">
+      <li><span>Agent status lines in the sample</span><b id="rLines">—</b></li>
+      <li><span>Words marked as jargon, by hand</span><b id="rMarked">—</b></li>
+      <li><span>Of those, explained by a dictionary entry</span><b id="rExplained">—</b></li>
+      <li><span>Matched on the exact term or a listed alias</span><b id="rExact">—</b></li>
+      <li><span>Lines where every marked word is explained</span><b id="rFull">—</b></li>
+      <li><span>Lines carrying a decision or an unchecked claim</span><b id="rReview">—</b></li>
+    </ul>
+    <p class="note">The sample lives in <code>data/corpus.json</code>. Each line is a real thing an agent said; the jargon in it is marked by hand as the words a capable person with no coding background would trip on. The script resolves each marked word against <code>GLOSSARY.md</code> and counts. Every figure on this page is regenerated automatically whenever the dictionary or the sample changes.</p>
+  </div>
+
+  <h2>Words we still cannot explain</h2>
+  <p class="sub">The honest half. When the sample contains a word with no entry, it lands here and becomes the next thing to write.</p>
+  <div class="panel">
+    <div class="gaps" id="gaps"></div>
+  </div>
+
+  <h2>What only you can measure</h2>
+  <p class="sub">We collect nothing about your work, so we cannot tell you what changed for you. You can, in about a minute.</p>
+  <div class="panel">
+    <p style="margin-top:0">At the end of a real session, ask your agent this:</p>
+    <span class="ask">Give me a scorecard for this session: how many technical terms you put in plain English, how many decisions you made for me, how many claims you verified versus assumed, what checks you skipped, and anything you guessed.</span>
+    <p style="margin-bottom:0">That is rule 13 of <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/dejargonizer/SKILL.md">the skill</a>. Run it once before you install anything and once after, on comparable work. The number that tends to move first is <strong>decisions named</strong> — because they were always being made, they just were not being said out loud.</p>
+  </div>
+
+  <h2 style="margin-bottom:14px">What we have not proven</h2>
+  <div class="warnbox">
+    <ul id="notProven"><li>loading…</li></ul>
+    <p style="margin:0;font-size:14.5px;color:var(--ink-soft)">If any of these ever get established, they will appear above with a method attached, not as an adjective.</p>
+  </div>
+
+  <footer>
+    Raw numbers: <a href="data/metrics.json">data/metrics.json</a> &nbsp;·&nbsp;
+    Method: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/scripts/build-metrics.mjs">build-metrics.mjs</a> &nbsp;·&nbsp;
+    Sample: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/corpus.json">corpus.json</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var set = function(id, text){ var el = document.getElementById(id); if(el) el.textContent = text; };
+
+  fetch('data/metrics.json?cb=' + Date.now()).then(function(r){
+    if(!r.ok) throw new Error('metrics.json ' + r.status);
+    return r.json();
+  }).then(function(m){
+    var d = m.dictionary, c = m.coverage, rv = m.review;
+
+    set('stamp', 'measured ' + m.generatedAt);
+    set('nTerms', d.terms);
+    set('nSections', d.sections);
+    set('nCoverage', c.coveragePct + '%');
+    set('nReview', d.decisionPhrases + d.tells);
+
+    set('rLines', c.lines);
+    set('rMarked', c.markedWords);
+    set('rExplained', c.explained + ' of ' + c.markedWords + ' (' + c.coveragePct + '%)');
+    set('rExact', c.exact + ' exact, ' + c.partial + ' partial');
+    set('rFull', c.linesFullyExplained + ' of ' + c.lines + ' (' + c.linesFullyExplainedPct + '%)');
+    set('rReview', rv.linesCarryingEither + ' of ' + c.lines);
+
+    var gaps = document.getElementById('gaps');
+    gaps.innerHTML = '';
+    if(!m.gaps || m.gaps.length === 0){
+      var ok = document.createElement('p');
+      ok.className = 'none';
+      ok.style.margin = '0';
+      ok.textContent = 'None right now. Every word marked in the sample resolves to an entry. That is expected once the gaps get closed - the useful part is that the list is generated, so the next one shows up on its own.';
+      gaps.appendChild(ok);
+    } else {
+      m.gaps.forEach(function(g){
+        var s = document.createElement('span');
+        s.className = 'gap';
+        s.textContent = g;
+        gaps.appendChild(s);
+      });
+    }
+
+    var np = document.getElementById('notProven');
+    np.innerHTML = '';
+    (m.notProven || []).forEach(function(t){
+      var li = document.createElement('li');
+      li.textContent = t;
+      np.appendChild(li);
+    });
+  }).catch(function(err){
+    set('stamp', 'could not load the numbers');
+    var np = document.getElementById('notProven');
+    if(np) np.innerHTML = '<li>The numbers failed to load: ' + String(err.message) + '. The raw file is linked at the bottom of this page.</li>';
+  });
+})();
+</script>
+</body>
+</html>
