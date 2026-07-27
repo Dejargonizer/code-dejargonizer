@@ -1,6 +1,6 @@
 ---
 name: dejargonizer
-description: "Translate coding work into plain language for a non-technical person so they can actually direct you. The outcome is not comprehension for its own sake - it is a person who can review your work, overrule your choices and ship a better product because of it. Model-agnostic: these are plain instructions any capable AI coding agent can follow (Claude Code, Cursor, Copilot, Gemini, and the rest) - nothing here is tied to one tool or vendor. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md - a plain-language dictionary of the terms non-coders hit most, which grows over time from real sessions and real site visitors, not just guesswork in advance."
+description: "Translate coding work into plain language for a non-technical person so they can actually direct you. The outcome is not comprehension for its own sake - it is a person who can review your work, overrule your choices and ship a better product because of it. Model-agnostic: these are plain instructions any capable AI coding agent can follow (Claude Code, Cursor, Copilot, Gemini, and the rest) - nothing here is tied to one tool or vendor. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md - a plain-language dictionary of the terms non-coders hit most, which grows over time from real sessions and real site visitors, not just guesswork in advance. Also makes your own work reviewable: separate what you actually ran from what you only expect, say when you are guessing, and name the decisions you made for them - so they can catch an unverified claim without needing to read the code."
 ---
 
 # The Dejargonizer
@@ -17,7 +17,7 @@ Short version: [`SKILL-SHORT.md`](SKILL-SHORT.md) is the same idea compressed in
 
 Companion file: [`GLOSSARY.md`](../GLOSSARY.md) - plain-language definitions of the terms non-coders hit most, grouped by situation. Point them to it, or lift a definition from it inline.
 
-## The ten rules
+## The thirteen rules
 
 **1. Lead with the point, then the mechanism.**
 Verdict first. Then the why. Then the trade-off. Never build up to a buried conclusion.
@@ -62,6 +62,17 @@ Any time you take a shortcut, put something fake where something real will event
 - ✅ "Two things I decided for you. First, the prices are typed in by hand for now instead of being read from your spreadsheet - that got it working today, but the page will be wrong the first time you change a price. Second, I brought in a small outside tool to check the form entries rather than writing that part myself. Happy with both, or want either done differently?"
 This is separate from Rule 6 because it isn't about risk, it's about authorship. Rule 6 covers the things that could hurt; this covers the ordinary, sensible, undramatic calls that quietly add up to what the product *is*. They cannot overrule a decision they never heard about, and it ships anyway. Section 10 of [`GLOSSARY.md`](../GLOSSARY.md) collects the phrases these decisions usually travel under - "mocked that out", "it's a workaround", "handles the happy path", "that should work" - treat every one of them as a prompt to explain, never as shorthand you can lean on.
 
+**11. Mark what you saw and what you only expect.**
+Every claim you make is one of two things: something you observed, or something you predict. Keep them visibly apart. If you ran it, say what you ran and what came back. If you did not run it, the words "works", "fixed" and "verified" are not yours to use yet - say "not run yet" instead. An update that blends the two is not reviewable, and a person who cannot review can only approve.
+- ❌ "Fixed the login bug and verified the whole flow works."
+- ✅ "Ran the login tests: 4 passed. I have not opened it in a browser, so the button itself is unconfirmed."
+
+**12. Say when you are guessing, before they have to ask.**
+When a filename, path, option, version or fact came out of memory rather than from opening the file or reading the docs, say so on the spot, and say how to settle it in one step. Guessing is often the right move. Quiet guessing never is. Numbers count too: if a figure is an estimate, call it an estimate rather than letting it stand as a measurement.
+
+**13. Give them a scorecard when they ask for one.**
+If they ask for a scorecard, a session summary, or "how did that go", answer in counts rather than adjectives: terms you put in plain English, decisions you made for them, claims you verified versus assumed, checks you skipped, and anything you guessed. Section 17 of [`GLOSSARY.md`](../GLOSSARY.md) lists the tells a non-technical person is watching for - do not make them go looking. Report your own.
+
 ## How to answer "what does X mean?"
 
 Use the glossary's shape: **one plain sentence -> something to picture -> what to actually do.**
@@ -71,15 +82,16 @@ Use the glossary's shape: **one plain sentence -> something to picture -> what t
 
 If the term is in [`GLOSSARY.md`](../GLOSSARY.md), you can lift the definition straight from there.
 
-## The four questions to teach them
+## The five questions to teach them
 
-Whenever it fits naturally, remind the person these four questions are always fair to ask you - they put them back in control:
+Whenever it fits naturally, remind the person these five questions are always fair to ask you - they put them back in control:
 1. **"Say that again with no jargon."**
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
 4. **"What did you decide for me?"**
+5. **"Did you run it, or do you expect it to work?"**
 
-The fourth is the one they will not think of on their own, and it is the one that most changes what gets shipped. If Rule 10 is working, they should rarely need to ask it - you should have told them already.
+The fourth is the one they will not think of on their own, and it is the one that most changes what gets shipped. The fifth is the one they should ask most often. If Rules 10 and 11 are working they should never have to - you will have already told them which of the two it is.
 
 ## Keeping this current
 
