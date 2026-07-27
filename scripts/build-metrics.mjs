@@ -19,6 +19,13 @@
 //      after a line leaves the sample, and still count.
 //   3. Term count is inventory, not a result. It is reported at the bottom.
 //
+// One exception to the sealing rule, and it only ever cuts one way. If the
+// matching rule itself turns out to be wrong - if it was calling words covered
+// that are not - every record is re-scored under the corrected rule, and the
+// new result is kept only where it is the same or worse. A correction can lower
+// a past score. It can never raise one. Each affected record keeps a note
+// saying what moved, so a drop is recorded rather than quietly absorbed.
+//
 // Run manually with: node scripts/build-metrics.mjs
 // Runs automatically - see .github/workflows/build-metrics.yml
 
@@ -35,6 +42,21 @@ const LEDGER_PATH = join(ROOT, 'data', 'ledger.json');
 const OUTPUT_PATH = join(ROOT, 'data', 'metrics.json');
 
 const TODAY = new Date().toISOString().slice(0, 10);
+
+// The matching rule, versioned. Bump the string when the rule changes and say
+// why, right here, so a change in the headline number always has a reason
+// written next to it.
+//
+// substring-v1: a marked word counted as covered if an entry name appeared
+//   anywhere inside it as raw text. That scored 'vitest' as covered because the
+//   letters t-e-s-t are inside it, 'clean' as covered by the entry for 'I
+//   refactored while I was in there', 'validate' as covered by 'I verified it',
+//   and 'worker pool' as covered by 'Subagent'. Four words the dictionary could
+//   not actually explain, counted as explained, on the strength of a substring.
+// whole-word-v2: an entry name has to line up with whole words. 'vitest' no
+//   longer matches 'test'. 'repository root' still matches 'repository', which
+//   is a real match rather than a lucky one.
+const MATCHER = 'whole-word-v2';
 
 // Same normalisation on both sides of every comparison, so a match means a match.
 function norm(s) {
@@ -135,11 +157,32 @@ for (const s of glossary) {
 const DECISION_SECTION = 10; // phrases that mean a decision got made for you
 const TELL_SECTION = 17;     // signs the work was not actually checked
 
+function wordsOf(s) {
+  const n = norm(s);
+  return n ? n.split(' ') : [];
+}
+
+// Does one run of whole words appear inside another, in order?
+function containsRun(hay, needle) {
+  if (!needle.length || needle.length > hay.length) return false;
+  for (let i = 0; i <= hay.length - needle.length; i++) {
+    let ok = true;
+    for (let j = 0; j < needle.length; j++) {
+      if (hay[i + j] !== needle[j]) { ok = false; break; }
+    }
+    if (ok) return true;
+  }
+  return false;
+}
+
 function resolve(word) {
   const n = norm(word);
   if (lookup.has(n)) return { ...lookup.get(n), how: 'exact' };
+  const w = wordsOf(word);
   for (const [k, v] of lookup) {
-    if (k.length >= 4 && (n.includes(k) || k.includes(n))) return { ...v, how: 'partial' };
+    const kw = k.split(' ');
+    if (kw.join('').length < 4) continue;
+    if (containsRun(w, kw) || containsRun(kw, w)) return { ...v, how: 'whole-word' };
   }
   return null;
 }
@@ -149,24 +192,61 @@ function resolve(word) {
 // forever. The ledger is keyed on the exact text of the line, so editing a line
 // creates a new record rather than reopening an old one.
 // ---------------------------------------------------------------------------
+const corpusByLine = new Map(corpus.lines.map((l) => [l.line, l]));
 const sealed = new Map(ledger.entries.map((e) => [e.line, e]));
 let sealedThisRun = 0;
 
 for (const entry of corpus.lines) {
   if (sealed.has(entry.line)) continue;
   const marked = entry.jargon || [];
-  const missed = marked.filter((w) => !resolve(w));
   const record = {
     line: entry.line,
+    source: entry.source,
     sealedOn: TODAY,
+    matcher: MATCHER,
     termsAtSeal: termCount,
+    markedWords: marked,
     marked: marked.length,
-    missed
+    missed: marked.filter((w) => !resolve(w))
   };
   ledger.entries.push(record);
   sealed.set(entry.line, record);
   sealedThisRun++;
 }
+
+// Matcher correction. Records sealed under an older rule get re-scored once.
+// The new miss list is merged with the old one, so a word that was counted as
+// explained can move to missed, and a word that was missed can never quietly
+// become explained. Scores go down here or they stay put.
+const corrections = [];
+for (const e of ledger.entries) {
+  if (e.matcher === MATCHER) continue;
+  const src = corpusByLine.get(e.line);
+  const marked = e.markedWords || (src ? src.jargon : null);
+  if (!marked) {
+    e.matcherNote = 'Sealed under ' + (e.matcher || 'substring-v1') + '. This line has left the sample and its marked words were never written down, so it cannot be re-scored. Left exactly as sealed.';
+    continue;
+  }
+  const was = (e.missed || []).slice();
+  const fresh = marked.filter((w) => !resolve(w));
+  const merged = [...new Set([...was, ...fresh])];
+  if (merged.length > was.length) {
+    corrections.push({
+      line: e.line,
+      missedWas: was.length,
+      missedNow: merged.length,
+      movedToMissed: merged.filter((w) => !was.includes(w))
+    });
+  }
+  e.missed = merged;
+  e.markedWords = marked;
+  if (!e.source && src) e.source = src.source;
+  e.matcherWas = e.matcher || 'substring-v1';
+  e.matcher = MATCHER;
+  e.rescoredOn = TODAY;
+  e.matcherNote = 'Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score.';
+}
+ledger.matcher = MATCHER;
 
 const inCorpus = new Set(corpus.lines.map((l) => l.line));
 for (const e of ledger.entries) e.retired = !inCorpus.has(e.line);
@@ -199,6 +279,20 @@ const everMissedList = [...everMissed.values()]
 
 // What the dictionary still cannot explain, as of right now. This is the work
 // queue, not a score - closing it changes nothing above.
+// Coverage split by where the line came from. Lines we wrote ourselves are an
+// easier test than lines somebody else's agent produced, and the split shows it.
+const bySource = {};
+for (const e of scored) {
+  const key = e.source || 'unrecorded';
+  if (!bySource[key]) bySource[key] = { lines: 0, markedWords: 0, explained: 0, missed: 0 };
+  const b = bySource[key];
+  b.lines += 1;
+  b.markedWords += e.marked;
+  b.missed += e.missed.length;
+  b.explained += e.marked - e.missed.length;
+}
+for (const k of Object.keys(bySource)) bySource[k].coveragePct = pct(bySource[k].explained, bySource[k].markedWords);
+
 const openGaps = [];
 for (const entry of corpus.lines) {
   for (const w of entry.jargon || []) if (!resolve(w) && !openGaps.includes(w)) openGaps.push(w);
@@ -208,6 +302,8 @@ for (const entry of corpus.lines) {
 // do when the agent says it is half an entry. Counting terms hides that.
 const allTerms = glossary.flatMap((s) => s.terms);
 const unfinished = allTerms.filter((t) => !t.hasPicture || !t.hasAction);
+
+const contributedCount = corpus.lines.filter((l) => l.source === 'contributed').length;
 
 const sources = {};
 for (const l of corpus.lines) sources[l.source] = (sources[l.source] || 0) + 1;
@@ -228,7 +324,16 @@ const metrics = {
     linesFullyExplainedPct: pct(linesClean, scored.length),
     sealedThisRun,
     lowestTermCountAtSeal: scored.length ? Math.min(...scored.map((e) => e.termsAtSeal)) : 0,
-    highestTermCountAtSeal: scored.length ? Math.max(...scored.map((e) => e.termsAtSeal)) : 0
+    highestTermCountAtSeal: scored.length ? Math.max(...scored.map((e) => e.termsAtSeal)) : 0,
+    bySource
+  },
+
+  matcherCorrections: {
+    rule: MATCHER,
+    note: 'A correction to the matching rule is the only thing allowed to reopen a sealed record, and it can only make the score the same or worse.',
+    recordsLowered: corrections.length,
+    wordsMovedToMissed: corrections.reduce((a, c) => a + c.movedToMissed.length, 0),
+    detail: corrections
   },
 
   everMissed: everMissedList,
@@ -259,7 +364,7 @@ const metrics = {
   },
 
   notProven: [
-    'Every line in the sample was written or chosen by us. Lines contributed by people outside this project would be a harder test, and there are none yet.',
+    contributedCount + ' of ' + corpus.lines.length + ' lines came from outside this project. That is a start, not a sample. The rest we wrote or chose ourselves, which makes them the easier half of the test.',
     'The sample is small. ' + corpus.lines.length + ' lines is enough to find missing words and nowhere near enough to describe how agents talk in general.',
     'Whether builders ship fewer defects with this installed. No study run.',
     'Whether agents keep following the rules over long sessions. Not measured.',
@@ -272,6 +377,7 @@ writeFileSync(OUTPUT_PATH, JSON.stringify(metrics, null, 2) + '\n');
 console.log('data/metrics.json written');
 console.log('  first look: ' + explained + '/' + markedWords + ' marked words explained on arrival (' + metrics.firstLook.coveragePct + '%)');
 console.log('  sealed this run: ' + sealedThisRun + ' new line(s)');
+console.log('  matcher ' + MATCHER + ': ' + corrections.length + ' record(s) lowered by the correction');
 console.log('  ever missed: ' + everMissedList.length + ' word(s), of which ' + everMissedList.filter((m) => !m.writtenSince).length + ' still have no entry');
 console.log('  entry quality: ' + metrics.entryQuality.finished + '/' + allTerms.length + ' entries carry both a picture and an action (' + metrics.entryQuality.finishedPct + '%)');
 console.log('  inventory: ' + termCount + ' terms in ' + glossary.length + ' sections');
