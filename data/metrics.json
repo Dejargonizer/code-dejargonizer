@@ -4,14 +4,14 @@
   "method": "Computed by scripts/build-metrics.mjs from GLOSSARY.md, data/corpus.json and data/ledger.json. Nothing on the page is typed in by hand.",
   "firstLook": {
     "audience": "Internal. This is the gap list that decides which entries get written next. It is not a claim about any other project, and it is no longer on the impact page for that reason.",
-    "linesScored": 42,
-    "linesRetiredButStillCounted": 1,
-    "markedWords": 113,
-    "explained": 93,
-    "missed": 20,
-    "coveragePct": 82.3,
+    "linesScored": 41,
+    "linesRetiredButStillCounted": 0,
+    "markedWords": 108,
+    "explained": 91,
+    "missed": 17,
+    "coveragePct": 84.3,
     "linesFullyExplained": 32,
-    "linesFullyExplainedPct": 76.2,
+    "linesFullyExplainedPct": 78,
     "sealedThisRun": 0,
     "lowestTermCountAtSeal": 199,
     "highestTermCountAtSeal": 202,
@@ -31,11 +31,11 @@
         "coveragePct": 72.7
       },
       "contributed": {
-        "lines": 7,
-        "markedWords": 31,
-        "explained": 14,
-        "missed": 17,
-        "coveragePct": 45.2
+        "lines": 6,
+        "markedWords": 26,
+        "explained": 12,
+        "missed": 14,
+        "coveragePct": 46.2
       }
     }
   },
