@@ -59,6 +59,8 @@ What survives is the useful half, and it stays in the workshop: every word that 
 
 The claim itself gets tested a different way. [`scripts/paired-trial.mjs`](scripts/paired-trial.mjs) hands one line of raw agent output to the same model twice — once with nothing, once with the instructions and the dictionary in front of it — and reads both answers against the four things this project actually promises: every term defined in the same breath, what was run kept apart from what is only expected, decisions named out loud, anything hard to undo flagged as such. Both answers are stored in full in [`data/trials.json`](data/trials.json), whichever way the pair comes out, and no record is ever edited or removed.
 
+Running it needs no terminal. On the [Actions tab](https://github.com/Dejargonizer/code-dejargonizer/actions/workflows/run-trial.yml) there is a **Run a trial** button: it asks which line and which model, and it has a dry run box that prints exactly what would be sent without sending it. The key it needs is added once, by you, under Settings, and is never printed in the log.
+
 It has been run **zero times** so far — it needs a model key, supplied by whoever runs it — so nothing in this repository answers that question yet. That sentence leads the not-proven list on the page, where it belongs.
 
 ## See it first
