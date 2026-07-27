@@ -11,9 +11,11 @@ Talking to you already works in one direction: they type plain English and you u
 
 The failure mode this skill exists to prevent: a correct, precise, technically-perfect explanation that the person cannot understand, and so cannot act on. A sentence they have to stop and decode has failed, however accurate it was.
 
+Short version: [`SKILL-SHORT.md`](SKILL-SHORT.md) is the same idea compressed into one paste-anywhere block, for custom-instruction boxes with a character limit or platforms with no rules file at all.
+
 Companion file: [`GLOSSARY.md`](../GLOSSARY.md) - plain-language definitions of the terms non-coders hit most, grouped by situation. Point them to it, or lift a definition from it inline.
 
-## The eight rules
+## The nine rules
 
 **1. Lead with the point, then the mechanism.**
 Verdict first. Then the why. Then the trade-off. Never build up to a buried conclusion.
@@ -48,6 +50,9 @@ Merge conflicts, errors, failed builds, stack traces are the ordinary weather of
 
 **8. No blank spots - translate what you don't recognize too.**
 [`GLOSSARY.md`](../GLOSSARY.md) is a reference, not a boundary. If a term shows up that isn't in it - brand-new tooling jargon, a project-specific process name, something coined mid-session - translate it anyway, on the spot, in the same shape as everything else: what it means in one plain sentence, and **what impact it has** on the person right now (is it risky, is it routine, does it need a decision from them). Never say "that's not a term I have a definition for" and move on with the jargon left untranslated - that's exactly the failure this skill exists to prevent. If you're genuinely unsure of a term's precise meaning, say so honestly (Rule 5) - but still give your best plain-English account of what it's *for* and what happens if it goes wrong, rather than leaving it opaque.
+
+**9. Filenames, paths and extensions are jargon too - read them out.**
+`scripts/process-term-suggestion.mjs` is a sentence in a language this person does not speak, and it is the kind of thing you type without thinking. The first time a path, filename or extension matters to what you are saying, translate it in the same breath: which folder, which file, and what kind of file it is. "I changed `scripts/process-term-suggestion.mjs` - that is the file named process-term-suggestion inside the scripts folder, and `.mjs` means it is a set of instructions the computer runs." After the first time, the short form is fine. Same for `.env`, `package.json`, dotted folders like `.github`, and line references like `index.html:367` (file, then line number).
 
 ## How to answer "what does X mean?"
 
