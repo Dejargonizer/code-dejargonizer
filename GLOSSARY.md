@@ -307,7 +307,7 @@ A recorded, repeatable change to the shape of your database.
 *Picture:* a renovation plan for the filing system — "add a 'phone number' column to every customer record" — written down so it can be applied cleanly and, if needed, reversed.
 *When your agent says "I'll run a migration":* it's carefully changing how data is stored. Careful is the operative word — these are done deliberately because they touch real stored information.
 
-**Environment variable / secret / API key / token**
+**Environment variable / secret / API key / token** (also: env var, envvar, dotenv, credentials)
 A private setting or password your product needs to work — kept out of the code so it can't leak.
 *Picture:* the keys to the building and the alarm codes. You don't write them on the front door — you keep them somewhere safe and separate.
 *When your agent mentions these:* treat them like passwords, because they are. Never paste them into a public place. Good agents refuse to print them.
@@ -510,7 +510,7 @@ A specific value typed straight into the code, instead of being looked up or mad
 *Picture:* writing today's date on a sign in permanent marker instead of hanging a clock.
 *When your agent says it:* it is true today and will quietly stop being true later. Worth asking: "what breaks when that value needs to change, and who changes it?"
 
-**"I mocked that out"** (also: stubbed it out, placeholder data, dummy data, fake data)
+**"I mocked that out for now"** (also: mocked out, stubbed it out, placeholder data, dummy data, fake data)
 It built a stand-in that behaves like the real thing, so the rest of the work could carry on before the real thing was connected. (*Stub / mock* in section 5 is the same idea as a noun.)
 *Picture:* a film-set kitchen. The taps look perfect. No water.
 *When your agent says it:* what you are looking at is not connected to anything real, however finished it looks. Ask "is this real data yet?" before you show it to anyone who matters.
