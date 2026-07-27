@@ -631,5 +631,117 @@ window.GLOSSARY_DATA = [
         "note": "it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework."
       }
     ]
+  },
+  {
+    "n": "10",
+    "title": "Phrases that mean a decision got made for you",
+    "blurb": "Most jargon is only unfamiliar. This lot is different. Every phrase here sounds like a progress update and is really a decision your agent already made on your behalf — usually a sensible one, usually taken to keep moving. They matter because these are the choices that end up inside the thing you ship. A \"for now\" that nobody came back to is how a shortcut becomes permanent. You do not need to ban any of it. You need to be able to hear it go past.",
+    "terms": [
+      {
+        "t": "\"Hardcoded for now\"",
+        "m": "A specific value typed straight into the code, instead of being looked up or made changeable.",
+        "p": "writing today's date on a sign in permanent marker instead of hanging a clock.",
+        "aka": "hard-coded, baked in",
+        "note": "it is true today and will quietly stop being true later. Worth asking: \"what breaks when that value needs to change, and who changes it?\""
+      },
+      {
+        "t": "\"I mocked that out\"",
+        "m": "It built a stand-in that behaves like the real thing, so the rest of the work could carry on before the real thing was connected. (Stub / mock in section 5 is the same idea as a noun.)",
+        "p": "a film-set kitchen. The taps look perfect. No water.",
+        "aka": "stubbed it out, placeholder data, dummy data, fake data",
+        "note": "what you are looking at is not connected to anything real, however finished it looks. Ask \"is this real data yet?\" before you show it to anyone who matters."
+      },
+      {
+        "t": "\"I'll add tests later\"",
+        "m": "It wrote the working code but not the automatic checks that prove the code keeps working.",
+        "p": "fitting a smoke alarm and not putting a battery in.",
+        "aka": "skipping tests for now, no coverage on that yet",
+        "note": "nothing is wrong yet. The cost arrives later, when some future change breaks this and no alarm goes off. A perfectly good answer is \"fine for now — add them before this goes live.\""
+      },
+      {
+        "t": "\"I left a TODO\"",
+        "m": "A note it wrote to itself inside the code marking that part as unfinished.",
+        "p": "a sticky note on the fridge that only the person who wrote it will ever read.",
+        "aka": "FIXME, TODO comment, a note in the code",
+        "note": "it has flagged its own loose end honestly, which is good — but nothing will ever remind either of you again. Ask for the list: \"what TODOs are open right now?\""
+      },
+      {
+        "t": "\"I commented it out\"",
+        "m": "It turned some code off by marking it as a note, so the computer skips it, rather than deleting it.",
+        "p": "not throwing the ingredient away — just leaving it out of the recipe and keeping the jar in the cupboard.",
+        "aka": "disabled it, left it in but switched off",
+        "note": "something that used to happen no longer happens. One question covers it: \"what stopped working when you did that, and was that on purpose?\""
+      },
+      {
+        "t": "\"It's a workaround\"",
+        "m": "Something that works without fixing what actually caused the problem.",
+        "p": "a bucket under the leak. The floor stays dry. The roof is still broken.",
+        "aka": "a hack, a band-aid, a quick fix, a patch job",
+        "note": "it is being straight with you, which is worth encouraging. Ask \"what's the real fix, and how long would it take?\" — then decide. Sometimes the bucket genuinely is the right call."
+      },
+      {
+        "t": "\"I added a package for that\"",
+        "m": "Rather than writing the code itself, it borrowed working code written by strangers. (See Library / package / dependency in section 5.)",
+        "p": "buying a ready-made part instead of machining one. Faster, and now you depend on whoever makes it.",
+        "aka": "pulled in a dependency, installed a library",
+        "note": "usually the right call. Occasionally a very large tool has been brought in to do a very small job. Fair question: \"how big is it, and how many people rely on it?\""
+      },
+      {
+        "t": "\"It handles the happy path\"",
+        "m": "It works when everything goes as expected, and has not been taught what to do when things don't.",
+        "p": "a recipe written on the assumption you will never drop an egg.",
+        "aka": "happy path only, works in the normal case",
+        "note": "real people find the unhappy paths within a day — empty fields, lost connections, the same button pressed twice. Ask \"what does someone see when it goes wrong?\""
+      },
+      {
+        "t": "\"I'm swallowing the error\"",
+        "m": "When something goes wrong at that spot, the code hides the complaint and carries on instead of reporting it.",
+        "p": "a smoke alarm unplugged because the beeping was annoying.",
+        "aka": "catching and ignoring it, failing silently",
+        "note": "this is the shortcut most likely to cost you later, because breakage stops being visible — silence starts meaning nothing at all rather than nothing wrong. Reasonable push-back: \"I'd rather it told us. Can we at least write it down somewhere?\""
+      },
+      {
+        "t": "\"I turned off the check\"",
+        "m": "A warning kept appearing, so it switched the warning off rather than resolving what caused it.",
+        "p": "the seatbelt chime stops. Nobody put a seatbelt on.",
+        "aka": "disabled the linter, added an ignore, silenced the warning, used any",
+        "note": "sometimes the tool was wrong and muting it is correct. Sometimes the tool was right. One question separates the two: \"was the warning correct?\" (See also Suppression safety, section 7.)"
+      },
+      {
+        "t": "\"I refactored while I was in there\"",
+        "m": "It rearranged code you did not ask it to touch, without changing what that code does.",
+        "p": "asking someone to fix the door handle and finding they rearranged the room.",
+        "aka": "tidied it up along the way, cleaned a few things up",
+        "note": "the intent is good and the risk is real — more changed than you asked for, so more can break. Not a crime. Just say \"keep changes to what I asked for unless you check with me first.\""
+      },
+      {
+        "t": "\"I force-pushed\"",
+        "m": "It replaced the saved history of the work with its own version instead of adding to it.",
+        "p": "not writing today's diary entry, but tearing out yesterday's page and rewriting it.",
+        "aka": "overwrote the history, reset the branch",
+        "note": "earlier saved versions may be gone, possibly ones you wanted. Ask immediately: \"did anything get lost, and can you get it back?\" Better still, this is one to catch beforehand — which is exactly what \"is this reversible?\" is for."
+      },
+      {
+        "t": "\"I assumed you wanted\"",
+        "m": "It reached a decision, made the decision, and mentioned it afterwards.",
+        "p": "a builder who chose the tiles because you weren't answering your phone.",
+        "aka": "I went ahead and, I took the liberty of, I figured you'd want",
+        "note": "it is showing you a fork in the road you never saw. Nothing rude about walking back to it: \"tell me what you chose and what the other option was.\""
+      },
+      {
+        "t": "\"It's stored in plain text\"",
+        "m": "Information saved in a form that anyone who opens the file can simply read.",
+        "p": "the alarm code written on the back of the front door.",
+        "aka": "unencrypted, in the clear, plaintext",
+        "note": "completely fine for a shopping list, not fine for passwords, keys, or anything belonging to someone else. The question that matters: \"would it be bad if a stranger read this?\""
+      },
+      {
+        "t": "\"That should work\"",
+        "m": "It has not checked. This is a prediction — often a good one — and it is not a result.",
+        "p": "the difference between \"the cake is baked\" and \"the cake should be baked by now.\"",
+        "aka": "it ought to be fine, I believe that's fixed",
+        "note": "the only follow-up you need is \"did you run it and watch it work?\" A good agent answers honestly, and soon starts volunteering the difference unprompted. (See also Verification-boundary honesty, section 7.)"
+      }
+    ]
   }
 ];
