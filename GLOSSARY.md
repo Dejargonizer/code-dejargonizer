@@ -983,6 +983,57 @@ How much else is affected if this change goes wrong.
 
 ---
 
+## 17. Signs the work was not actually checked
+
+The words in every section above are unfamiliar. This lot is worse, because they are familiar. Every line here reads like a finished piece of work, and every one of them can be produced without the work having happened. None of it means your agent is lying to you. It means it is predicting instead of reporting, and predicting is what it falls back on when it has not looked. You are not auditing anything. You are listening for one thing: did it see this, or does it expect this?
+
+**"It should work now"** (also: that should fix it, this ought to, I believe that resolves it)
+A prediction dressed up as a result. The word "should" is the tell: it means the thing has not been run.
+*Picture:* a cook telling you the dish is delicious without tasting it.
+*When your agent says it:* ask "did you run it, and what did it print?" Often the answer is no. That is fine, but it changes what you do next.
+
+**"I verified it" with nothing shown** (also: confirmed, validated, tested it, double-checked)
+A claim of checking with no evidence of the check attached.
+*Picture:* a receipt with the word "paid" written on it by hand.
+*When your agent says it:* ask which command it ran and what came back. Verification you cannot see may not have happened.
+
+**Checking that the code exists, not that it runs** (also: the function is there, the file has been updated)
+Confirming the change got typed, rather than confirming the change does anything.
+*Picture:* checking the light switch is screwed to the wall rather than flipping it.
+*When your agent says it:* "it is in the file" is not "it works." Ask for the result of running it.
+
+**A stale result read as proof** (also: cached, still showing the old value)
+Checking something, getting an answer from before the change, and treating that as confirmation.
+*Picture:* reading yesterday's thermometer and announcing today's weather.
+*When your agent says it:* if a check passes suspiciously fast right after a change, ask whether it could be looking at a cached copy.
+
+**Confident specifics you cannot find** (also: invented filename, made-up setting, a version that does not exist)
+Precise names — a file, an option, a flag, a version number — produced from memory instead of from looking.
+*Picture:* directions given with total confidence to a street that was renamed years ago.
+*When your agent says it:* the more specific and the more fluent it sounds, the more it is worth checking. Ask it to open the file and show you the line.
+
+**"As expected"** (also: as anticipated, just as I thought)
+Reporting the prediction rather than the observation. It shows up most when nothing was observed.
+*Picture:* a weather forecast filed as a weather report.
+*When your agent says it:* ask what actually happened, in the output's own words.
+
+**A summary that just repeats the plan** (also: here is what I did, followed by the to-do list)
+The wrap-up lists intentions rather than outcomes, which is what happens when the outcomes were never read.
+*Picture:* a shopping list handed over as a receipt.
+*When your agent says it:* hold the summary against the original plan. If they match word for word, ask what changed along the way. Something always does.
+
+**The same fix, three times** (also: let me try again, one more attempt, that did not work either)
+Repeating near-identical attempts is guessing, not diagnosing.
+*Picture:* jiggling a key that was never the right key.
+*When your agent says it:* stop it. Make it say what it thinks the cause is, in one sentence, before it touches anything else.
+
+**Tests that started passing after being edited** (also: updated the test, adjusted the assertion, skipped that one)
+The check got moved to fit the code, instead of the code being fixed to satisfy the check.
+*Picture:* moving the target after the arrow has landed.
+*When your agent says it:* ask which tests changed and why. Sometimes it is right. Often it has just switched off your alarm.
+
+---
+
 ## How to use this with your agent
 
 - **You are the manager here, not the student.** You do not need to know how any of this works. You need to read the report well enough to say "no, not like that" — which is the whole reason the vocabulary matters. [Section 10](#10-phrases-that-mean-a-decision-got-made-for-you) is where saying it matters most.
