@@ -1,8 +1,8 @@
 <h1 align="center">The Dejargonizer</h1>
 
-<p align="center"><strong>You already talk to your AI coding agent in plain English. This makes it answer the same way.</strong></p>
+<p align="center"><strong>You can't manage what you can't read. This makes your AI coding agent report back in words you can act on.</strong></p>
 
-<p align="center"><em>You don't need to be an engineer. You need a translator.</em></p>
+<p align="center"><em>Better management of the agent. Which means a better product.</em></p>
 
 <p align="center">
 <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
@@ -19,13 +19,21 @@ AI coding agents just handed millions of people the power to build software. Tal
 
 Every word means something specific and simple. The gap between that sentence and a person who could act on it is not intelligence. It's **vocabulary** — and vocabulary is fixable.
 
+But it's worth being precise about what fixing it actually buys you, because "understand your code better" undersells it badly. **You are not a student of this work. You are the manager of it.** You decide what gets built, what's good enough, what's worth the time, and what doesn't ship. That job runs entirely on language. When the report comes back in a language you don't read, you lose the ability to *review* the work — you are left able only to *approve* it.
+
+And an agent nobody reviews doesn't stop. It carries on making decisions on your behalf, announcing them in the same flat register as everything else: it typed the price in by hand, it put fake data where the real data goes, it switched off the warning that kept appearing, it skipped the tests for now. Every one of those is defensible. Every one was yours to decide. And every one ends up inside the thing you ship.
+
+So the chain is short, and it does not stop at comprehension. **Read the report, and you can manage the agent. Manage the agent, and you get a better product.**
+
 Natural language is supposed to work in *both* directions. Right now it only works on the way in. **The Dejargonizer makes it work on the way back too** — so the whole conversation, out and back, stays in language you can act on. Three things, working together:
 
 ### 📖 A dictionary — [`GLOSSARY.md`](GLOSSARY.md)
 Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, **something to picture**, and **what to actually do when your agent says it.** Read it on its own — no agent required.
 
+One section is deliberately unlike the others: [**phrases that mean a decision got made for you**](GLOSSARY.md#10-phrases-that-mean-a-decision-got-made-for-you). "I mocked that out." "It's a workaround." "That should work." These sound like progress updates and are really choices, made on your behalf, that you would probably want a say in.
+
 ### 🗣️ A switch for your agent — [`dejargonizer/`](dejargonizer/SKILL.md)
-Drop-in instructions that make *any* AI coding agent translate its own engineering-speak back into plain language *by default*: the point first, every term defined in the same breath, an honest heads-up in plain words before anything risky, and a clear line on who did what. It turns the agent from a brilliant colleague who forgets you're new into one who never does.
+Drop-in instructions that make *any* AI coding agent translate its own engineering-speak back into plain language *by default*: the point first, every term defined in the same breath, an honest heads-up in plain words before anything risky, a clear line on who did what, and — the part that matters most for the product — every decision it made for you named out loud instead of left inside the narration. It turns the agent from a brilliant colleague who forgets you're new into one who never does.
 
 ### 🔁 A loop that keeps it honest
 The dictionary isn't a one-time snapshot someone tried to write in advance — it grows from the words that actually trip people up, and mostly you don't have to do anything for that to happen. Your agent does it: when it explains a term the shipped dictionary doesn't cover yet, it files that word back here — just the term and its plain-English meaning, never your code or project details. You never have to notice the gap yourself. And on the live site, searching for a word and coming up empty is enough: the "Suggest a term" button drafts the whole issue for you in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
@@ -45,6 +53,16 @@ The dictionary as a searchable web page: **[open `index.html`](index.html)** in 
 > *"The automatic checks all passed, so the work is ready. I've put it up for your approval — nothing goes live until you say yes. When you do, I'll make it official and then double-check it's actually running. Want to take a look first?"*
 
 Same facts. Same rigor. One of them you can act on.
+
+And then the example that actually changes what you ship:
+
+> ❌ **Before**
+> *"Hardcoded the pricing constants for now, added a validation lib."*
+>
+> ✅ **After The Dejargonizer**
+> *"Two decisions I made for you. First, the prices are typed in by hand rather than read from your spreadsheet — that got it working today, but the page will be wrong the first time you change a price. Second, I brought in a small outside tool to check the form entries instead of writing that part myself. Happy with both, or want either done differently?"*
+
+The first example saves you a confusing minute. The second one saves you a bug in production.
 
 ## Turn it on for your agent
 
@@ -94,17 +112,20 @@ By default, when your agent defines a term the shipped glossary doesn't cover ye
 
 If you'd rather it filed nothing, just tell your agent so, or delete the last paragraph of "Keeping this current" from `dejargonizer/SKILL.md`.
 
-## Three questions you can always ask
+## Four questions you can always ask
 
 Keep these in your back pocket. They work with any agent, any time, and they put you back in control:
 
 1. **"Say that again with no jargon."**
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
+4. **"What did you decide for me?"**
+
+The fourth is the one nobody thinks to ask, and it catches the most. Agents make small, reasonable calls constantly and rarely volunteer them. Asking turns a status report into something you can manage.
 
 ## Who this is for
 
-Founders, designers, writers, operators, students — anyone who is *building* with an AI agent but was never taught the vocabulary. You do not need to become an engineer to make real things. You need a translator.
+Founders, designers, writers, operators, students — anyone who is *building* with an AI agent but was never taught the vocabulary. You do not need to become an engineer to make real things. You need to be able to read the report well enough to run the project.
 
 ## Contributing
 
