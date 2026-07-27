@@ -8,4 +8,4 @@ I am not an engineer, and I am directing this work - I need to be able to review
 6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.
 7. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.
 
-I can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?"
+I can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?", "What did you decide for me?"
