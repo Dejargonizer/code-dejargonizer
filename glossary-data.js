@@ -779,9 +779,9 @@ window.GLOSSARY_DATA = [
       },
       {
         "t": "Token",
-        "m": "The unit text gets chopped into before the model reads it, roughly a short word or part of one.",
+        "m": "The unit text gets chopped into before the model reads it, roughly a short word or part of one. Not the same thing as an API token, which is a password.",
         "p": "measuring a recipe in spoonfuls rather than ingredients.",
-        "aka": "in AI, not a password, tokens, token count, token limit",
+        "aka": "tokens, token count, token limit, context tokens, token usage",
         "note": "tokens are what you are billed by and what fills the desk. \"Too many tokens\" means too much text, not too complicated."
       },
       {
@@ -1131,7 +1131,7 @@ window.GLOSSARY_DATA = [
         "t": "N+1 query",
         "m": "Asking the database a hundred separate small questions when one question would have done.",
         "p": "walking to the archive a hundred times instead of carrying the whole box back once.",
-        "aka": "query in a loop, too many queries",
+        "aka": "n plus one, query in a loop, queries in a loop, too many queries, repeated queries",
         "note": "this is the most common reason a page that flew with ten records crawls with a thousand."
       },
       {
