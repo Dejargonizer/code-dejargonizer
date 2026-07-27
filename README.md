@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-<a href="https://dejargonizer.github.io/code-dejargonizer/"><strong>Look up a word</strong></a> &nbsp;·&nbsp; <a href="INSTALL.md"><strong>Install it in your tool</strong></a> &nbsp;·&nbsp; <a href="GLOSSARY.md"><strong>All 181 terms</strong></a>
+<a href="https://dejargonizer.github.io/code-dejargonizer/"><strong>Look up a word</strong></a> &nbsp;·&nbsp; <a href="INSTALL.md"><strong>Install it in your tool</strong></a> &nbsp;·&nbsp; <a href="GLOSSARY.md"><strong>All 202 terms</strong></a> &nbsp;·&nbsp; <a href="https://dejargonizer.github.io/code-dejargonizer/impact.html"><strong>What we can show</strong></a>
 </p>
 
 ---
@@ -43,6 +43,14 @@ Drop-in instructions that make *any* AI coding agent translate its own engineeri
 The dictionary isn't a one-time snapshot someone tried to write in advance — it grows from the words that actually trip people up, and mostly you don't have to do anything for that to happen. Your agent does it: when it explains a term the shipped dictionary doesn't cover yet, it files that word back here — just the term and its plain-English meaning, never your code or project details. You never have to notice the gap yourself. And on the live site, searching for a word and coming up empty is enough: the "Suggest a term" button drafts the whole issue for you in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
 
 ---
+
+### 🔎 A way to hear when nothing was checked — [section 17](GLOSSARY.md#17-signs-the-work-was-not-actually-checked)
+
+Eighteen tells, in plain language. "It should work now" is a prediction, not a result. "I verified it" with nothing shown is a claim, not evidence. A summary that repeats the plan word for word usually means the outcome was never read. None of these mean your agent is lying — they mean it is predicting instead of reporting, which is what it does when it has not looked. The skill also makes it label its own claims: what it ran, versus what it expects.
+
+### 📊 Numbers we can actually defend — [the impact page](https://dejargonizer.github.io/code-dejargonizer/impact.html)
+
+A product about telling a measured claim from a confident guess should not make unmeasured claims about itself. So there is a script that counts: how much of the jargon in real agent status lines has a plain-English entry, which words it still misses, and a printed list of what we have **not** proven. Run it yourself with `node scripts/build-metrics.mjs`.
 
 ## See it first
 
@@ -82,9 +90,9 @@ Whichever route you take, add one line in your own words: **you are not an engin
 
 Then check it took. Start a new session and ask:
 
-> How many Dejargonizer rules are you following, and what is rule 10?
+> How many Dejargonizer rules are you following, and what is rule 11?
 
-Ten rules, and rule 10 is about naming the decisions it made for you. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
+Thirteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
 
 ## Four questions you can always ask
 
