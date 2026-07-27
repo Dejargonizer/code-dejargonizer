@@ -616,30 +616,6 @@
       "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
-      "line": "grep before scoping unbuilt, device-context bridge, pre-draft echo loop, Local gauntlet on origin/main (0cc4d4e4):",
-      "sealedOn": "2026-07-27",
-      "termsAtSeal": 202,
-      "marked": 5,
-      "missed": [
-        "grep",
-        "scoping",
-        "unbuilt"
-      ],
-      "retired": true,
-      "markedWords": [
-        "grep",
-        "scoping",
-        "unbuilt",
-        "origin/main",
-        "commit SHA"
-      ],
-      "source": "contributed",
-      "matcherWas": "substring-v1",
-      "matcher": "whole-word-v2",
-      "rescoredOn": "2026-07-27",
-      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
-    },
-    {
       "line": "tsc --noEmit: 0 errors",
       "sealedOn": "2026-07-27",
       "termsAtSeal": 202,
