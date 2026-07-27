@@ -4,7 +4,7 @@ One goal: your coding agent explains itself in plain English every time, without
 
 Two things to know before you start.
 
-**There are two versions of the instructions.** [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) is a single paste-able block, small enough for a settings box with a character limit. [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) is the full version, ten rules, for tools that read a rules file.
+**There are two versions of the instructions.** [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) is a single paste-able block of about 1,500 characters, sized to fit a settings box with a limit. [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) is the full version, thirteen rules, for tools that read a rules file.
 
 **Nothing here is tool-specific.** It is plain text. If your tool is not in the tables below, find where it keeps its standing instructions and put the same text there.
 
@@ -118,12 +118,12 @@ Outside a browser, drop the leading `window.GLOSSARY_DATA =` and the trailing se
 
 Installing something and assuming it took effect is the exact habit this project exists to break. Start a **new** session and ask:
 
-> How many Dejargonizer rules are you following, and what is rule 10?
+> How many Dejargonizer rules are you following, and what is rule 11?
 
 | What you hear | What it means |
 |---|---|
-| "Ten rules, and rule 10 is to name the decisions I made for you" | The full version is live. Done. |
-| It knows about plain English and naming decisions, but not the numbering | The short version is live. That is correct behavior for the short version. |
+| "Thirteen rules, and rule 11 is to separate what I saw from what I only expect" | The full version is live. Done. |
+| It knows about plain English, naming decisions and not saying "works" before running it, but not the numbering | The short version is live. That is correct behavior for the short version. |
 | It guesses, or asks what the Dejargonizer is | It never read the file. Wrong path, or the tool needs restarting. |
 
 Then give it a real piece of work and watch for one thing: **does it define a technical word the first time it uses one?** That is the whole product working. If it does not, say so once in the session and it usually holds for the rest of it.
