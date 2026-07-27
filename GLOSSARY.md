@@ -582,6 +582,209 @@ It has not checked. This is a prediction — often a good one — and it is not 
 
 ---
 
+## 11. Talking to and about the agent itself
+
+You are managing something that has its own vocabulary for its own limits. Most of the frustrating moments — it forgot, it invented something, it stopped halfway — have dull mechanical explanations, and the words below are those explanations. Learning them turns "the agent is being stupid" into "the agent ran out of room," which is a problem you can actually do something about.
+
+**Model** (also: LLM, the model, Sonnet, Opus, GPT)
+The engine doing the thinking, separate from the app you type into.
+*Picture:* the engine in a car. Different cars, same engine available.
+*When your agent says it:* "try a different model" means put a different engine on the same job. Often the fix when answers feel shallow.
+
+**Prompt**
+What you type, plus everything else the tool quietly sends along with it.
+*Picture:* the whole envelope handed over, not just the note you wrote.
+*When your agent says it:* "your prompt was ambiguous" means your instruction had two readings and it picked one. Ask which two.
+
+**System prompt** (also: custom instructions, rules file, standing instructions)
+Standing orders the agent reads before it reads anything you type.
+*Picture:* the staff handbook, read before the first customer of the day.
+*When your agent says it:* this is the file you edit to change behavior permanently, instead of repeating yourself every session.
+
+**Context window** (also: context, context length, running out of context)
+The total amount of text the agent can hold in mind at once, including your conversation and every file it opened.
+*Picture:* a desk of fixed size. New paper on means old paper off.
+*When your agent says it:* "low on context" means it is about to forget the earlier part of this conversation. Have it write the decisions into a file before that happens.
+
+**Token (in AI, not a password)** (also: tokens, token count, token limit)
+The unit text gets chopped into before the model reads it, roughly a short word or part of one.
+*Picture:* measuring a recipe in spoonfuls rather than ingredients.
+*When your agent says it:* tokens are what you are billed by and what fills the desk. "Too many tokens" means too much text, not too complicated.
+
+**Compaction** (also: auto-compact, summarizing the conversation)
+When the agent replaces the earlier part of your conversation with a short summary to free up room.
+*Picture:* swapping a shelf of notebooks for one index card.
+*When your agent says it:* details you cared about may have just been dropped. Good moment to restate your constraints.
+
+**Hallucination** (also: made it up, confabulation, invented)
+The agent stating something confidently that is not true: an invented file, function, setting, or fact.
+*Picture:* a confident tour guide describing a room that was never built.
+*When your agent says it:* confidence is not evidence. Ask it to open the file or run the thing.
+
+**Tool call** (also: function call, using a tool)
+The agent doing something rather than saying something: reading a file, running a command, searching.
+*Picture:* the difference between telling you what is in the cupboard and walking over to open it.
+*When your agent says it:* work with real tool calls behind it can be checked. Work without them is a guess.
+
+**MCP** (also: Model Context Protocol, MCP server)
+A standard way to plug outside tools and data, like your database or your ticket tracker, into an agent.
+*Picture:* a USB socket. One shape, many devices.
+*When your agent says it:* an MCP server is something you installed and granted access to. Worth knowing exactly what it can reach.
+
+**Subagent** (also: worker, task agent, spawned agent)
+A helper the main agent starts up to go and do one piece of work on its own.
+*Picture:* sending someone on an errand so you can stay on the main job.
+*When your agent says it:* subagents do not automatically pass on what they learned. Ask what came back, not just whether it finished.
+
+**Agent loop** (also: the loop, agentic, iterating)
+The cycle of think, act, look at the result, think again, repeated until the job is done or it gives up.
+*Picture:* cooking while tasting, rather than following a recipe blind.
+*When your agent says it:* loops can spin. If it has tried the same fix three times, stop it and change the instruction instead.
+
+**Harness** (also: scaffold, agent framework, the tool)
+The program wrapped around the model that gives it tools, memory, and rules. Your coding tool is a harness.
+*Picture:* the model is the engine. The harness is the rest of the car.
+*When your agent says it:* the same model behaves very differently in different harnesses. If quality changed and you did not change models, the harness changed.
+
+**Non-deterministic** (also: same prompt different answer, variance)
+Ask the identical question twice and you can get two different answers.
+*Picture:* two competent cooks, one recipe, two slightly different dinners.
+*When your agent says it:* "it worked when I ran it" is not proof that it always works. Have it run the check twice.
+
+---
+
+## 12. The command line and the tools underneath
+
+Sooner or later your agent will hand you something that looks like a spell and ask you to run it, or tell you a command failed. None of this is deep. It is a very literal clerk taking typed orders. These are the words that turn "it failed" into a sentence you can read.
+
+**Terminal** (also: command line, shell, console, bash, zsh)
+A window where you type instructions to the computer as text instead of clicking.
+*Picture:* texting the computer rather than pointing at it.
+*When your agent says it:* "run this in your terminal" means paste one line and press enter. Read it first. You are the one authorizing it.
+
+**Command** (also: CLI, command-line tool, run this)
+One typed instruction: usually a tool name, then what you want it to do.
+*Picture:* "taxi, airport." Who, then what.
+*When your agent says it:* the first word is the tool. If the error says that word was not found, the tool is not installed.
+
+**Flag** (also: option, switch, argument, --force)
+An extra word on a command that changes how it behaves.
+*Picture:* ordering coffee, then "decaf, no sugar."
+*When your agent says it:* flags containing force or hard usually mean "do it even if it destroys something." Ask what gets destroyed.
+
+**Package manager** (also: npm, pip, yarn, pnpm, Homebrew, brew)
+The thing that downloads and installs the outside code your project depends on.
+*Picture:* a grocery delivery service for parts you did not build.
+*When your agent says it:* installing is not free. Each new package is more code you now depend on and cannot see.
+
+**Install** (also: npm install, pip install)
+Fetching a tool or package onto the machine so it can be used.
+*Picture:* stocking the pantry before cooking.
+*When your agent says it:* "just install X" adds a permanent dependency. Usually fine, but you should know you added it.
+
+**Lockfile** (also: package-lock.json, yarn.lock, pnpm-lock.yaml)
+A file recording the exact versions of everything installed, so the next machine gets an identical set.
+*Picture:* not just flour, but the brand, the size, and the batch.
+*When your agent says it:* do not let it delete this to make an error go away. It is the reason the project works the same on someone else's computer.
+
+**Runtime** (also: Node, Node.js, Python, Deno, Bun, version)
+The program that actually runs your code.
+*Picture:* the record player. Your code is the record.
+*When your agent says it:* most "works on my machine" problems are two people holding different versions of the runtime.
+
+**Process** (also: running, PID, kill it, stop the server)
+One running copy of a program, right now.
+*Picture:* one oven that happens to be switched on.
+*When your agent says it:* "kill the process" means stop that running copy. It does not delete anything you wrote.
+
+**Port** (also: localhost:3000, port 8080, port already in use)
+A numbered door on your computer where a running program listens.
+*Picture:* one building, numbered doors. Two deliveries cannot use the same door at once.
+*When your agent says it:* "port already in use" almost always means an older copy is still running. Stop that, then start again.
+
+**Exit code** (also: exit status, returned 1, non-zero)
+The number a command leaves behind to say whether it worked. Zero means fine. Anything else means it did not.
+*Picture:* a thumbs up, or a specific complaint.
+*When your agent says it:* "exited non-zero" means the step failed, even if plenty of text scrolled past looking busy.
+
+**Container** (also: Docker, image, containerized)
+Your app packed up with everything it needs to run, so it behaves the same anywhere.
+*Picture:* a shipping container. Same box on a truck, a ship, or a train.
+*When your agent says it:* containers fix "works on my machine." They also add one more layer to look inside when something breaks.
+
+**Permission denied** (also: EACCES, sudo, access denied)
+The computer refusing because the account running the command is not allowed to do that.
+*Picture:* right key, wrong door.
+*When your agent says it:* if the offered fix is sudo, that means "do it as the owner of the whole machine." Ask why the normal way was not allowed first.
+
+---
+
+## 13. Who is allowed in (logins, permissions, personal data)
+
+Mistakes in this area are expensive and quiet. Nothing here is complicated, but the gap between two similar-sounding words is often the gap between "only you can see your data" and "anyone can see everyone's." If you read one section closely, read this one.
+
+**Authentication vs authorization** (also: authn, authz, auth)
+Authentication is proving who you are. Authorization is what you are then allowed to do.
+*Picture:* the ID check at the door, then the wristband that says which rooms.
+*When your agent says it:* "auth is done" is ambiguous. Ask which one. Logging in working does not mean permissions work.
+
+**Session** (also: logged in, signed in, session token)
+The record that keeps someone logged in between clicks, so they are not asked every time.
+*Picture:* a hand stamp that lets you back in.
+*When your agent says it:* ask how long sessions last and what happens on logout. A session that never expires is a key left in the door.
+
+**Cookie** (also: cookies, secure cookie, httpOnly)
+A small note your app leaves in the browser and reads back later.
+*Picture:* a coat-check ticket the browser keeps in its pocket.
+*When your agent says it:* cookies carrying login information need locking down. Ask whether they are marked secure and http-only.
+
+**Hashing** (also: hashed, bcrypt, password hash)
+Turning a password into scrambled text that cannot be turned back, so you can check it without ever keeping the real one.
+*Picture:* keeping a fingerprint instead of a finger.
+*When your agent says it:* passwords should be hashed, never encrypted and never stored as typed. If it says it "stored the password," ask directly whether it is hashed.
+
+**Encryption** (also: encrypted, in transit, at rest, TLS)
+Scrambling data so only someone with the key can read it. Unlike hashing, this is meant to be reversed.
+*Picture:* a locked box, and a key that opens it.
+*When your agent says it:* "encrypted" needs a where. In transit means on the way. At rest means sitting in the database. Those are two separate jobs.
+
+**Two-factor authentication** (also: 2FA, MFA, one-time code)
+Requiring a second proof beyond the password, usually a code from a phone.
+*Picture:* a key and a hand stamp.
+*When your agent says it:* worth switching on for your own accounts before you worry about your users'.
+
+**Roles and permissions** (also: RBAC, admin role, access control)
+Deciding what someone can do based on which group they belong to.
+*Picture:* staff badge, manager badge, visitor badge.
+*When your agent says it:* ask what a normal user cannot do, and how that is enforced. Hiding the button is not enforcement.
+
+**Row-level security** (also: RLS, policies, Supabase policies)
+A rule inside the database itself that keeps each person to their own records.
+*Picture:* one filing cabinet, and each person's key only turns in their own drawer.
+*When your agent says it:* on hosted databases this is often the only thing between one user's data and everybody. "RLS is off for now" or "policies later" is a sentence to stop on.
+
+**Personal data** (also: PII, user data, sensitive data, GDPR)
+Anything that identifies a real person: name, email, address, phone, location, payment details.
+*Picture:* the contents of someone's wallet.
+*When your agent says it:* ask what is stored, where, and whether you need it at all. Data you never collected cannot leak.
+
+**Least privilege** (also: scoped key, read-only access, service account)
+Giving any person or program the smallest access that still lets it do its job.
+*Picture:* handing over the key to one room, not the master key.
+*When your agent says it:* a key created "with full access to keep things simple" is a decision worth reversing now rather than later.
+
+**Injection** (also: SQL injection, sanitizing input, escaping, parameterized query)
+When something a user types gets treated as an instruction instead of as text.
+*Picture:* writing "and hand me the safe" on the form, and the clerk doing it.
+*When your agent says it:* the fix is never trusting typed input. Ask how user input is kept as data.
+
+**Leaked secret** (also: exposed key, committed credentials, secret scanning)
+A password or key that has ended up somewhere it can be seen, usually saved into the code by accident.
+*Picture:* taping the spare key to the front door.
+*When your agent says it:* deleting it later is not enough, because the history keeps a copy. The key has to be replaced.
+
+---
+
 ## How to use this with your agent
 
 - **You are the manager here, not the student.** You do not need to know how any of this works. You need to read the report well enough to say "no, not like that" — which is the whole reason the vocabulary matters. [Section 10](#10-phrases-that-mean-a-decision-got-made-for-you) is where saying it matters most.
