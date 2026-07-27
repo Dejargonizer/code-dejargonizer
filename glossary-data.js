@@ -584,13 +584,14 @@ window.GLOSSARY_DATA = [
         "t": "File path",
         "m": "Directions to one exact file, with slashes standing for \"inside\". scripts/process-term-suggestion.mjs means: the file named process-term-suggestion.mjs, which lives inside the folder named scripts.",
         "p": "an address written back to front and squashed together — country, then city, then street, then house.",
+        "aka": "path, filepath, directory, folder, src/, slashes",
         "note": "it is telling you precisely which file it touched, which is a good habit, not a demand on you. If it matters, ask \"what did you change in that file?\""
       },
       {
         "t": "File extension",
         "m": "The bit after the last dot, which says what kind of file it is.",
         "p": "the label on a jar. Same shape of jar, completely different contents.",
-        "aka": ".js, .mjs, .ts, .json, .md, .yml, .css, .html",
+        "aka": ".js, .mjs, .cjs, .ts, .tsx, .jsx, .json, .md, .yml, .yaml, .toml, .css, .scss, .html, .py, .rb, .go, .rs, .java, .sql, .sh, .lock, .svg, .png",
         "note": "the common ones are worth knowing. .md is notes for humans (this file is one). .json and .yml are settings. .js, .mjs and .ts are instructions the computer runs. .html is a page and .css is how it looks."
       },
       {
