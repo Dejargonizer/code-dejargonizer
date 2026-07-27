@@ -82,7 +82,7 @@
   <div class="cards">
     <div class="card"><div class="big" id="nFirstLook">&#8230;</div><div class="lab">of the jargon in a line already had a plain-English entry <strong>the first time the dictionary met that line</strong></div></div>
     <div class="card"><div class="big" id="nEverMissed">&#8230;</div><div class="lab">words it has missed on first sight. The list is never cleared, only added to</div></div>
-    <div class="card"><div class="big" id="nFinished">&#8230;</div><div class="lab">of entries are finished &#8212; a meaning, something to picture, and what to do when your agent says it</div></div>
+    <div class="card"><div class="big" id="nOutside">&#8230;</div><div class="lab">lines in the sample contributed by anyone outside this project. The weakest number here, and the one we most want to see rise</div></div>
   </div>
 
   <h2>First look, in full</h2>
@@ -107,9 +107,10 @@
     <p class="note" id="everMissedNote"></p>
   </div>
 
-  <h2>Entries that are not finished</h2>
+  <h2>Whether the entries are actually finished</h2>
   <div class="panel">
     <p class="sub">Counting terms hides this. An entry that gives you a meaning but never says what to do when your agent uses the word is half an entry, and it counts the same in a total. So the total is not the measure &#8212; this is.</p>
+    <p class="note">Worth saying, since this page is about not trusting your own checks: the first version of this counter looked for one exact wording, decided 57 finished entries were unfinished, and 23 of them got a second, redundant line of guidance before anyone noticed. The check now looks for the shape rather than the string, and the 23 have been merged back into one. It tested for the words it expected instead of the thing it was measuring, which is <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/GLOSSARY.md#17-signs-the-work-was-not-actually-checked">section 17</a> in miniature.</p>
     <ul class="rows">
       <li><span>Entries with something to picture</span> <b id="qPic">&#8230;</b></li>
       <li><span>Entries that say what to do when your agent says it</span> <b id="qAct">&#8230;</b></li>
@@ -178,7 +179,7 @@
 
       set('nFirstLook', f.coveragePct + '%');
       set('nEverMissed', m.everMissed.length);
-      set('nFinished', q.finishedPct + '%');
+      set('nOutside', s.fromOutsideThisProject);
 
       set('rLines', f.linesScored);
       set('rRetired', f.linesRetiredButStillCounted);
