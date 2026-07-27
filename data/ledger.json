@@ -2,40 +2,291 @@
   "note": "The scoring record. Every line in data/corpus.json is scored once, against the dictionary as it stood on the day that line arrived, and the result is frozen here. Writing a glossary entry afterwards cannot turn a past miss into a hit. Records are never deleted: if a line is dropped from the sample, its record stays and still counts against the score. That is the whole point. A dictionary that grows to cover its own test proves nothing.",
   "seeded": "The first 35 records come from the first metrics run on 2026-07-27, when the dictionary held 199 terms. Three marked words had no entry that day: CDN, byte, workflow. They were written afterwards, which fixed the dictionary but did not change this score, and never will.",
   "entries": [
-    { "line": "I'll squash-merge the PR once CI is green, then verify the deploy.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 5, "missed": [] },
-    { "line": "The commit did land - my raw-URL check was reading a stale cache.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Parity confirmed: the embedded copy is byte-identical at 1482 bytes.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": ["byte"] },
-    { "line": "Found a formatting bug where the separator lost its blank line.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Sync complete - 16 sections and 181 terms in the generated data file.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "index.html is live, but the glossary data is still stale on the CDN.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": ["CDN"] },
-    { "line": "Waiting on the sync workflow and the Pages deploy before I re-test.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": ["workflow"] },
-    { "line": "Evaluating the script violated the Content Security Policy, so I validated it structurally instead.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Hardcoded the API key for now - we should move it to an env var before prod.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 4, "missed": [] },
-    { "line": "Added an index on user_id to fix the N+1 query.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "RLS is off on that table for now so the seed script can write to it.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Bumped the lockfile and reinstalled dependencies; the build passes locally.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 4, "missed": [] },
-    { "line": "That should work now.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Rolled back the migration and reverted the commit on main.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 5, "missed": [] },
-    { "line": "The end-to-end test is flaky, so I skipped it and opened a ticket.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Wrapped the fetch in a retry with exponential backoff.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Stubbed the payment webhook so the happy path works end to end.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Refactored the component to lift state up; no behaviour change.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "CORS was blocking it, so I added the origin to the allowlist.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "The container cold start is adding about 800ms to the first request.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Suppressed the type error with a cast; it is a known issue upstream.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Everything looks good on my side.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Deployed to staging and the smoke tests are green.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 4, "missed": [] },
-    { "line": "Hashed the passwords with bcrypt and set the session cookie to httpOnly.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Ran the linter and the type check; tsc is clean.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "The stack trace points at a null dereference in the auth middleware.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Scoped the service account to read-only, following least privilege.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "Compaction kicked in, so I lost the earlier context - restating the plan.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "The subagent finished but did not report back what it changed.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 1, "missed": [] },
-    { "line": "I mocked that out for now so the rest of the flow could be tested.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Port 3000 is already in use, so the dev server did not start.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Updated the assertion so the test passes.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "Scaffolded the boilerplate and wired up the endpoint.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 2, "missed": [] },
-    { "line": "The build failed on a non-zero exit code from the lint step.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] },
-    { "line": "Set up the webhook to hit our endpoint, and added a rate limit.", "sealedOn": "2026-07-27", "termsAtSeal": 199, "marked": 3, "missed": [] }
+    {
+      "line": "I'll squash-merge the PR once CI is green, then verify the deploy.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 5,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The commit did land - my raw-URL check was reading a stale cache.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Parity confirmed: the embedded copy is byte-identical at 1482 bytes.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [
+        "byte"
+      ],
+      "retired": false
+    },
+    {
+      "line": "Found a formatting bug where the separator lost its blank line.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Sync complete - 16 sections and 181 terms in the generated data file.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "index.html is live, but the glossary data is still stale on the CDN.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [
+        "CDN"
+      ],
+      "retired": false
+    },
+    {
+      "line": "Waiting on the sync workflow and the Pages deploy before I re-test.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [
+        "workflow"
+      ],
+      "retired": false
+    },
+    {
+      "line": "Evaluating the script violated the Content Security Policy, so I validated it structurally instead.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Hardcoded the API key for now - we should move it to an env var before prod.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 4,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Added an index on user_id to fix the N+1 query.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "RLS is off on that table for now so the seed script can write to it.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Bumped the lockfile and reinstalled dependencies; the build passes locally.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 4,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "That should work now.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Rolled back the migration and reverted the commit on main.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 5,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The end-to-end test is flaky, so I skipped it and opened a ticket.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Wrapped the fetch in a retry with exponential backoff.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Stubbed the payment webhook so the happy path works end to end.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Refactored the component to lift state up; no behaviour change.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "CORS was blocking it, so I added the origin to the allowlist.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The container cold start is adding about 800ms to the first request.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Suppressed the type error with a cast; it is a known issue upstream.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Everything looks good on my side.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Deployed to staging and the smoke tests are green.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 4,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Hashed the passwords with bcrypt and set the session cookie to httpOnly.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Ran the linter and the type check; tsc is clean.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The stack trace points at a null dereference in the auth middleware.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Scoped the service account to read-only, following least privilege.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Compaction kicked in, so I lost the earlier context - restating the plan.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The subagent finished but did not report back what it changed.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 1,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "I mocked that out for now so the rest of the flow could be tested.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Port 3000 is already in use, so the dev server did not start.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Updated the assertion so the test passes.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Scaffolded the boilerplate and wired up the endpoint.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 2,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "The build failed on a non-zero exit code from the lint step.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    },
+    {
+      "line": "Set up the webhook to hit our endpoint, and added a rate limit.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 199,
+      "marked": 3,
+      "missed": [],
+      "retired": false
+    }
   ]
 }
