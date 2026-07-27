@@ -392,6 +392,7 @@ window.GLOSSARY_DATA = [
         "t": "Environment variable / secret / API key / token",
         "m": "A private setting or password your product needs to work — kept out of the code so it can't leak.",
         "p": "the keys to the building and the alarm codes. You don't write them on the front door — you keep them somewhere safe and separate.",
+        "aka": "env var, envvar, dotenv, credentials",
         "note": "treat them like passwords, because they are. Never paste them into a public place. Good agents refuse to print them.",
         "tone": "look"
       },
@@ -645,10 +646,10 @@ window.GLOSSARY_DATA = [
         "note": "it is true today and will quietly stop being true later. Worth asking: \"what breaks when that value needs to change, and who changes it?\""
       },
       {
-        "t": "\"I mocked that out\"",
+        "t": "\"I mocked that out for now\"",
         "m": "It built a stand-in that behaves like the real thing, so the rest of the work could carry on before the real thing was connected. (Stub / mock in section 5 is the same idea as a noun.)",
         "p": "a film-set kitchen. The taps look perfect. No water.",
-        "aka": "stubbed it out, placeholder data, dummy data, fake data",
+        "aka": "mocked out, stubbed it out, placeholder data, dummy data, fake data",
         "note": "what you are looking at is not connected to anything real, however finished it looks. Ask \"is this real data yet?\" before you show it to anyone who matters."
       },
       {
