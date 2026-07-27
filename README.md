@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-<a href="https://dejargonizer.github.io/code-dejargonizer/"><strong>Look up a word</strong></a> &nbsp;·&nbsp; <a href="INSTALL.md"><strong>Install it in your tool</strong></a> &nbsp;·&nbsp; <a href="GLOSSARY.md"><strong>All 202 terms</strong></a> &nbsp;·&nbsp; <a href="https://dejargonizer.github.io/code-dejargonizer/impact.html"><strong>What we can show</strong></a>
+<a href="https://dejargonizer.github.io/code-dejargonizer/"><strong>Look up a word</strong></a> &nbsp;·&nbsp; <a href="INSTALL.md"><strong>Install it in your tool</strong></a> &nbsp;·&nbsp; <a href="GLOSSARY.md"><strong>Read the dictionary</strong></a> &nbsp;·&nbsp; <a href="https://dejargonizer.github.io/code-dejargonizer/impact.html"><strong>How this is scored</strong></a>
 </p>
 
 ---
@@ -46,11 +46,15 @@ The dictionary isn't a one-time snapshot someone tried to write in advance — i
 
 ### 🔎 A way to hear when nothing was checked — [section 17](GLOSSARY.md#17-signs-the-work-was-not-actually-checked)
 
-Eighteen tells, in plain language. "It should work now" is a prediction, not a result. "I verified it" with nothing shown is a claim, not evidence. A summary that repeats the plan word for word usually means the outcome was never read. None of these mean your agent is lying — they mean it is predicting instead of reporting, which is what it does when it has not looked. The skill also makes it label its own claims: what it ran, versus what it expects.
+Eighteen tells, in plain language. "It should work now" is a prediction wearing a result’s clothes — the word *should* means it never ran. "I verified it" with nothing shown is a claim, not evidence. A summary that repeats the plan word for word usually means the outcome was never read. None of these mean your agent is lying — they mean it is predicting instead of reporting, which is what it does when it has not looked. The skill also makes it label its own claims: what it ran, versus what it expects.
 
-### 📊 Numbers we can actually defend — [the impact page](https://dejargonizer.github.io/code-dejargonizer/impact.html)
+### 📊 A score that can go down — [how this is scored](https://dejargonizer.github.io/code-dejargonizer/impact.html)
 
-A product about telling a measured claim from a confident guess should not make unmeasured claims about itself. So there is a script that counts: how much of the jargon in real agent status lines has a plain-English entry, which words it still misses, and a printed list of what we have **not** proven. Run it yourself with `node scripts/build-metrics.mjs`.
+A product about telling a measured claim from a confident guess should not make unmeasured claims about itself. The obvious measure — how many words are in the dictionary — proves nothing, because a dictionary that keeps growing will eventually cover any test you hold it against. You just write the missing entry the moment the test finds a gap.
+
+So the scoring is sealed. Every line of agent-speak in [`data/corpus.json`](data/corpus.json) is scored **once**, on the day it arrives, against the dictionary as it stood that day. The result is frozen in [`data/ledger.json`](data/ledger.json). Writing the entry afterwards fixes the dictionary and cannot change the score, ever. Records are kept after a line leaves the sample, so nothing improves by deleting an awkward line, and every word ever missed on first sight stays on a list that is never cleared.
+
+That gives a number that can get worse, which is the only kind worth printing. Run it yourself with `node scripts/build-metrics.mjs`. The page also names the entries that are still short a part, and ends with a list of what we have **not** proven.
 
 ## See it first
 
@@ -94,7 +98,7 @@ Then check it took. Start a new session and ask:
 
 Thirteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
 
-## Four questions you can always ask
+## Five questions you can always ask
 
 Keep these in your back pocket. They work with any agent, any time, and they put you back in control:
 
@@ -102,8 +106,9 @@ Keep these in your back pocket. They work with any agent, any time, and they put
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
 4. **"What did you decide for me?"**
+5. **"Did you run it, or do you expect it to work?"**
 
-The fourth is the one nobody thinks to ask, and it catches the most. Agents make small, reasonable calls constantly and rarely volunteer them. Asking turns a status report into something you can manage.
+The fourth is the one nobody thinks to ask, and it catches the most. Agents make small, reasonable calls constantly and rarely volunteer them. Asking turns a status report into something you can manage. The fifth is the one to ask most often: "it should work" and "I ran it and watched it work" are completely different claims, and only one of them is a result.
 
 ## Who this is for
 
