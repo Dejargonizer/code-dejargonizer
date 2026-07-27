@@ -584,8 +584,9 @@ It has not checked. This is a prediction — often a good one — and it is not 
 
 ## How to use this with your agent
 
+- **You are the manager here, not the student.** You do not need to know how any of this works. You need to read the report well enough to say "no, not like that" — which is the whole reason the vocabulary matters. [Section 10](#10-phrases-that-mean-a-decision-got-made-for-you) is where saying it matters most.
 - **When a word stops you, just ask.** "What does *merge* mean, in plain English?" is always a fair question. A good agent will answer it the way this glossary does.
-- **You can ask for the plain version of anything.** "Explain that again with no jargon." "What's about to happen, in one sentence?" "Is this reversible?" These are the three most useful questions you can ask a coding agent.
+- **You can ask for the plain version of anything.** "Explain that again with no jargon." "What's about to happen, in one sentence?" "Is this reversible?" "What did you decide for me?" These are the four most useful questions you can ask a coding agent, and the last one is the one nobody thinks of.
 - **Green is good, red means look, 'verified' means it checked, 'not verified' means it's being honest that it didn't.** If you remember nothing else, remember that.
 - **Scary-sounding words are usually routine.** Merge conflicts, errors, stack traces, failed builds — these are the ordinary weather of software, and agents handle them all day. The tone to have is curious, not alarmed.
 
