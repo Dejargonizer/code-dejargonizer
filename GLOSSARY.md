@@ -162,6 +162,11 @@ A command that checks your project's dependencies for known security problems an
 *Picture:* A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.
 *When your agent says it:* It's just running a routine check, not fixing or changing anything in your code yet.
 
+**Workflow** (also: GitHub Actions, action, pipeline, job, runner)
+A saved list of steps that runs by itself when something happens, like every time work is saved to the project.
+*Picture:* a dishwasher cycle. You load it and press start once; the sequence runs the same way every time.
+*When your agent says it:* a workflow going green means the steps ran without complaining. Worth asking what the steps actually check, because a workflow can pass while checking almost nothing.
+
 ---
 
 ## 3. Putting it live
@@ -452,6 +457,11 @@ A cap on how many times you may ask another service for something in a given str
 Letting people log in using an account they already have, so you never see or store their password.
 *Picture:* showing a passport you already own instead of filling in a whole new form.
 *When your agent says it:* this is the safe, boring, correct choice. It means one fewer pile of passwords for you to be responsible for.
+
+**CDN** (also: content delivery network, edge, cached at the edge)
+A network of servers around the world that keeps copies of your site so it loads quickly wherever someone is.
+*Picture:* local warehouses instead of shipping everything from one factory.
+*When your agent says it:* CDNs hold on to old copies for a few minutes, which is the usual reason your change is live but you still cannot see it. Ask how long before it refreshes.
 
 ---
 
@@ -914,6 +924,11 @@ Being billed for how much you use rather than a flat fee.
 The amount a paid service lets you use for nothing before it starts charging.
 *Picture:* the first few miles included, then the meter starts.
 *When your agent says it:* ask what happens at the limit. Some services stop and some start charging, and those are very different surprises.
+
+**Byte** (also: bytes, KB, MB, GB, kilobyte, megabyte)
+The unit files and data get measured in. A thousand bytes is a kilobyte, a thousand of those a megabyte.
+*Picture:* grams and kilograms, but for information.
+*When your agent says it:* useful for one thing - noticing when something is far bigger than it should be. A page that weighs several megabytes will feel slow on a phone.
 
 ---
 
