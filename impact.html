@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Dejargonizer — what we can actually show</title>
-<meta name="description" content="Measured numbers for the Dejargonizer: how much agent language the dictionary explains, what it still misses, and an honest list of what we have not proven.">
+<title>The Dejargonizer — how this is scored</title>
+<meta name="description" content="Every line of agent-speak is scored once, on arrival, against the dictionary as it stood that day. The score is frozen, the misses are kept forever, and the term count is not the measure.">
 <style>
   :root{
     --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
@@ -61,120 +61,181 @@
   code{font-family:var(--font-machine);font-size:.92em;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:5px;padding:1px 5px}
   a{color:var(--accent)}
   footer{margin-top:52px;color:var(--ink-faint);font-size:13.5px}
+  .gap small{display:block;font-size:11px;color:var(--ink-faint);font-family:var(--font-human);margin-top:3px;letter-spacing:0}
+  .gap.calm{background:var(--surface-2)}
 </style>
 </head>
 <body>
-<div class="wrap">
 
+<div class="wrap">
   <div class="top">
-    <a class="home" href="./">&larr; the dictionary</a>
-    <span class="stamp" id="stamp">loading…</span>
+    <a class="home" href="index.html">&#8592; the dictionary</a>
+    <span class="stamp">measured <span id="stamp">&#8230;</span></span>
   </div>
 
-  <h1>What we can actually show</h1>
-  <p class="lede">This project is about telling a measured claim from a confident guess. It would be embarrassing to make unmeasured claims about it. So here is what is counted, how it is counted, and what we have not established.</p>
+  <h1 class="lede">How this is scored</h1>
+
+  <p class="sub">A dictionary that keeps growing will eventually cover any test you hold it against, because the moment a test finds a missing word you go and write it. A coverage number produced that way is not a result. It only says that we noticed a gap and closed it, which we already knew.</p>
+
+  <p class="sub">So the scoring is sealed. Every line of agent-speak in the sample is scored <strong>once</strong>, on the day it arrives, against the dictionary as it stood that day. That result is frozen. Writing the entry afterwards fixes the dictionary and changes nothing here, ever. The number below can go down, and deleting an awkward line does not help, because records are kept after a line leaves the sample.</p>
 
   <div class="cards">
-    <div class="card"><div class="big" id="nTerms">—</div><div class="lab">terms in the dictionary, across <span id="nSections">—</span> sections</div></div>
-    <div class="card"><div class="big" id="nCoverage">—</div><div class="lab">of the jargon in real agent status lines has a plain-English entry</div></div>
-    <div class="card"><div class="big" id="nReview">—</div><div class="lab">phrases that hide a decision, or signal work that was never checked</div></div>
+    <div class="card"><div class="big" id="nFirstLook">&#8230;</div><div class="lab">of the jargon in a line already had a plain-English entry <strong>the first time the dictionary met that line</strong></div></div>
+    <div class="card"><div class="big" id="nEverMissed">&#8230;</div><div class="lab">words it has missed on first sight. The list is never cleared, only added to</div></div>
+    <div class="card"><div class="big" id="nFinished">&#8230;</div><div class="lab">of entries are finished &#8212; a meaning, something to picture, and what to do when your agent says it</div></div>
   </div>
 
-  <h2>How that coverage number is made</h2>
-  <p class="sub">Not by opinion. By a script you can run yourself: <code>node scripts/build-metrics.mjs</code></p>
+  <h2>First look, in full</h2>
   <div class="panel">
     <ul class="rows">
-      <li><span>Agent status lines in the sample</span><b id="rLines">—</b></li>
-      <li><span>Words marked as jargon, by hand</span><b id="rMarked">—</b></li>
-      <li><span>Of those, explained by a dictionary entry</span><b id="rExplained">—</b></li>
-      <li><span>Matched on the exact term or a listed alias</span><b id="rExact">—</b></li>
-      <li><span>Lines where every marked word is explained</span><b id="rFull">—</b></li>
-      <li><span>Lines carrying a decision or an unchecked claim</span><b id="rReview">—</b></li>
+      <li><span>Lines scored, ever</span> <b id="rLines">&#8230;</b></li>
+      <li><span>Of those, since dropped from the sample but still counted</span> <b id="rRetired">&#8230;</b></li>
+      <li><span>Words marked as jargon by hand</span> <b id="rMarked">&#8230;</b></li>
+      <li><span>Explained on arrival</span> <b id="rExplained">&#8230;</b></li>
+      <li><span>Missed on arrival</span> <b id="rMissed">&#8230;</b></li>
+      <li><span>Lines where nothing was left unexplained</span> <b id="rClean">&#8230;</b></li>
+      <li><span>Size of the dictionary when these lines were scored</span> <b id="rAtSeal">&#8230;</b></li>
+      <li><span>Lines scored in the most recent run</span> <b id="rNew">&#8230;</b></li>
     </ul>
-    <p class="note">The sample lives in <code>data/corpus.json</code>. Each line is a real thing an agent said; the jargon in it is marked by hand as the words a capable person with no coding background would trip on. The script resolves each marked word against <code>GLOSSARY.md</code> and counts. Every figure on this page is regenerated automatically whenever the dictionary or the sample changes.</p>
+    <p class="note">The record lives in <code>data/ledger.json</code>, one row per line, with the date and the dictionary size at the time. You can check any figure above against it by hand.</p>
   </div>
 
-  <h2>Words we still cannot explain</h2>
-  <p class="sub">The honest half. When the sample contains a word with no entry, it lands here and becomes the next thing to write.</p>
+  <h2>Every word it has ever missed</h2>
   <div class="panel">
-    <div class="gaps" id="gaps"></div>
+    <p class="sub">The permanent list. A word lands here the first time it appears in a line the dictionary could not explain, and it stays even after the entry gets written &#8212; because the miss happened.</p>
+    <div class="gaps" id="everMissed"></div>
+    <p class="note" id="everMissedNote"></p>
+  </div>
+
+  <h2>Entries that are not finished</h2>
+  <div class="panel">
+    <p class="sub">Counting terms hides this. An entry that gives you a meaning but never says what to do when your agent uses the word is half an entry, and it counts the same in a total. So the total is not the measure &#8212; this is.</p>
+    <ul class="rows">
+      <li><span>Entries with something to picture</span> <b id="qPic">&#8230;</b></li>
+      <li><span>Entries that say what to do when your agent says it</span> <b id="qAct">&#8230;</b></li>
+      <li><span>Entries with all three parts</span> <b id="qFin">&#8230;</b></li>
+    </ul>
+    <p class="note" id="qNote"></p>
+    <div class="gaps" id="unfinished"></div>
+  </div>
+
+  <h2>What the sample is</h2>
+  <div class="panel">
+    <ul class="rows">
+      <li><span>Lines in the sample</span> <b id="sLines">&#8230;</b></li>
+      <li><span>Written by an agent working on this repository</span> <b id="sBuild">&#8230;</b></li>
+      <li><span>Written to stand in for a pattern seen repeatedly</span> <b id="sRep">&#8230;</b></li>
+      <li><span>Contributed by anyone outside this project</span> <b id="sOutside">&#8230;</b></li>
+    </ul>
+    <p class="note">That last figure is the weakest thing on this page and the easiest to fix. Lines from someone else's agent, in someone else's project, are a harder test than anything we can write for ourselves. If your agent said something you had to stop and decode, <a href="https://github.com/Dejargonizer/code-dejargonizer/issues/new">paste the line into an issue</a>. It gets scored against the dictionary as it stands that day, before anyone is allowed to fix it.</p>
   </div>
 
   <h2>What only you can measure</h2>
-  <p class="sub">We collect nothing about your work, so we cannot tell you what changed for you. You can, in about a minute.</p>
   <div class="panel">
-    <p style="margin-top:0">At the end of a real session, ask your agent this:</p>
-    <span class="ask">Give me a scorecard for this session: how many technical terms you put in plain English, how many decisions you made for me, how many claims you verified versus assumed, what checks you skipped, and anything you guessed.</span>
-    <p style="margin-bottom:0">That is rule 13 of <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/dejargonizer/SKILL.md">the skill</a>. Run it once before you install anything and once after, on comparable work. The number that tends to move first is <strong>decisions named</strong> — because they were always being made, they just were not being said out loud.</p>
+    <p class="sub">We collect nothing about your work, so we cannot tell you what changed for you. You can, in about a minute.</p>
+    <p class="ask">Give me a scorecard for this session: how many technical terms you put in plain English, how many decisions you made for me, how many claims you verified versus assumed, what checks you skipped, and anything you guessed.</p>
+    <p class="note">That is rule 13 of the skill. Run it once before you install anything and once after, on comparable work. The figure that tends to move first is decisions named &#8212; those calls were always being made, they just were not being said out loud.</p>
   </div>
 
-  <h2 style="margin-bottom:14px">What we have not proven</h2>
+  <h2>What we have not proven</h2>
   <div class="warnbox">
-    <ul id="notProven"><li>loading…</li></ul>
-    <p style="margin:0;font-size:14.5px;color:var(--ink-soft)">If any of these ever get established, they will appear above with a method attached, not as an adjective.</p>
+    <ul id="notProven"></ul>
+  </div>
+  <p class="note">If any of these ever get established, they will appear above with a method attached, not as an adjective.</p>
+
+  <h2>Inventory</h2>
+  <div class="panel">
+    <p class="sub" id="invNote"></p>
+    <ul class="rows">
+      <li><span>Terms</span> <b id="iTerms">&#8230;</b></li>
+      <li><span>Sections</span> <b id="iSections">&#8230;</b></li>
+      <li><span>Alternative names an entry can be found by</span> <b id="iAliases">&#8230;</b></li>
+      <li><span>Phrases that mean a decision was made for you</span> <b id="iDec">&#8230;</b></li>
+      <li><span>Signs the work was not actually checked</span> <b id="iTells">&#8230;</b></li>
+      <li><span>Words in the sample with no entry today</span> <b id="iOpen">&#8230;</b></li>
+    </ul>
   </div>
 
   <footer>
-    Raw numbers: <a href="data/metrics.json">data/metrics.json</a> &nbsp;·&nbsp;
-    Method: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/scripts/build-metrics.mjs">build-metrics.mjs</a> &nbsp;·&nbsp;
+    Raw numbers: <a href="data/metrics.json">data/metrics.json</a> &middot;
+    The record: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/ledger.json">ledger.json</a> &middot;
+    Method: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/scripts/build-metrics.mjs">build-metrics.mjs</a> &middot;
     Sample: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/corpus.json">corpus.json</a>
   </footer>
-
 </div>
 
 <script>
 (function(){
-  var set = function(id, text){ var el = document.getElementById(id); if(el) el.textContent = text; };
+  function el(id){ return document.getElementById(id); }
+  function set(id, val){ var n = el(id); if (n) n.textContent = val; }
 
-  fetch('data/metrics.json?cb=' + Date.now()).then(function(r){
-    if(!r.ok) throw new Error('metrics.json ' + r.status);
-    return r.json();
-  }).then(function(m){
-    var d = m.dictionary, c = m.coverage, rv = m.review;
+  fetch('data/metrics.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(function(m){
+      var f = m.firstLook, q = m.entryQuality, s = m.sample, i = m.inventory;
 
-    set('stamp', 'measured ' + m.generatedAt);
-    set('nTerms', d.terms);
-    set('nSections', d.sections);
-    set('nCoverage', c.coveragePct + '%');
-    set('nReview', d.decisionPhrases + d.tells);
+      set('stamp', m.generatedAt);
 
-    set('rLines', c.lines);
-    set('rMarked', c.markedWords);
-    set('rExplained', c.explained + ' of ' + c.markedWords + ' (' + c.coveragePct + '%)');
-    set('rExact', c.exact + ' exact, ' + c.partial + ' partial');
-    set('rFull', c.linesFullyExplained + ' of ' + c.lines + ' (' + c.linesFullyExplainedPct + '%)');
-    set('rReview', rv.linesCarryingEither + ' of ' + c.lines);
+      set('nFirstLook', f.coveragePct + '%');
+      set('nEverMissed', m.everMissed.length);
+      set('nFinished', q.finishedPct + '%');
 
-    var gaps = document.getElementById('gaps');
-    gaps.innerHTML = '';
-    if(!m.gaps || m.gaps.length === 0){
-      var ok = document.createElement('p');
-      ok.className = 'none';
-      ok.style.margin = '0';
-      ok.textContent = 'None right now. Every word marked in the sample resolves to an entry. That is expected once the gaps get closed - the useful part is that the list is generated, so the next one shows up on its own.';
-      gaps.appendChild(ok);
-    } else {
-      m.gaps.forEach(function(g){
-        var s = document.createElement('span');
-        s.className = 'gap';
-        s.textContent = g;
-        gaps.appendChild(s);
-      });
-    }
+      set('rLines', f.linesScored);
+      set('rRetired', f.linesRetiredButStillCounted);
+      set('rMarked', f.markedWords);
+      set('rExplained', f.explained);
+      set('rMissed', f.missed);
+      set('rClean', f.linesFullyExplained + ' of ' + f.linesScored + ' (' + f.linesFullyExplainedPct + '%)');
+      set('rAtSeal', f.lowestTermCountAtSeal === f.highestTermCountAtSeal
+        ? f.lowestTermCountAtSeal + ' terms'
+        : f.lowestTermCountAtSeal + ' to ' + f.highestTermCountAtSeal + ' terms');
+      set('rNew', f.sealedThisRun);
 
-    var np = document.getElementById('notProven');
-    np.innerHTML = '';
-    (m.notProven || []).forEach(function(t){
-      var li = document.createElement('li');
-      li.textContent = t;
-      np.appendChild(li);
+      var box = el('everMissed');
+      if (!m.everMissed.length) {
+        box.innerHTML = '<p class="none">Nothing yet. Either the dictionary has met every word the sample has thrown at it, or the sample is not trying hard enough.</p>';
+      } else {
+        box.innerHTML = m.everMissed.map(function(x){
+          return '<span class="gap">' + x.word + '<small> &#183; ' + x.firstMissedOn + (x.writtenSince ? ' &#183; written since' : ' &#183; still missing') + '</small></span>';
+        }).join('');
+      }
+      var open = m.everMissed.filter(function(x){ return !x.writtenSince; }).length;
+      set('everMissedNote', open === 0
+        ? 'All of these have entries now. That fixed the dictionary. It did not change the score above, and it never will.'
+        : open + ' of these still have no entry. They are the next thing to write.');
+
+      set('qPic', q.withPicture + ' of ' + q.entries);
+      set('qAct', q.withAction + ' of ' + q.entries);
+      set('qFin', q.finished + ' of ' + q.entries + ' (' + q.finishedPct + '%)');
+      set('qNote', q.unfinished.length === 0
+        ? 'Every entry is complete.'
+        : q.unfinished.length + ' entries are still short a part. Named, so they can be finished:');
+      el('unfinished').innerHTML = q.unfinished.map(function(t){
+        return '<span class="gap calm">' + t + '</span>';
+      }).join('');
+
+      set('sLines', s.lines);
+      set('sBuild', s.bySource['build-session'] || 0);
+      set('sRep', s.bySource['representative'] || 0);
+      set('sOutside', s.fromOutsideThisProject);
+
+      set('invNote', i.note);
+      set('iTerms', i.terms);
+      set('iSections', i.sections);
+      set('iAliases', i.aliases);
+      set('iDec', i.decisionPhrases);
+      set('iTells', i.tells);
+      set('iOpen', m.openGaps.length);
+
+      el('notProven').innerHTML = m.notProven.map(function(t){
+        return '<li>' + t + '</li>';
+      }).join('');
+    })
+    .catch(function(){
+      set('stamp', 'could not load data/metrics.json');
     });
-  }).catch(function(err){
-    set('stamp', 'could not load the numbers');
-    var np = document.getElementById('notProven');
-    if(np) np.innerHTML = '<li>The numbers failed to load: ' + String(err.message) + '. The raw file is linked at the bottom of this page.</li>';
-  });
 })();
 </script>
+
 </body>
 </html>
