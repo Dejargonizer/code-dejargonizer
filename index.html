@@ -445,7 +445,8 @@ function scoreTerm(t, q){
 }
 
 function looksLikeATerm(q){
-  return tokenise(q).length <= 3 && q.length <= 40 && !/[.?!,;:]\s*$/.test(q);
+  const words = q.trim().split(/\s+/).filter(Boolean);
+  return words.length <= 3 && q.trim().length <= 32 && !/[.?!,;:]\s*$/.test(q);
 }
 
 function render(filter){
@@ -454,12 +455,22 @@ function render(filter){
   let shown = 0;
   main.innerHTML = '';
 
-  DATA.forEach(function(sec){
-    const matches = sec.terms
+  const ordered = DATA.map(function(sec){
+    const scored = sec.terms
       .map(function(t){ return { t: t, s: scoreTerm(t, q) }; })
       .filter(function(x){ return !q || x.s > 0; })
-      .sort(function(a, b){ return q ? (b.s - a.s) : 0; })
-      .map(function(x){ return x.t; });
+      .sort(function(a, b){ return q ? (b.s - a.s) : 0; });
+    return {
+      sec: sec,
+      matches: scored.map(function(x){ return x.t; }),
+      best: scored.length ? scored[0].s : 0
+    };
+  });
+  if(q) ordered.sort(function(a, b){ return b.best - a.best; });
+
+  ordered.forEach(function(bucket){
+    const sec = bucket.sec;
+    const matches = bucket.matches;
     if(!matches.length) return;
 
     const section = document.createElement('section');
@@ -547,6 +558,7 @@ function render(filter){
     }
   } else {
     nrEl.style.display = 'none';
+    nrEl.innerHTML = '';
   }
 }
 
