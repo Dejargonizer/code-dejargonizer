@@ -31,10 +31,10 @@
 //
 // Usage:
 //   node scripts/paired-trial.mjs --list
-//   node scripts/paired-trial.mjs --line 36 --dry-run          (prints the prompts, no key needed)
-//   node scripts/paired-trial.mjs --line 36 --model MODEL_NAME
+//   node scripts/paired-trial.mjs --line 37 --dry-run          (prints the prompts, no key needed)
+//   node scripts/paired-trial.mjs --line 37 --model MODEL_NAME
 //   node scripts/paired-trial.mjs --source contributed --model MODEL_NAME
-//   node scripts/paired-trial.mjs --line 36 --arms control,skill,skill+glossary --model MODEL_NAME
+//   node scripts/paired-trial.mjs --line 37 --arms control,skill,skill+glossary --model MODEL_NAME
 //
 // For a real run, put ANTHROPIC_API_KEY or OPENAI_API_KEY in the environment
 // yourself. This script reads it, sends it to that one API, and never writes it
