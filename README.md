@@ -22,13 +22,13 @@ Every word means something specific and simple. The gap between that sentence an
 Natural language is supposed to work in *both* directions. Right now it only works on the way in. **The Dejargonizer makes it work on the way back too** — so the whole conversation, out and back, stays in language you can act on. Three things, working together:
 
 ### 📖 A dictionary — [`GLOSSARY.md`](GLOSSARY.md)
-Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, a **picture to hang it on**, and **what to actually do when your agent says it.** Read it on its own — no agent required.
+Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, **something to picture**, and **what to actually do when your agent says it.** Read it on its own — no agent required.
 
 ### 🗣️ A switch for your agent — [`dejargonizer/`](dejargonizer/SKILL.md)
 Drop-in instructions that make *any* AI coding agent translate its own engineering-speak back into plain language *by default*: the point first, every term defined in the same breath, an honest heads-up in plain words before anything risky, and a clear line on who did what. It turns the agent from a brilliant colleague who forgets you're new into one who never does.
 
 ### 🔁 A loop that keeps it honest
-The dictionary isn't a one-time snapshot someone tried to write in advance. Hit a word on the live site that isn't in it yet? The "Suggest a term" button turns your confusion into a pre-filled GitHub issue in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
+The dictionary isn't a one-time snapshot someone tried to write in advance — it grows from the words that actually trip people up, and mostly you don't have to do anything for that to happen. Your agent does it: when it explains a term the shipped dictionary doesn't cover yet, it files that word back here — just the term and its plain-English meaning, never your code or project details. You never have to notice the gap yourself. And on the live site, searching for a word and coming up empty is enough: the "Suggest a term" button drafts the whole issue for you in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
 
 ---
 
@@ -79,11 +79,9 @@ Put the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) wherever th
 
 From then on your agent leads with the point, translates as it goes, tells you who did what, and warns you — in plain words — before it does anything you'd want to be asked about first.
 
-Optional: if you also want your agent to contribute new terms back to this project when it defines something the shipped glossary doesn't cover yet, add a line like:
+By default, when your agent defines a term the shipped glossary doesn't cover yet, it files that term back to this project — just the word and its plain-English meaning, never your code or project details. You don't have to spot the gap or report it, which is the whole point: the person who can't tell a word is missing shouldn't be the one responsible for reporting it. It only does anything if your agent can actually open a GitHub issue from where it's running, and it files the same kind of issue the site's "Suggest a term" button does — so the glossary keeps growing from real sessions across everyone using the skill, not only visitors to the site.
 
-> Also, when you define a term for me that isn't already in the glossary, contribute it back to the Dejargonizer project by filing a GitHub issue — just the term and its plain-English meaning, never my code or project details.
-
-This is off unless you add that line yourself, and it only does anything if your agent can actually open a GitHub issue in its environment. Turned on, your agent files the same kind of issue the site's "Suggest a term" button does, so the glossary keeps growing from real sessions across everyone using the skill, not only visitors to the site.
+If you'd rather it filed nothing, just tell your agent so, or delete the last paragraph of "Keeping this current" from `dejargonizer/SKILL.md`.
 
 ## Three questions you can always ask
 
@@ -95,7 +93,7 @@ Keep these in your back pocket. They work with any agent, any time, and they put
 
 ## Who this is for
 
-Founders, designers, writers, operators, students — anyone who is *building* with an AI agent but was never handed the decoder ring. You do not need to become an engineer to make real things. You need a translator.
+Founders, designers, writers, operators, students — anyone who is *building* with an AI agent but was never taught the vocabulary. You do not need to become an engineer to make real things. You need a translator.
 
 ## Contributing
 
