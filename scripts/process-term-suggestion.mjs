@@ -51,10 +51,14 @@ const meaning = field('Meaning');
 const picture = field('Picture');
 const note = field('When your agent says it');
 
-if (!term || !meaning) {
-  console.log('Issue #' + issueNumber + ' is missing a Term or Meaning field - skipping.');
+if (!term) {
+  console.log('Issue #' + issueNumber + ' has no Term field - skipping.');
   process.exit(0);
 }
+
+// A missing Meaning is fine and expected: somebody hit a word they did not
+// understand, which is the signal we actually want. The definition can be
+// written later, by a maintainer or by whoever does know.
 
 const CANDIDATES_PATH = 'candidate-terms.json';
 const GLOSSARY_PATH = 'GLOSSARY.md';
@@ -96,9 +100,18 @@ writeFileSync(CANDIDATES_PATH, JSON.stringify(store, null, 2) + '\n');
 
 if (shouldDraftPR) {
   const heading = '## Suggested new terms (pending review)';
-  const lines = ['**' + term + '**', meaning];
-  if (picture) lines.push('*Picture:* ' + picture);
-  if (note) lines.push('*When your agent says it:* ' + note);
+  const bestMeaning = entry.meaning || '';
+  const bestPicture = entry.picture || '';
+  const bestNote = entry.note || '';
+  const lines = ['**' + term + '**'];
+  if (bestMeaning) {
+    lines.push(bestMeaning);
+  } else {
+    lines.push('TODO - nobody who flagged this knew what it meant. That is the point: '
+      + 'enough people hit this word to earn an entry, so it needs writing in plain English.');
+  }
+  if (bestPicture) lines.push('*Picture:* ' + bestPicture);
+  if (bestNote) lines.push('*When your agent says it:* ' + bestNote);
   const block = lines.join('\n');
 
   let updated;
