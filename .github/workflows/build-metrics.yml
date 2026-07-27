@@ -22,20 +22,24 @@ jobs:
         with:
           node-version: 20
 
-      - name: Measure coverage and write data/metrics.json
+      - name: Score any new lines and write data/metrics.json
         run: node scripts/build-metrics.mjs
 
-      - name: Commit data/metrics.json if it changed
+      - name: Commit the ledger and metrics if they changed
         run: |
           # Stage first: git diff alone cannot see a file that is not tracked yet,
           # which silently turned the first run of this workflow into a no-op.
-          git add data/metrics.json
-          if git diff --cached --quiet -- data/metrics.json; then
-            echo "data/metrics.json is already up to date."
+          # The ledger is append-only: a new corpus line gets scored here once,
+          # and that record has to be committed or the score would be recomputed
+          # against a newer dictionary next time, which is the whole thing we
+          # are trying not to do.
+          git add data/metrics.json data/ledger.json
+          if git diff --cached --quiet -- data/metrics.json data/ledger.json; then
+            echo "Nothing new to score; metrics unchanged."
           else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "Auto-update data/metrics.json [skip ci]"
+            git commit -m "Auto-update scores [skip ci]"
             # The glossary sync workflow fires on the same commit and also pushes,
             # so whoever finishes second has to catch up before pushing.
             git pull --rebase --autostash origin main
