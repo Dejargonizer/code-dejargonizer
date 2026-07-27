@@ -129,10 +129,13 @@
   .pill.l{color:var(--look);background:var(--look-wash)}
 
   .noresults{display:none;text-align:center;padding:60px 0;color:var(--ink-faint);font-family:var(--font-voice);font-size:18px}
+  .noresults .nrLine{display:block;margin:0 0 16px}
   .noresults .nrAdd{font-family:var(--font-human);font-weight:600;font-size:15px;color:#fff;background:var(--accent);
-    border:0;border-radius:8px;padding:8px 14px;cursor:pointer;margin:0 2px;vertical-align:baseline}
+    border:0;border-radius:10px;padding:13px 20px;min-height:44px;cursor:pointer}
   .noresults .nrAdd:hover{background:var(--accent-ink)}
   .noresults .nrHint{display:block;margin-top:16px;font-size:15px}
+  .multinote{display:none;text-align:center;padding:0 0 8px;color:var(--ink-faint);
+    font-family:var(--font-voice);font-size:16px;font-style:italic}
 
   .closer{background:var(--surface);border:1px solid var(--line);border-radius:18px;
     padding:34px 32px;margin:44px 0 20px;box-shadow:var(--shadow)}
@@ -168,23 +171,36 @@
 .suggestForm button{justify-self:start;font-family:var(--font-human);font-weight:600;font-size:14.5px;color:#fff;
   background:var(--accent);border:none;border-radius:999px;padding:10px 20px;cursor:pointer}
 .suggestForm button:hover{background:var(--accent-ink)}
+  .formnote{font-size:14.5px;color:var(--ink-faint);margin:-4px 0 18px}
+  .ctarow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:20px 0 14px}
+  .ctabtn{font-family:var(--font-human);font-weight:600;font-size:15px;color:#fff;background:var(--accent);
+    border:0;border-radius:10px;padding:13px 20px;min-height:44px;cursor:pointer}
+  .ctabtn:hover{background:var(--accent-ink)}
+  .ctabtn.done{background:var(--good)}
+  .ctalink{font-family:var(--font-human);font-size:15px;color:var(--accent);text-decoration:none;
+    border-bottom:1px solid var(--accent-wash);padding-bottom:2px}
+  .ctalink:hover{border-bottom-color:var(--accent)}
+  .ctahint{font-size:14.5px;color:var(--ink-faint);margin:10px 0 0}
+  .tryit{font:inherit;font-weight:700;color:var(--ink);background:var(--accent-wash);border:0;
+    border-radius:6px;padding:2px 6px;cursor:pointer;text-align:left}
+  .tryit:hover{background:var(--accent);color:#fff}
 .issueLink{display:inline-block;margin-top:14px;font-weight:600;color:var(--accent-ink)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 </style>
 </head>
 <body>
 
-<div class="brandbar"><span class="dot">◑</span> <b>The&nbsp;Dejargonizer</b></div>
+<a class="brandbar" href="https://github.com/Dejargonizer/code-dejargonizer"><span class="dot">◑</span> <b>The&nbsp;Dejargonizer</b></a>
 <button class="toggle" id="themeToggle" aria-label="Toggle light or dark theme">◐ theme</button>
 
 <header class="hero">
 <div class="wrap">
 <p class="eyebrow fade">The missing translation layer</p>
 <h1 class="fade" style="animation-delay:.05s">You don't need to be an engineer. You need a <em>translator.</em></h1>
-<p class="lede fade" style="animation-delay:.1s">Any AI coding agent — Claude Code, Cursor, Copilot, and the rest — understands your plain English fine. That direction was never the hard part. It's the direction coming <strong>back</strong> that breaks: the reply arrives in engineer, like <strong>"I'll squash-merge the PR once CI is green, then verify the deploy."</strong></p>
+<p class="lede fade" style="animation-delay:.1s">Any AI coding agent — Claude Code, Cursor, Copilot, and the rest — understands your plain English fine. That direction was never the hard part. It's the direction coming <strong>back</strong> that breaks: the reply arrives in engineer, like <button type="button" class="tryit" id="heroExample">"I'll squash-merge the PR once CI is green, then verify the deploy."</button></p>
 <p class="lede fade" style="animation-delay:.13s">Natural language is meant to work in <strong>both</strong> directions. Right now it only works on the way in. This translates the way back too — the status update, the error, the question — so the whole conversation stays in words you can act on.</p>
 <p class="lede fade" style="animation-delay:.155s">Every word of that sentence means something specific and simple. Nobody ever told you what. This is where they tell you.</p>
-<p class="lede fade" style="animation-delay:.18s">And the dictionary itself keeps growing: hit a word that isn't here yet, suggest it down below, and enough people hitting the same wall turns your confusion into the next entry.</p>
+<p class="lede fade" style="animation-delay:.18s">And it keeps growing on its own: agents running these instructions file the words they had to explain, so the dictionary fills in from real confusion rather than guesswork. You can flag one yourself at the bottom — the word alone is enough.</p>
 <div class="translate fade" style="animation-delay:.18s">
 <div class="tcard machine"><p class="tlabel">Engineer says</p><p class="tval">squash-merge the PR once CI is green</p></div>
 <div class="tarrow">&#8594;</div>
@@ -201,10 +217,23 @@
 </div>
 
 <main class="wrap" id="main"></main>
+<div class="wrap"><p class="multinote" id="multinote" aria-live="polite"></p></div>
 <div class="wrap"><p class="noresults" id="noresults" aria-live="polite"></p></div>
 
 <div class="wrap">
-<section class="closer">
+<section class="closer" id="turniton">
+<h2>Make your agent talk like this</h2>
+<p>A dictionary helps when you already know which word to look up. Better is an agent that never makes you look one up. These are plain instructions — no install, no account, nothing tied to one tool. Paste them into your agent and tell it you are not an engineer.</p>
+<div class="ctarow">
+<button type="button" class="ctabtn" id="copyShort">Copy the instructions</button>
+<a class="ctalink" href="https://github.com/Dejargonizer/code-dejargonizer#turn-it-on-for-your-agent">Where to paste them, per tool</a>
+</div>
+<p class="ctahint" id="copyHint">Works in Claude Code, Cursor, Copilot, Windsurf, Gemini, ChatGPT, Lovable, Replit, Bolt — anywhere there is a chat box or a rules file. The longer version, and the one-line-per-tool instructions, are <a href="https://github.com/Dejargonizer/code-dejargonizer">on GitHub</a>.</p>
+<p class="ctahint">Can’t install anything where you are building? Then use the <a href="#questions">three questions</a>. They need no setup at all.</p>
+</section>
+</div>
+<div class="wrap">
+<section class="closer" id="questions">
 <h2>Three questions you can always ask</h2>
 <p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation.</p>
 <div class="questions">
@@ -217,14 +246,15 @@
 
 <div class="wrap">
 <section class="closer" id="suggest">
-<h2>Suggest a term</h2>
-<p>Hit a word that tripped you up and it's not here? Fill this in. Nothing is sent anywhere automatically — this builds a pre-filled GitHub issue that you review and submit yourself.</p>
+<h2>Flag a word</h2>
+<p>Hit a word that stopped you and it’s not in here? The word on its own is the whole contribution — you do <em>not</em> need to know what it means. That’s rather the point. If enough people flag the same one, it gets written up and added.</p>
+<p class="formnote">Nothing is sent automatically. This writes the text for you and opens GitHub, where you press Submit yourself.</p>
 <form id="suggestForm" class="suggestForm">
 <label for="sTerm">Term
 <input id="sTerm" type="text" required maxlength="80" placeholder="e.g. rebase">
 </label>
-<label for="sMeaning">What it means, in one plain sentence
-<textarea id="sMeaning" required maxlength="400" rows="2"></textarea>
+<label for="sMeaning">If you happen to know it, what does it mean? (optional)
+<textarea id="sMeaning" maxlength="400" rows="2" placeholder="Leave blank if you don’t know — that’s the normal case"></textarea>
 </label>
 <label for="sPicture">Something to picture (optional)
 <textarea id="sPicture" maxlength="400" rows="2"></textarea>
@@ -232,7 +262,7 @@
 <label for="sNote">What to do when your agent says it (optional)
 <textarea id="sNote" maxlength="400" rows="2"></textarea>
 </label>
-<button type="submit">Preview &amp; open as GitHub issue</button>
+<button type="submit">Preview it, then open GitHub</button>
 </form>
 <div id="sPreview" aria-live="polite"></div>
 </section>
@@ -240,7 +270,7 @@
 
 <footer>
 <div class="wrap">
-<span><b>The Dejargonizer.</b> Free to copy, share, and adapt (MIT).</span>
+<span><b>The Dejargonizer.</b> Free to copy, share, and adapt (MIT). <a href="https://github.com/Dejargonizer/code-dejargonizer">Source and agent instructions on GitHub</a>.</span>
 <span>Green is good · red means look · "verified" means it checked.</span>
 </div>
 </footer>
@@ -323,6 +353,101 @@ const main = document.getElementById('main');
 const countEl = document.getElementById('count');
 const nrEl = document.getElementById('noresults');
 
+// ---- Search ---------------------------------------------------------------
+// People don't look up single tidy words. They paste the sentence their agent
+// just said. So: tokenise the query, match every entry against any token,
+// and rank name/alias hits above passing mentions in the prose.
+
+const STOP = ('a an and are as at be been but by can could did do does for from' +
+  ' had has have i if ill in into is it its just ll me my no nor not of off on once' +
+  ' or our out over own so some such than that the their them then there these' +
+  ' they this to too up us was we were what when which while will with would you your')
+  .split(/\s+/).reduce(function(o,w){ o[w]=1; return o; }, {});
+
+function normText(s){
+  return String(s || '').toLowerCase().replace(/[^a-z0-9./\-\s]/g, ' ');
+}
+
+// Crude but effective: users type 'commits' and 'deploying' for 'commit' and 'deploy'.
+function stem(w){
+  return w.replace(/ies$/, 'y').replace(/(ing|ed|es|s)$/, '');
+}
+
+function tokenise(s){
+  const out = [];
+  const seen = {};
+  function add(w, force){
+    if(!w) return;
+    if(!force && (w.length < 2 || STOP[w])) return;
+    if(seen[w]) return;
+    seen[w] = 1;
+    out.push(w);
+  }
+  const text = normText(s);
+  // File extensions are meaningful tokens of their own: '.mjs', '.json'.
+  const exts = text.match(/\.[a-z0-9]{1,5}(?![a-z0-9])/g);
+  if(exts) exts.forEach(function(e){ add(e, true); });
+  // A slash means they've pasted a path, so surface the entry that explains paths.
+  if(text.indexOf('/') !== -1) add('path');
+  text.split(/[^a-z0-9]+/).forEach(function(w){ add(w); });
+  return out;
+}
+
+// True when two words are within one edit of each other, for typo tolerance.
+function withinOneEdit(a, b){
+  if(a === b) return true;
+  const la = a.length, lb = b.length;
+  if(Math.abs(la - lb) > 1) return false;
+  let i = 0, j = 0, diff = 0;
+  while(i < la && j < lb){
+    if(a.charAt(i) === b.charAt(j)){ i++; j++; continue; }
+    diff++;
+    if(diff > 1) return false;
+    if(la > lb) i++; else if(lb > la) j++; else { i++; j++; }
+  }
+  if(i < la || j < lb) diff++;
+  return diff <= 1;
+}
+
+function scoreTerm(t, q){
+  if(!q) return 1;
+  const name = (t.t + ' ' + (t.aka || '')).toLowerCase();
+  const body = ((t.m || '') + ' ' + (t.p || '') + ' ' + (t.note || '')).toLowerCase();
+  const nameTokens = tokenise(name).map(stem);
+  const qTokens = tokenise(q);
+  const bare = q.replace(/[^a-z0-9]/gi, '');
+
+  // Short queries ('PR', 'CI', 'tsc') must hit a name or alias exactly, or
+  // substring matching drowns the real entry in words like 'production'.
+  if(bare.length <= 3){
+    let hit = 0;
+    qTokens.forEach(function(w){
+      if(nameTokens.indexOf(stem(w)) !== -1) hit += 40;
+    });
+    return hit;
+  }
+
+  let score = 0;
+  if(name === q) score += 200;
+  if(name.indexOf(q) !== -1) score += 60;
+  qTokens.forEach(function(w){
+    const sw = stem(w);
+    if(nameTokens.indexOf(sw) !== -1) score += 40;
+    else if(name.indexOf(w) !== -1) score += 18;
+    else if(sw.length >= 5 && nameTokens.some(function(nt){ return withinOneEdit(sw, nt); })) score += 22;
+    else if(body.indexOf(w) !== -1) score += 5;
+  });
+
+  // A multi-word query shouldn't drag in entries that merely happen to mention
+  // one of its words in passing - that's what made pasted paths so noisy.
+  if(qTokens.length > 1 && score < 10) return 0;
+  return score;
+}
+
+function looksLikeATerm(q){
+  return tokenise(q).length <= 3 && q.length <= 40 && !/[.?!,;:]\s*$/.test(q);
+}
+
 function render(filter){
   filter = filter || '';
   const q = filter.trim().toLowerCase();
@@ -330,10 +455,11 @@ function render(filter){
   main.innerHTML = '';
 
   DATA.forEach(function(sec){
-    const matches = sec.terms.filter(function(t){
-      if(!q) return true;
-      return (t.t + ' ' + (t.aka || '') + ' ' + t.m + ' ' + t.p + ' ' + (t.note || '')).toLowerCase().indexOf(q) !== -1;
-    });
+    const matches = sec.terms
+      .map(function(t){ return { t: t, s: scoreTerm(t, q) }; })
+      .filter(function(x){ return !q || x.s > 0; })
+      .sort(function(a, b){ return q ? (b.s - a.s) : 0; })
+      .map(function(x){ return x.t; });
     if(!matches.length) return;
 
     const section = document.createElement('section');
@@ -368,28 +494,57 @@ function render(filter){
   const total = DATA.reduce(function(a, s){ return a + s.terms.length; }, 0);
   countEl.textContent = q ? (shown + ' of ' + total + ' terms') : (total + ' terms');
 
+  // Reassure people who pasted a whole sentence that this was deliberate.
+  const multi = document.getElementById('multinote');
+  if(multi){
+    if(q && shown > 1 && tokenise(q).length >= 4){
+      multi.style.display = 'block';
+      multi.textContent = 'Every word from that sentence that\u2019s in the dictionary, in order.';
+    } else {
+      multi.style.display = 'none';
+    }
+  }
+
   if(shown === 0){
-    // A search that finds nothing is the clearest signal a word is missing.
-    // Capture it instead of dead-ending the person.
     nrEl.style.display = 'block';
-    nrEl.textContent = 'No entry for "' + filter + '" yet. ';
+    nrEl.innerHTML = '';
 
-    const add = document.createElement('button');
-    add.type = 'button';
-    add.className = 'nrAdd';
-    add.textContent = 'Add it \u2192';
-    add.addEventListener('click', function(){
-      const termInput = document.getElementById('sTerm');
-      if(termInput) termInput.value = filter;
-      document.getElementById('suggest').scrollIntoView({behavior:'smooth'});
-      if(termInput) setTimeout(function(){ termInput.focus(); }, 400);
-    });
-    nrEl.appendChild(add);
+    if(looksLikeATerm(filter)){
+      // A search that finds nothing is the clearest signal a word is missing,
+      // so capture it rather than dead-ending the person.
+      const line = document.createElement('span');
+      line.className = 'nrLine';
+      line.textContent = 'No entry for "' + filter + '" yet.';
+      nrEl.appendChild(line);
 
-    const hint = document.createElement('span');
-    hint.className = 'nrHint';
-    hint.textContent = 'Or try a simpler word, like "merge" or "deploy".';
-    nrEl.appendChild(hint);
+      const add = document.createElement('button');
+      add.type = 'button';
+      add.className = 'nrAdd';
+      add.textContent = 'Flag this word \u2192';
+      add.addEventListener('click', function(){
+        const termInput = document.getElementById('sTerm');
+        if(termInput) termInput.value = filter;
+        document.getElementById('suggest').scrollIntoView({behavior:'smooth'});
+        if(termInput) setTimeout(function(){ termInput.focus(); }, 400);
+      });
+      nrEl.appendChild(add);
+
+      const hint = document.createElement('span');
+      hint.className = 'nrHint';
+      hint.textContent = 'You don\u2019t need to know what it means \u2014 flagging it is the whole job.';
+      nrEl.appendChild(hint);
+    } else {
+      // A whole pasted sentence shouldn't be offered as a glossary term.
+      const line = document.createElement('span');
+      line.className = 'nrLine';
+      line.textContent = 'None of those words are in the dictionary yet.';
+      nrEl.appendChild(line);
+
+      const hint = document.createElement('span');
+      hint.className = 'nrHint';
+      hint.textContent = 'Try one word at a time \u2014 that way you can flag the exact one that stopped you.';
+      nrEl.appendChild(hint);
+    }
   } else {
     nrEl.style.display = 'none';
   }
@@ -397,6 +552,45 @@ function render(filter){
 
 render();
 document.getElementById('search').addEventListener('input', function(e){ render(e.target.value); });
+
+// Let people run the hero example rather than just read it.
+const heroExample = document.getElementById('heroExample');
+if(heroExample){
+  heroExample.addEventListener('click', function(){
+    const box = document.getElementById('search');
+    box.value = heroExample.textContent.replace(/^["\u201c]|["\u201d]$/g, '');
+    render(box.value);
+    document.querySelector('.searchbar').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+
+// Copy the short instructions. Same text as dejargonizer/SKILL-SHORT.md.
+const SHORT_SKILL = 'I am not an engineer. Translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. \"I ran it and watched it work\" and \"it should work\" are different claims - keep them different.\n6. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: \"Say that again with no jargon\", \"What is about to happen, in one sentence?\", \"Is this reversible?\"';
+const copyShort = document.getElementById('copyShort');
+if(copyShort){
+  copyShort.addEventListener('click', function(){
+    function done(){
+      copyShort.textContent = 'Copied \u2014 now paste it to your agent';
+      copyShort.classList.add('done');
+      setTimeout(function(){ copyShort.textContent = 'Copy the instructions'; copyShort.classList.remove('done'); }, 4000);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(SHORT_SKILL).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      const ta = document.createElement('textarea');
+      ta.value = SHORT_SKILL;
+      ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.left='-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch(err){
+        document.getElementById('copyHint').textContent = 'Copying was blocked here \u2014 open the instructions on GitHub and copy them from there.';
+      }
+      document.body.removeChild(ta);
+    }
+  });
+}
 
 // Deep-linking: /#term-merge scrolls to and briefly highlights that entry.
 function goToHash(){
@@ -440,18 +634,20 @@ suggestForm.addEventListener('submit', function(e){
   const meaning = document.getElementById('sMeaning').value.trim();
   const picture = document.getElementById('sPicture').value.trim();
   const note = document.getElementById('sNote').value.trim();
-  if(!term || !meaning) return;
+  if(!term) return;
 
   sPreview.innerHTML = '';
   sPreview.appendChild(makeTermCard({
     t: term,
-    m: meaning,
+    m: meaning || 'Nobody has written the plain-English version yet \u2014 flagging the word is enough.',
     p: picture || '(no picture given yet)',
     note: note || undefined,
   }));
 
   const title = 'Glossary term: ' + term;
-  const bodyLines = ['**Term:** ' + term, '', '**Meaning:** ' + meaning];
+  const bodyLines = ['**Term:** ' + term];
+  if(meaning) bodyLines.push('', '**Meaning:** ' + meaning);
+  else bodyLines.push('', '_No definition given \u2014 flagged by someone who hit this word and did not know it. That still counts._');
   if(picture) bodyLines.push('', '**Picture:** ' + picture);
   if(note) bodyLines.push('', '**When your agent says it:** ' + note);
   bodyLines.push('', '_Filed via the "Suggest a term" form on the Dejargonizer site._');
