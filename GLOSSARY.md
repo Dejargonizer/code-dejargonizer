@@ -606,8 +606,8 @@ The total amount of text the agent can hold in mind at once, including your conv
 *Picture:* a desk of fixed size. New paper on means old paper off.
 *When your agent says it:* "low on context" means it is about to forget the earlier part of this conversation. Have it write the decisions into a file before that happens.
 
-**Token (in AI, not a password)** (also: tokens, token count, token limit)
-The unit text gets chopped into before the model reads it, roughly a short word or part of one.
+**Token** (also: tokens, token count, token limit, context tokens, token usage)
+The unit text gets chopped into before the model reads it, roughly a short word or part of one. Not the same thing as an API token, which is a password.
 *Picture:* measuring a recipe in spoonfuls rather than ingredients.
 *When your agent says it:* tokens are what you are billed by and what fills the desk. "Too many tokens" means too much text, not too complicated.
 
@@ -860,7 +860,7 @@ How long something takes to respond, measured from the user's side.
 *Picture:* the wait between ordering and the plate arriving.
 *When your agent says it:* averages hide the worst cases. Ask what the slowest requests look like, not the typical one.
 
-**N+1 query** (also: query in a loop, too many queries)
+**N+1 query** (also: n plus one, query in a loop, queries in a loop, too many queries, repeated queries)
 Asking the database a hundred separate small questions when one question would have done.
 *Picture:* walking to the archive a hundred times instead of carrying the whole box back once.
 *When your agent says it:* this is the most common reason a page that flew with ten records crawls with a thousand.
