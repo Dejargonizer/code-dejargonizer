@@ -39,6 +39,7 @@ const ROOT = join(__dirname, '..');
 const GLOSSARY_PATH = join(ROOT, 'GLOSSARY.md');
 const CORPUS_PATH = join(ROOT, 'data', 'corpus.json');
 const LEDGER_PATH = join(ROOT, 'data', 'ledger.json');
+const TRIALS_PATH = join(ROOT, 'data', 'trials.json');
 const OUTPUT_PATH = join(ROOT, 'data', 'metrics.json');
 
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -138,6 +139,9 @@ function parseGlossary(md) {
 
 const glossary = parseGlossary(readFileSync(GLOSSARY_PATH, 'utf8'));
 const corpus = JSON.parse(readFileSync(CORPUS_PATH, 'utf8'));
+const trials = existsSync(TRIALS_PATH)
+  ? JSON.parse(readFileSync(TRIALS_PATH, 'utf8'))
+  : { pairs: [] };
 const ledger = existsSync(LEDGER_PATH)
   ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8'))
   : { note: 'Created automatically. See scripts/build-metrics.mjs.', entries: [] };
@@ -316,6 +320,36 @@ const unfinished = allTerms.filter((t) => !t.hasPicture || !t.hasAction);
 
 const contributedCount = corpus.lines.filter((l) => l.source === 'contributed').length;
 
+// ---------------------------------------------------------------------------
+// The paired trial. This is the only thing here that tests the claim rather
+// than describing our own sample: the same line handed to the same model twice,
+// once with these files and once without, both answers judged on the four
+// promises. Nothing is inferred when there are no pairs - an empty trial
+// reports as empty, and the not-proven list says so first.
+// ---------------------------------------------------------------------------
+const pairs = Array.isArray(trials.pairs) ? trials.pairs : [];
+const trialArms = {};
+for (const p of pairs) {
+  for (const armName of Object.keys(p.arms || {})) {
+    const a = p.arms[armName];
+    const t = trialArms[armName] || (trialArms[armName] = {
+      pairs: 0, promisesKept: 0, promisesApplicable: 0, jargonLeftStanding: 0, byPromise: {}
+    });
+    t.pairs += 1;
+    t.promisesKept += a.kept || 0;
+    t.promisesApplicable += a.applicable || 0;
+    t.jargonLeftStanding += ((a.detail || {}).jargonLeftUnexplained || []).length;
+    for (const promise of Object.keys(a.verdicts || {})) {
+      const b = t.byPromise[promise] || (t.byPromise[promise] = { pass: 0, fail: 0, 'n/a': 0 });
+      if (b[a.verdicts[promise]] !== undefined) b[a.verdicts[promise]] += 1;
+    }
+  }
+}
+for (const k of Object.keys(trialArms)) {
+  trialArms[k].keptPct = pct(trialArms[k].promisesKept, trialArms[k].promisesApplicable);
+}
+const humanChecked = pairs.filter((p) => p.humanVerdict).length;
+
 const sources = {};
 for (const l of corpus.lines) sources[l.source] = (sources[l.source] || 0) + 1;
 
@@ -325,6 +359,7 @@ const metrics = {
   method: 'Computed by scripts/build-metrics.mjs from GLOSSARY.md, data/corpus.json and data/ledger.json. Nothing on the page is typed in by hand.',
 
   firstLook: {
+    audience: 'Internal. This is the gap list that decides which entries get written next. It is not a claim about any other project, and it is no longer on the impact page for that reason.',
     linesScored: scored.length,
     linesRetiredButStillCounted: scored.filter((e) => e.retired).length,
     markedWords,
@@ -337,6 +372,19 @@ const metrics = {
     lowestTermCountAtSeal: scored.length ? Math.min(...scored.map((e) => e.termsAtSeal)) : 0,
     highestTermCountAtSeal: scored.length ? Math.max(...scored.map((e) => e.termsAtSeal)) : 0,
     bySource
+  },
+
+  trial: {
+    question: 'Does an agent explain a line better with this project loaded than without it? Same line, same model, same task, one thing different.',
+    judge: trials.judge || null,
+    promises: trials.promises || null,
+    pairs: pairs.length,
+    checkedByAPerson: humanChecked,
+    arms: trialArms,
+    howToRun: 'node scripts/paired-trial.mjs --line <number> --model <name>',
+    note: pairs.length === 0
+      ? 'No pairs yet. The trial is built and has not been run, so there is nothing here to read. That is the honest state, not a placeholder.'
+      : 'Every pair is kept, whichever way it came out, and none can be edited or removed.'
   },
 
   matcherCorrections: {
@@ -376,6 +424,9 @@ const metrics = {
   },
 
   notProven: [
+    pairs.length === 0
+      ? 'Whether an agent explains a line better with this loaded than without it. That is the one test that would mean something, it is built (scripts/paired-trial.mjs), and it has been run zero times. Nothing here answers it.'
+      : 'The trial has ' + pairs.length + ' pair' + (pairs.length === 1 ? '' : 's') + ' in it, ' + humanChecked + ' checked by a person. Too few to conclude anything until there are many more, across several models.',
     contributedCount + ' of ' + corpus.lines.length + ' lines came from outside this project. That is a start, not a sample. The rest we wrote or chose ourselves, which makes them the easier half of the test.',
     'The sample is small. ' + corpus.lines.length + ' lines is enough to find missing words and nowhere near enough to describe how agents talk in general.',
     'Whether builders ship fewer defects with this installed. No study run.',
