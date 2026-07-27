@@ -3,6 +3,7 @@
   "rule": "Every line is scored once, on the day it arrives, against the dictionary as it stood that day. The result is frozen in data/ledger.json and never recomputed. Writing an entry afterwards fixes the dictionary but cannot change a past score. Records are kept even after a line leaves the sample, so nothing improves by deletion.",
   "method": "Computed by scripts/build-metrics.mjs from GLOSSARY.md, data/corpus.json and data/ledger.json. Nothing on the page is typed in by hand.",
   "firstLook": {
+    "audience": "Internal. This is the gap list that decides which entries get written next. It is not a claim about any other project, and it is no longer on the impact page for that reason.",
     "linesScored": 41,
     "linesRetiredButStillCounted": 0,
     "markedWords": 108,
@@ -37,6 +38,21 @@
         "coveragePct": 46.2
       }
     }
+  },
+  "trial": {
+    "question": "Does an agent explain a line better with this project loaded than without it? Same line, same model, same task, one thing different.",
+    "judge": "promises-v1, rule-based, in scripts/paired-trial.mjs. It can be wrong: the last checker written in this repo counted 'vitest' as covered because the letters 'test' are inside it. Two things follow. Every answer is stored in full so a person can overrule the checker, and where the rules guess they guess against us - a term explained in a shape the rules do not know is recorded as unexplained.",
+    "promises": {
+      "termsDefined": "No technical word, file path or flag from the line is left standing on its own in the answer.",
+      "resultVsPrediction": "What was actually run and seen is kept apart from what is only expected.",
+      "decisionsNamed": "Shortcuts, placeholders, skipped checks and either-way calls are stated as decisions. Marked n/a when the line has no decision in it, because having nothing to declare is not a pass.",
+      "riskFlagged": "Anything hard to undo is named as such. Marked n/a when the line carries no risk."
+    },
+    "pairs": 0,
+    "checkedByAPerson": 0,
+    "arms": {},
+    "howToRun": "node scripts/paired-trial.mjs --line <number> --model <name>",
+    "note": "No pairs yet. The trial is built and has not been run, so there is nothing here to read. That is the honest state, not a placeholder."
   },
   "matcherCorrections": {
     "rule": "whole-word-v2",
@@ -183,6 +199,7 @@
     "tells": 23
   },
   "notProven": [
+    "Whether an agent explains a line better with this loaded than without it. That is the one test that would mean something, it is built (scripts/paired-trial.mjs), and it has been run zero times. Nothing here answers it.",
     "6 of 41 lines came from outside this project. That is a start, not a sample. The rest we wrote or chose ourselves, which makes them the easier half of the test.",
     "The sample is small. 41 lines is enough to find missing words and nowhere near enough to describe how agents talk in general.",
     "Whether builders ship fewer defects with this installed. No study run.",
