@@ -727,7 +727,7 @@ window.GLOSSARY_DATA = [
       },
       {
         "t": "A name that only exists in your project",
-        "m": "Phrases like device-context bridge or pre-draft echo loop are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.",
+        "m": "Phrases like surface-state bridge or pre-send echo pass are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.",
         "p": "a nickname used in one household.",
         "aka": "internal name, codename, our term for it",
         "note": "ask straight out whether this is a standard term or a name from this codebase, and if it is ours, where it is defined and what it does. Agents adopt an invented name confidently after seeing it once, which makes a made-up phrase sound as settled as a real one."
