@@ -122,6 +122,8 @@
 
 <p class="ask">node scripts/paired-trial.mjs --line 37 --model &lt;name&gt;</p>
 
+<p class="sub">Or with no terminal at all: the <a href="https://github.com/Dejargonizer/code-dejargonizer/actions/workflows/run-trial.yml">Run a trial</a> button on the Actions tab asks for the same two things in a form, and records the result the same way. Tick the dry run box first to see exactly what would be sent, before anything is.</p>
+
 <p class="sub">Two things about it are worth saying before it produces anything. It needs a paid key for whichever model you point it at, supplied by whoever runs it - the script reads one from the environment and writes it nowhere. And the judge is a set of rules, not a person, so it can be wrong: the last checker written in this repo counted <strong>vitest</strong> as covered because the letters t-e-s-t are inside it. That one was fixed in the only direction a correction is allowed to go, which is down. This one is built to guess against us instead: a term explained in a shape the rules do not know is recorded as unexplained.</p>
 
 
