@@ -375,8 +375,9 @@ const STOP = ('a an and are as at be been but by can could did do does for from'
   ' they this to too up us was we were what when which while will with would you your')
   .split(/\s+/).reduce(function(o,w){ o[w]=1; return o; }, {});
 
+// A plus sign becomes the word so that a search for n+1 still finds "N+1 query".
 function normText(s){
-  return String(s || '').toLowerCase().replace(/[^a-z0-9./\-\s]/g, ' ');
+  return String(s || '').toLowerCase().replace(/\+/g, 'plus').replace(/[^a-z0-9./\-\s]/g, ' ');
 }
 
 // Crude but effective: users type 'commits' and 'deploying' for 'commit' and 'deploy'.
