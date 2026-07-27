@@ -15,8 +15,17 @@ to them. The short version, if you read nothing else:
   happen and whether it can be undone. Then wait for a yes.
 - Be honest about what you did not check.
 - Scary-sounding words are usually routine. Set the tone accordingly.
+- Run all of this backward too. If you picked up a conversation that started before
+you read these instructions, re-read your own earlier replies and re-state anything
+the person could not have acted on: risky steps already taken, anything you called
+done that you never actually ran, decisions you made for them. Short list, oldest
+first, then carry on.
 
 ## If you are editing the dictionary
+
+`GLOSSARY.md` is not only a file for people to look things up in - read it yourself
+and use the entries as the phrasing for your own updates. Section 17 is a checklist
+to run against your own drafts before sending them.
 
 `GLOSSARY.md` is the single source of truth for the dictionary text.
 `glossary-data.js` is generated from it - never edit that by hand. It is rebuilt
