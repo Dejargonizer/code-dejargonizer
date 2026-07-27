@@ -46,7 +46,7 @@ The dictionary isn't a one-time snapshot someone tried to write in advance — i
 
 ### 🔎 A way to hear when nothing was checked — [section 17](GLOSSARY.md#17-signs-the-work-was-not-actually-checked)
 
-Eighteen tells, in plain language. "It should work now" is a prediction wearing a result’s clothes — the word *should* means it never ran. "I verified it" with nothing shown is a claim, not evidence. A summary that repeats the plan word for word usually means the outcome was never read. None of these mean your agent is lying — they mean it is predicting instead of reporting, which is what it does when it has not looked. The skill also makes it label its own claims: what it ran, versus what it expects.
+Twenty-three tells, in plain language. "It should work now" is a prediction wearing a result’s clothes — the word *should* means it never ran. "I verified it" with nothing shown is a claim, not evidence. A summary that repeats the plan word for word usually means the outcome was never read. None of these mean your agent is lying — they mean it is predicting instead of reporting, which is what it does when it has not looked. The skill also makes it label its own claims: what it ran, versus what it expects.
 
 ### 📊 A score that can go down — [how this is scored](https://dejargonizer.github.io/code-dejargonizer/impact.html)
 
@@ -54,7 +54,11 @@ A product about telling a measured claim from a confident guess should not make 
 
 So the scoring is sealed. Every line of agent-speak in [`data/corpus.json`](data/corpus.json) is scored **once**, on the day it arrives, against the dictionary as it stood that day. The result is frozen in [`data/ledger.json`](data/ledger.json). Writing the entry afterwards fixes the dictionary and cannot change the score, ever. Records are kept after a line leaves the sample, so nothing improves by deleting an awkward line, and every word ever missed on first sight stays on a list that is never cleared.
 
-That gives a number that can get worse, which is the only kind worth printing. Run it yourself with `node scripts/build-metrics.mjs`. The page also names the entries that are still short a part, and ends with a list of what we have **not** proven.
+That gives a number that can get worse, which is the only kind worth printing. It already has. The sample used to be lines we had written ourselves, and it scored 96.3%. Then a builder sent in six lines of what their own agent had just reported, those were scored on arrival, and the headline fell to 84.3%. Split by where the lines came from, the lines we wrote score 100% and the six from outside score 46.2%. That gap is the useful part: it says our own sample was the easy half of the test.
+
+Scoring those six also exposed a fault in the scorer. It had been treating a word as covered whenever an entry name turned up anywhere inside it as raw text, so `vitest` counted as covered because the letters t-e-s-t are in it. Matching now has to line up with whole words. Sealed records were re-scored under the corrected rule, and a re-score is kept **only where it is the same or worse** — a rule change is allowed to lower a past score and never to raise one.
+
+Run it yourself with `node scripts/build-metrics.mjs`. The page also names every word ever missed on first sight, flags entries that are still short a part, and ends with a list of what we have **not** proven.
 
 ## See it first
 
