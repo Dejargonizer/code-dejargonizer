@@ -287,6 +287,72 @@
       "marked": 3,
       "missed": [],
       "retired": false
+    },
+    {
+      "line": "grep before scoping unbuilt, device-context bridge, pre-draft echo loop, Local gauntlet on origin/main (0cc4d4e4):",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 5,
+      "missed": [
+        "grep",
+        "scoping",
+        "unbuilt"
+      ],
+      "retired": false
+    },
+    {
+      "line": "tsc --noEmit: 0 errors",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 4,
+      "missed": [
+        "noEmit"
+      ],
+      "retired": false
+    },
+    {
+      "line": "npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load - a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 8,
+      "missed": [
+        "under load",
+        "flake",
+        "in isolation"
+      ],
+      "retired": false
+    },
+    {
+      "line": "npm run lint: clean. npm run build:validate: clean.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 4,
+      "missed": [
+        "npm run",
+        "validate step"
+      ],
+      "retired": false
+    },
+    {
+      "line": "Read each Dependabot alert's manifest_path, never assume the root.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 3,
+      "missed": [
+        "Dependabot"
+      ],
+      "retired": false
+    },
+    {
+      "line": "Measure the compiled value, not the source text.",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 2,
+      "missed": [
+        "compiled output",
+        "source text"
+      ],
+      "retired": false
     }
   ]
 }

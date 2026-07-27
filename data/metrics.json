@@ -3,17 +3,17 @@
   "rule": "Every line is scored once, on the day it arrives, against the dictionary as it stood that day. The result is frozen in data/ledger.json and never recomputed. Writing an entry afterwards fixes the dictionary but cannot change a past score. Records are kept even after a line leaves the sample, so nothing improves by deletion.",
   "method": "Computed by scripts/build-metrics.mjs from GLOSSARY.md, data/corpus.json and data/ledger.json. Nothing on the page is typed in by hand.",
   "firstLook": {
-    "linesScored": 35,
+    "linesScored": 41,
     "linesRetiredButStillCounted": 0,
-    "markedWords": 82,
-    "explained": 79,
-    "missed": 3,
-    "coveragePct": 96.3,
+    "markedWords": 108,
+    "explained": 93,
+    "missed": 15,
+    "coveragePct": 86.1,
     "linesFullyExplained": 32,
-    "linesFullyExplainedPct": 91.4,
-    "sealedThisRun": 0,
+    "linesFullyExplainedPct": 78,
+    "sealedThisRun": 6,
     "lowestTermCountAtSeal": 199,
-    "highestTermCountAtSeal": 199
+    "highestTermCountAtSeal": 202
   },
   "everMissed": [
     {
@@ -27,12 +27,85 @@
       "writtenSince": true
     },
     {
+      "word": "compiled output",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "Dependabot",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "flake",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "grep",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "in isolation",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "noEmit",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "npm run",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "scoping",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "source text",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "unbuilt",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "under load",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
+      "word": "validate step",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
       "word": "workflow",
       "firstMissedOn": "2026-07-27",
       "writtenSince": true
     }
   ],
-  "openGaps": [],
+  "openGaps": [
+    "grep",
+    "scoping",
+    "unbuilt",
+    "noEmit",
+    "under load",
+    "flake",
+    "in isolation",
+    "npm run",
+    "validate step",
+    "Dependabot",
+    "compiled output",
+    "source text"
+  ],
   "entryQuality": {
     "entries": 202,
     "withPicture": 202,
@@ -42,12 +115,13 @@
     "unfinished": []
   },
   "sample": {
-    "lines": 35,
+    "lines": 41,
     "bySource": {
       "representative": 28,
-      "build-session": 7
+      "build-session": 7,
+      "contributed": 6
     },
-    "fromOutsideThisProject": 0
+    "fromOutsideThisProject": 6
   },
   "inventory": {
     "note": "Inventory, not a result. A dictionary can grow all day without getting more useful. Kept here because it is worth knowing, not because it proves anything.",
@@ -59,7 +133,7 @@
   },
   "notProven": [
     "Every line in the sample was written or chosen by us. Lines contributed by people outside this project would be a harder test, and there are none yet.",
-    "The sample is small. 35 lines is enough to find missing words and nowhere near enough to describe how agents talk in general.",
+    "The sample is small. 41 lines is enough to find missing words and nowhere near enough to describe how agents talk in general.",
     "Whether builders ship fewer defects with this installed. No study run.",
     "Whether agents keep following the rules over long sessions. Not measured.",
     "Any aggregate effect across users. We collect nothing, so we cannot claim it."
