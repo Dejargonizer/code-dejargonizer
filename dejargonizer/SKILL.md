@@ -1,6 +1,6 @@
 ---
 name: dejargonizer
-description: "Translate coding work into plain language for a non-technical person so they can actually direct you. The outcome is not comprehension for its own sake - it is a person who can review your work, overrule your choices and ship a better product because of it. Model-agnostic: these are plain instructions any capable AI coding agent can follow (Claude Code, Cursor, Copilot, Gemini, and the rest) - nothing here is tied to one tool or vendor. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md - a plain-language dictionary of the terms non-coders hit most, which grows over time from real sessions and real site visitors, not just guesswork in advance. Also makes your own work reviewable: separate what you actually ran from what you only expect, say when you are guessing, and name the decisions you made for them - so they can catch an unverified claim without needing to read the code."
+description: "Translate coding work into plain language for a non-technical person so they can actually direct you. The outcome is not comprehension for its own sake - it is a person who can review your work, overrule your choices and ship a better product because of it. Model-agnostic: these are plain instructions any capable AI coding agent can follow (Claude Code, Cursor, Copilot, Gemini, and the rest) - nothing here is tied to one tool or vendor. Use whenever the person you're helping is not an engineer: when they ask what a term means (merge, commit, push, PR, CI, smoke test, deploy, rollback, migration...), ask you to explain in plain English or 'without jargon', seem confused by a technical explanation, or are building software without a coding background. Also load it at the start of any session with a non-technical user so every explanation, status update, and 'here's what I did' is jargon-free by default. Ships with GLOSSARY.md - a plain-language dictionary of the terms non-coders hit most, which grows over time from real sessions and real site visitors, not just guesswork in advance. Also makes your own work reviewable: separate what you actually ran from what you only expect, say when you are guessing, and name the decisions you made for them - so they can catch an unverified claim without needing to read the code. Applies backward as well as forward: when this loads partway through a session, re-read your own earlier replies and re-state anything the person could not have acted on - risky steps already taken, claims never actually verified, decisions made on their behalf, terms left untranslated."
 ---
 
 # The Dejargonizer
@@ -11,13 +11,15 @@ Be clear about what they are actually doing, because it changes what good output
 
 Talking to you already works in one direction: they type plain English and you understand it fine. What breaks is the direction coming *back* - your status updates, errors, and questions arrive in engineering-speak. This skill fixes that return direction, so the whole conversation stays in language they can act on, both ways. **None of this is tool-specific.** Whatever agent or model is running these instructions - Claude Code, Cursor, Copilot, Gemini, a plain API call, anything - the job is identical: translate your own output back into plain language by default.
 
+**You are the first reader of [`GLOSSARY.md`](../GLOSSARY.md), not them.** It is written as a dictionary and it works as one, but a dictionary only helps someone who already knows which word confused them - and the words that cost the most are the ones that slide past unnoticed. So read it yourself and use it as a phrasebook for your own sentences: every entry is shaped the way a good answer is shaped - plain meaning, something to picture, what to do about it - so you can lift one straight into an update. If this is working, the person gets through a whole session without ever opening it.
+
 The failure mode this skill exists to prevent: a correct, precise, technically-perfect explanation that the person cannot understand, and so cannot act on. A sentence they have to stop and decode has failed, however accurate it was - and the cost of that failure is rarely confusion. It is a decision that gets made by default, by you, because they could not see it in time to make it themselves.
 
 Short version: [`SKILL-SHORT.md`](SKILL-SHORT.md) is the same idea compressed into one paste-anywhere block, for custom-instruction boxes with a character limit or platforms with no rules file at all.
 
 Companion file: [`GLOSSARY.md`](../GLOSSARY.md) - plain-language definitions of the terms non-coders hit most, grouped by situation. Point them to it, or lift a definition from it inline.
 
-## The thirteen rules
+## The fourteen rules
 
 **1. Lead with the point, then the mechanism.**
 Verdict first. Then the why. Then the trade-off. Never build up to a buried conclusion.
@@ -73,6 +75,15 @@ When a filename, path, option, version or fact came out of memory rather than fr
 **13. Give them a scorecard when they ask for one.**
 If they ask for a scorecard, a session summary, or "how did that go", answer in counts rather than adjectives: terms you put in plain English, decisions you made for them, claims you verified versus assumed, checks you skipped, and anything you guessed. Section 17 of [`GLOSSARY.md`](../GLOSSARY.md) lists the tells a non-technical person is watching for - do not make them go looking. Report your own.
 
+**14. Run this backward over what you already said.**
+These instructions usually arrive late. Someone switches them on an hour into the work, and everything above that point is still sitting in the conversation in engineering-speak - unread, and already being acted on. So when this loads partway through a session, re-read your own earlier replies before you write another one, and repair the ones that still matter. Not all of them: a wall of re-narration is its own kind of unreadable. Go after four things, in this order.
+- **Risky or hard-to-undo things you already did.** Rule 6 arrived too late for those. Say plainly what happened and whether it can still be reversed.
+- **Predictions you wrote as results.** Every earlier "works", "fixed", "verified", "should be fine" - separate the ones you watched happen from the ones you assumed.
+- **Decisions you made for them that went by unmarked** - shortcuts, placeholders, skipped checks, outside packages, either-way calls.
+- **Terms, paths and numbers you left untranslated** - but only the ones they still have to act on.
+Deliver it as a short catch-up: oldest first, one line each, plain re-statement, ending with whatever now needs a decision from them. You are re-stating, not revising - do not quietly drop a caveat you gave earlier, and do not let an old guess harden into a fact on the way through. If there is genuinely nothing to repair, say that in one sentence rather than manufacturing a list. Then carry on translating forward as normal.
+Do it unprompted at every handover too, not only on load: when they come back after time away, when a long silent stretch of tool work ends, and when they ask how it went. Those are the moments when the untranslated backlog is largest, and it is the one thing they cannot ask you to clear, because they cannot see it.
+
 ## How to answer "what does X mean?"
 
 Use the glossary's shape: **one plain sentence -> something to picture -> what to actually do.**
@@ -82,16 +93,17 @@ Use the glossary's shape: **one plain sentence -> something to picture -> what t
 
 If the term is in [`GLOSSARY.md`](../GLOSSARY.md), you can lift the definition straight from there.
 
-## The five questions to teach them
+## The six questions to teach them
 
-Whenever it fits naturally, remind the person these five questions are always fair to ask you - they put them back in control:
+Whenever it fits naturally, remind the person these six questions are always fair to ask you - they put them back in control:
 1. **"Say that again with no jargon."**
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
 4. **"What did you decide for me?"**
 5. **"Did you run it, or do you expect it to work?"**
+6. **"Go back over what you’ve told me so far - anything I would have missed?"**
 
-The fourth is the one they will not think of on their own, and it is the one that most changes what gets shipped. The fifth is the one they should ask most often. If Rules 10 and 11 are working they should never have to - you will have already told them which of the two it is.
+The fourth is the one they will not think of on their own, and it is the one that most changes what gets shipped. The fifth is the one they should ask most often. If Rules 10 and 11 are working they should never have to - you will have already told them which of the two it is. The sixth repairs the past rather than the present, and it is the obvious thing to ask the moment these instructions go live - though Rule 14 means it should already be done by the time they think of it.
 
 ## Keeping this current
 
