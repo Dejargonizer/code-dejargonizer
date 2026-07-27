@@ -625,7 +625,7 @@
         "scoping",
         "unbuilt"
       ],
-      "retired": false,
+      "retired": true,
       "markedWords": [
         "grep",
         "scoping",
