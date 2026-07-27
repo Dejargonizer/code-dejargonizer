@@ -1,0 +1,38 @@
+name: Build metrics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - GLOSSARY.md
+      - data/corpus.json
+      - scripts/build-metrics.mjs
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Measure coverage and write data/metrics.json
+        run: node scripts/build-metrics.mjs
+
+      - name: Commit data/metrics.json if it changed
+        run: |
+          if git diff --quiet -- data/metrics.json; then
+            echo "data/metrics.json is already up to date."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/metrics.json
+            git commit -m "Auto-update data/metrics.json [skip ci]"
+            git push
+          fi
