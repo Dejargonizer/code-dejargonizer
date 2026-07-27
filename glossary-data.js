@@ -1297,5 +1297,75 @@ window.GLOSSARY_DATA = [
         "note": "ask this before any change touching logins, payments, or data. It is the question that prevents the worst afternoons."
       }
     ]
+  },
+  {
+    "n": "17",
+    "title": "Signs the work was not actually checked",
+    "blurb": "The words in every section above are unfamiliar. This lot is worse, because they are familiar. Every line here reads like a finished piece of work, and every one of them can be produced without the work having happened. None of it means your agent is lying to you. It means it is predicting instead of reporting, and predicting is what it falls back on when it has not looked. You are not auditing anything. You are listening for one thing: did it see this, or does it expect this?",
+    "terms": [
+      {
+        "t": "\"It should work now\"",
+        "m": "A prediction dressed up as a result. The word \"should\" is the tell: it means the thing has not been run.",
+        "p": "a cook telling you the dish is delicious without tasting it.",
+        "aka": "that should fix it, this ought to, I believe that resolves it",
+        "note": "ask \"did you run it, and what did it print?\" Often the answer is no. That is fine, but it changes what you do next."
+      },
+      {
+        "t": "\"I verified it\" with nothing shown",
+        "m": "A claim of checking with no evidence of the check attached.",
+        "p": "a receipt with the word \"paid\" written on it by hand.",
+        "aka": "confirmed, validated, tested it, double-checked",
+        "note": "ask which command it ran and what came back. Verification you cannot see may not have happened."
+      },
+      {
+        "t": "Checking that the code exists, not that it runs",
+        "m": "Confirming the change got typed, rather than confirming the change does anything.",
+        "p": "checking the light switch is screwed to the wall rather than flipping it.",
+        "aka": "the function is there, the file has been updated",
+        "note": "\"it is in the file\" is not \"it works.\" Ask for the result of running it."
+      },
+      {
+        "t": "A stale result read as proof",
+        "m": "Checking something, getting an answer from before the change, and treating that as confirmation.",
+        "p": "reading yesterday's thermometer and announcing today's weather.",
+        "aka": "cached, still showing the old value",
+        "note": "if a check passes suspiciously fast right after a change, ask whether it could be looking at a cached copy."
+      },
+      {
+        "t": "Confident specifics you cannot find",
+        "m": "Precise names — a file, an option, a flag, a version number — produced from memory instead of from looking.",
+        "p": "directions given with total confidence to a street that was renamed years ago.",
+        "aka": "invented filename, made-up setting, a version that does not exist",
+        "note": "the more specific and the more fluent it sounds, the more it is worth checking. Ask it to open the file and show you the line."
+      },
+      {
+        "t": "\"As expected\"",
+        "m": "Reporting the prediction rather than the observation. It shows up most when nothing was observed.",
+        "p": "a weather forecast filed as a weather report.",
+        "aka": "as anticipated, just as I thought",
+        "note": "ask what actually happened, in the output's own words."
+      },
+      {
+        "t": "A summary that just repeats the plan",
+        "m": "The wrap-up lists intentions rather than outcomes, which is what happens when the outcomes were never read.",
+        "p": "a shopping list handed over as a receipt.",
+        "aka": "here is what I did, followed by the to-do list",
+        "note": "hold the summary against the original plan. If they match word for word, ask what changed along the way. Something always does."
+      },
+      {
+        "t": "The same fix, three times",
+        "m": "Repeating near-identical attempts is guessing, not diagnosing.",
+        "p": "jiggling a key that was never the right key.",
+        "aka": "let me try again, one more attempt, that did not work either",
+        "note": "stop it. Make it say what it thinks the cause is, in one sentence, before it touches anything else."
+      },
+      {
+        "t": "Tests that started passing after being edited",
+        "m": "The check got moved to fit the code, instead of the code being fixed to satisfy the check.",
+        "p": "moving the target after the arrow has landed.",
+        "aka": "updated the test, adjusted the assertion, skipped that one",
+        "note": "ask which tests changed and why. Sometimes it is right. Often it has just switched off your alarm."
+      }
+    ]
   }
 ];
