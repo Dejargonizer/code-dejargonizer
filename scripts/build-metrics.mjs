@@ -102,8 +102,12 @@ function parseGlossary(md) {
 
     // An entry is only finished when it carries all three parts: a plain
     // meaning, something to picture, and what to do when the agent says it.
-    const hasPicture = lines.some((l) => l.trim().startsWith('*Picture:'));
-    const hasAction = lines.some((l) => l.trim().startsWith('*When your agent says it:'));
+    const hasPicture = lines.some((l) => /^\*Picture:/.test(l.trim()));
+    // Match the shape, not one exact wording. Some entries lead with the phrase
+    // the agent would use - *When your agent says "it is green":* - and an earlier
+    // version of this check looked for a single literal string, declared 57 finished
+    // entries unfinished, and got 23 of them a second guidance line they did not need.
+    const hasAction = lines.some((l) => /^\*When your agent says/.test(l.trim()));
 
     current.terms.push({ term, aka, hasPicture, hasAction, keys: keysFor(term, aka) });
   }
