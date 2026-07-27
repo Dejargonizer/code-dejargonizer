@@ -142,6 +142,7 @@
   .closer h2{font-family:var(--font-voice);font-size:26px;margin:0 0 8px;letter-spacing:-.01em}
   .closer p{color:var(--ink-soft);max-width:66ch;margin:0 0 22px}
   .questions{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    .q-wide{grid-column:1/-1;background:var(--good-wash)}
   @media(max-width:640px){.questions{grid-template-columns:1fr}}
   .q{border:1px solid var(--line);border-radius:12px;padding:16px 16px;background:var(--surface-2)}
   .q .qn{font-family:var(--font-machine);font-size:12px;color:var(--accent);margin:0 0 8px}
@@ -237,20 +238,21 @@
         <li><strong>You only have a chat box</strong> — Lovable, Replit, Bolt, v0, ChatGPT, Claude. Paste the block above into its standing-instructions box. <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md#option-b-tools-where-you-only-have-a-chat-box">Exact place for each</a></li>
         <li><strong>You are building your own agent</strong> — fetch the raw file into your system prompt and pin it to a commit. <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md#option-c-your-own-agent-or-harness">Raw URLs and the glossary as data</a></li>
       </ul>
-      <p class="checkit"><strong>Then check it took.</strong> Start a new session and ask: <em>How many Dejargonizer rules are you following, and what is rule 10?</em> Ten rules, and rule 10 is about naming the decisions it made for you. If you get that back, it is live. If it guesses, the file is in the wrong place.</p>
+      <p class="checkit"><strong>Then check it took.</strong> Start a new session and ask: <em>How many Dejargonizer rules are you following, and what is rule 11?</em> Thirteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place.</p>
       <p class="ctahint" id="copyHint">Works in Claude Code, Cursor, Copilot, Windsurf, Gemini, ChatGPT, Lovable, Replit, Bolt — anywhere there is a chat box or a rules file. The longer, ten-rule version lives in <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md">the install guide</a>.</p>
 <p class="ctahint">Can’t save instructions where you are building? Then use the <a href="#questions">four questions</a>. They need no setup at all.</p>
 </section>
 </div>
 <div class="wrap">
 <section class="closer" id="questions">
-<h2>Four questions you can always ask</h2>
-<p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation. The fourth is the one nobody thinks to ask, and it catches the most: agents make small, reasonable calls constantly and rarely volunteer them.</p>
+<h2>Five questions you can always ask</h2>
+<p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation. The fourth is the one nobody thinks to ask, and it catches the most: agents make small, reasonable calls constantly and rarely volunteer them. The fifth is the one to ask most often, because "it should work" and "I ran it and watched it work" are completely different claims.</p>
 <div class="questions">
 <div class="q"><p class="qn">01</p><p class="qt">"Say that again with no jargon."</p></div>
 <div class="q"><p class="qn">02</p><p class="qt">"What's about to happen, in one sentence?"</p></div>
 <div class="q"><p class="qn">03</p><p class="qt">"Is this reversible?"</p></div>
 <div class="q"><p class="qn">04</p><p class="qt">"What did you decide for me?"</p></div>
+<div class="q q-wide"><p class="qn">05</p><p class="qt">"Did you run it, or do you expect it to work?"</p></div>
 </div>
 </section>
 </div>
@@ -588,7 +590,7 @@ document.querySelectorAll('.tryit').forEach(function(btn){
 });
 
 // Copy the short instructions. Same text as dejargonizer/SKILL-SHORT.md.
-const SHORT_SKILL = 'I am not an engineer, and I am directing this work - I need to be able to review what you did, not just approve it. So translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. "I ran it and watched it work" and "it should work" are different claims - keep them different.\n6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.\n7. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?", "What did you decide for me?"\n';
+const SHORT_SKILL = 'I am not an engineer, and I am directing this work - I need to be able to review what you did, not just approve it. So translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. "I ran it and watched it work" and "it should work" are different claims - keep them different. If you have not run it, do not say "works" or "fixed" - say "not run yet".\n6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.\n7. Tell me when you are guessing. If a name, setting or number came from memory rather than from checking, say so and how to confirm it.\n8. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?", "What did you decide for me?", "Did you run it, or do you expect it to work?"\n';
 const copyShort = document.getElementById('copyShort');
 if(copyShort){
   copyShort.addEventListener('click', function(){
