@@ -1,33 +1,125 @@
 {
   "generatedAt": "2026-07-27",
-  "method": "Every number here is computed by scripts/build-metrics.mjs from GLOSSARY.md and data/corpus.json. Nothing is entered by hand. \"Explained\" means a word marked as jargon resolves to a glossary entry.",
-  "dictionary": {
+  "rule": "Every line is scored once, on the day it arrives, against the dictionary as it stood that day. The result is frozen in data/ledger.json and never recomputed. Writing an entry afterwards fixes the dictionary but cannot change a past score. Records are kept even after a line leaves the sample, so nothing improves by deletion.",
+  "method": "Computed by scripts/build-metrics.mjs from GLOSSARY.md, data/corpus.json and data/ledger.json. Nothing on the page is typed in by hand.",
+  "firstLook": {
+    "linesScored": 35,
+    "linesRetiredButStillCounted": 0,
+    "markedWords": 82,
+    "explained": 79,
+    "missed": 3,
+    "coveragePct": 96.3,
+    "linesFullyExplained": 32,
+    "linesFullyExplainedPct": 91.4,
+    "sealedThisRun": 0,
+    "lowestTermCountAtSeal": 199,
+    "highestTermCountAtSeal": 199
+  },
+  "everMissed": [
+    {
+      "word": "byte",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": true
+    },
+    {
+      "word": "CDN",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": true
+    },
+    {
+      "word": "workflow",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": true
+    }
+  ],
+  "openGaps": [],
+  "entryQuality": {
+    "entries": 202,
+    "withPicture": 201,
+    "withAction": 145,
+    "finished": 145,
+    "finishedPct": 71.8,
+    "unfinished": [
+      "Boilerplate",
+      "Breaking change",
+      "Bug",
+      "Build",
+      "CI (continuous integration)",
+      "CORS",
+      "Cache",
+      "Clone",
+      "Code / source code",
+      "Config (configuration)",
+      "Crash",
+      "DNS",
+      "Database",
+      "Deploy / deployment",
+      "Deprecated",
+      "Diff",
+      "Downtime / outage",
+      "Edge case",
+      "Endpoint / API",
+      "Endpoint / route",
+      "Environment (dev / staging / prod)",
+      "Environment variable / secret / API key / token",
+      "Error / exception",
+      "Fork",
+      "Framework",
+      "Frontend / backend",
+      "Function",
+      "Green / red",
+      "Library / package / dependency",
+      "Lint / linter",
+      "Localhost",
+      "Log / logs",
+      "Migration",
+      "Patch / fix",
+      "Production (prod)",
+      "Pull",
+      "Rate limit",
+      "Refactor",
+      "Release",
+      "Reproduce (repro)",
+      "Root (of the project)",
+      "Root cause",
+      "Schema",
+      "Script",
+      "Server",
+      "Ship / ship it",
+      "Stack",
+      "Stack trace (traceback)",
+      "Staging",
+      "Stash",
+      "Stub / mock",
+      "Test suite",
+      "Type check",
+      "Unit test",
+      "Variable",
+      "Verification-boundary honesty",
+      "Verify / verification"
+    ]
+  },
+  "sample": {
+    "lines": 35,
+    "bySource": {
+      "representative": 28,
+      "build-session": 7
+    },
+    "fromOutsideThisProject": 0
+  },
+  "inventory": {
+    "note": "Inventory, not a result. A dictionary can grow all day without getting more useful. Kept here because it is worth knowing, not because it proves anything.",
     "terms": 202,
     "sections": 17,
     "aliases": 381,
     "decisionPhrases": 15,
     "tells": 18
   },
-  "coverage": {
-    "lines": 35,
-    "markedWords": 82,
-    "explained": 82,
-    "exact": 79,
-    "partial": 3,
-    "coveragePct": 100,
-    "linesFullyExplained": 35,
-    "linesFullyExplainedPct": 100
-  },
-  "review": {
-    "linesCarryingADecision": 2,
-    "linesCarryingATell": 4,
-    "linesCarryingEither": 6
-  },
-  "gaps": [],
   "notProven": [
-    "Coverage is measured against our own corpus, which we assembled and marked ourselves. A bigger corpus contributed by other people would be a harder and fairer test.",
+    "Every line in the sample was written or chosen by us. Lines contributed by people outside this project would be a harder test, and there are none yet.",
+    "The sample is small. 35 lines is enough to find missing words and nowhere near enough to describe how agents talk in general.",
     "Whether builders ship fewer defects with this installed. No study run.",
-    "Whether agents comply with the rules over long sessions. Not measured.",
+    "Whether agents keep following the rules over long sessions. Not measured.",
     "Any aggregate effect across users. We collect nothing, so we cannot claim it."
   ]
 }
