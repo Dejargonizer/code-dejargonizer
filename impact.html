@@ -124,7 +124,6 @@
 
 <p class="sub">Two things about it are worth saying before it produces anything. It needs a paid key for whichever model you point it at, supplied by whoever runs it - the script reads one from the environment and writes it nowhere. And the judge is a set of rules, not a person, so it can be wrong: the last checker written in this repo counted <strong>vitest</strong> as covered because the letters t-e-s-t are inside it. That one was fixed in the only direction a correction is allowed to go, which is down. This one is built to guess against us instead: a term explained in a shape the rules do not know is recorded as unexplained.</p>
 
-<p class="note" id="judgeNote"></p>
 
 <h2>Whether the entries are actually finished</h2>
 <div class="panel">
@@ -259,7 +258,6 @@ if (!armNames.length) {
   });
 }
 set('trialNote', t.note || '');
-set('judgeNote', t.judge || '');
 
 set('qPic', q.withPicture + ' of ' + q.entries);
 set('qAct', q.withAction + ' of ' + q.entries);
