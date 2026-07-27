@@ -4,7 +4,7 @@ One goal: your coding agent explains itself in plain English every time, without
 
 Two things to know before you start.
 
-**There are two versions of the instructions.** [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) is a single paste-able block of about 1,500 characters, sized to fit a settings box with a limit. [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) is the full version, thirteen rules, for tools that read a rules file.
+**There are two versions of the instructions.** [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) is a single paste-able block of about 1,900 characters, sized to fit a settings box with a limit. [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) is the full version, fourteen rules, for tools that read a rules file.
 
 **Nothing here is tool-specific.** It is plain text. If your tool is not in the tables below, find where it keeps its standing instructions and put the same text there.
 
@@ -122,9 +122,12 @@ Installing something and assuming it took effect is the exact habit this project
 
 | What you hear | What it means |
 |---|---|
-| "Thirteen rules, and rule 11 is to separate what I saw from what I only expect" | The full version is live. Done. |
+| "Fourteen rules, and rule 11 is to separate what I saw from what I only expect" | The full version is live. Done. |
 | It knows about plain English, naming decisions and not saying "works" before running it, but not the numbering | The short version is live. That is correct behavior for the short version. |
 | It guesses, or asks what the Dejargonizer is | It never read the file. Wrong path, or the tool needs restarting. |
+
+
+**Then point it backward.** You almost certainly installed this partway through a project, which means everything your agent already told you is still in the old language. Ask it: *go back over what you have told me so far - anything I would have missed?* A working install answers with a short catch-up list - risky steps already taken, anything it called done but never ran, decisions it made for you - not a fresh summary of the project. With the full version it should offer that pass on its own, without being asked (rule 14).
 
 Then give it a real piece of work and watch for one thing: **does it define a technical word the first time it uses one?** That is the whole product working. If it does not, say so once in the session and it usually holds for the rest of it.
 
