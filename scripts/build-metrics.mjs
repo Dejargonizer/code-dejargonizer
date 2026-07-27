@@ -231,7 +231,13 @@ for (const e of ledger.entries) {
   const fresh = marked.filter((w) => !resolve(w));
   const merged = [...new Set([...was, ...fresh])];
   if (merged.length > was.length) {
+    // A correction is only interesting once, but it has to stay visible forever.
+    // Keep it in the ledger rather than only in this run's output, or the next
+    // build quietly reports zero corrections and the drop loses its explanation.
     corrections.push({
+      on: TODAY,
+      from: e.matcher || 'substring-v1',
+      to: MATCHER,
       line: e.line,
       missedWas: was.length,
       missedNow: merged.length,
@@ -245,6 +251,11 @@ for (const e of ledger.entries) {
   e.matcher = MATCHER;
   e.rescoredOn = TODAY;
   e.matcherNote = 'Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score.';
+}
+if (!Array.isArray(ledger.corrections)) ledger.corrections = [];
+const haveCorrection = new Set(ledger.corrections.map((x) => x.line + '|' + x.to));
+for (const x of corrections) {
+  if (!haveCorrection.has(x.line + '|' + x.to)) ledger.corrections.push(x);
 }
 ledger.matcher = MATCHER;
 
@@ -331,9 +342,10 @@ const metrics = {
   matcherCorrections: {
     rule: MATCHER,
     note: 'A correction to the matching rule is the only thing allowed to reopen a sealed record, and it can only make the score the same or worse.',
-    recordsLowered: corrections.length,
-    wordsMovedToMissed: corrections.reduce((a, c) => a + c.movedToMissed.length, 0),
-    detail: corrections
+    recordsLowered: ledger.corrections.length,
+    wordsMovedToMissed: ledger.corrections.reduce((a, c) => a + c.movedToMissed.length, 0),
+    loweredThisRun: corrections.length,
+    detail: ledger.corrections
   },
 
   everMissed: everMissedList,
@@ -377,7 +389,7 @@ writeFileSync(OUTPUT_PATH, JSON.stringify(metrics, null, 2) + '\n');
 console.log('data/metrics.json written');
 console.log('  first look: ' + explained + '/' + markedWords + ' marked words explained on arrival (' + metrics.firstLook.coveragePct + '%)');
 console.log('  sealed this run: ' + sealedThisRun + ' new line(s)');
-console.log('  matcher ' + MATCHER + ': ' + corrections.length + ' record(s) lowered by the correction');
+console.log('  matcher ' + MATCHER + ': ' + corrections.length + ' record(s) lowered this run, ' + ledger.corrections.length + ' on record in total');
 console.log('  ever missed: ' + everMissedList.length + ' word(s), of which ' + everMissedList.filter((m) => !m.writtenSince).length + ' still have no entry');
 console.log('  entry quality: ' + metrics.entryQuality.finished + '/' + allTerms.length + ' entries carry both a picture and an action (' + metrics.entryQuality.finishedPct + '%)');
 console.log('  inventory: ' + termCount + ' terms in ' + glossary.length + ' sections');
