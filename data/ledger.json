@@ -750,6 +750,31 @@
       "matcher": "whole-word-v2",
       "rescoredOn": "2026-07-27",
       "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
+    },
+    {
+      "line": "grep before scoping unbuilt, surface-state bridge, pre-send echo pass, Local full sweep on origin/main (a1b2c3d4):",
+      "sealedOn": "2026-07-27",
+      "termsAtSeal": 202,
+      "marked": 5,
+      "missed": [
+        "grep",
+        "scoping",
+        "unbuilt"
+      ],
+      "retired": false,
+      "markedWords": [
+        "grep",
+        "scoping",
+        "unbuilt",
+        "origin/main",
+        "commit SHA"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score.",
+      "redacted": "Stand-ins. The contributor asked that their internal codenames not be published, so three invented names and a commit hash were swapped for words of the same shape. Everything scored here is from the original record: same marked words, same misses, same seal date, same term count at seal."
     }
   ],
   "matcher": "whole-word-v2",
@@ -776,6 +801,13 @@
       "movedToMissed": [
         "vitest"
       ]
+    }
+  ],
+  "redactions": [
+    {
+      "on": "2026-07-27",
+      "line": "grep before scoping unbuilt, surface-state bridge, pre-send echo pass, Local full sweep on origin/main (a1b2c3d4):",
+      "what": "Three internal codenames and a commit hash in one contributed line were replaced with stand-ins at the request of the person who contributed it. The score was not recomputed and did not move. The original record was removed only because it carried the codenames."
     }
   ]
 }
