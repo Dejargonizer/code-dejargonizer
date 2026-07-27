@@ -29,15 +29,18 @@ And an agent nobody reviews doesn't stop. It carries on making decisions on your
 
 So the chain is short, and it does not stop at comprehension. **Read the report, and you can manage the agent. Manage the agent, and you get a better product.**
 
-Natural language is supposed to work in *both* directions. Right now it only works on the way in. **The Dejargonizer makes it work on the way back too** — so the whole conversation, out and back, stays in language you can act on. Three things, working together:
+Natural language is supposed to work in *both* directions. Right now it only works on the way in. **The Dejargonizer makes it work on the way back too** — so the whole conversation, out and back, stays in language you can act on. Here is what that takes:
 
 ### 📖 A dictionary — [`GLOSSARY.md`](GLOSSARY.md)
-Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, **something to picture**, and **what to actually do when your agent says it.** Read it on its own — no agent required.
+Every coding word a non-engineer actually hits, in plain English. Grouped by the *moment you're in* ("what just happened?"), not alphabetically. Each entry gives you three things: **what it means in one sentence**, **something to picture**, and **what to actually do when your agent says it.** Read it on its own — no agent required. But the first reader is meant to be the **agent**, not you: point your tool at this file and it uses the entries as its own phrasing. That is the faster path, because a dictionary only helps someone who already knows which word confused them, and the words that cost the most are the ones that go by unnoticed.
 
 One section is deliberately unlike the others: [**phrases that mean a decision got made for you**](GLOSSARY.md#10-phrases-that-mean-a-decision-got-made-for-you). "I mocked that out." "It's a workaround." "That should work." These sound like progress updates and are really choices, made on your behalf, that you would probably want a say in.
 
 ### 🗣️ A switch for your agent — [`dejargonizer/`](dejargonizer/SKILL.md)
 Drop-in instructions that make *any* AI coding agent translate its own engineering-speak back into plain language *by default*: the point first, every term defined in the same breath, an honest heads-up in plain words before anything risky, a clear line on who did what, and — the part that matters most for the product — every decision it made for you named out loud instead of left inside the narration. It turns the agent from a brilliant colleague who forgets you're new into one who never does.
+
+### ⏪ A pass back over what your agent already said
+Nobody installs this at the start of a project. You install it halfway through, once the updates stop making sense — and by then there is an hour of engineering-speak behind you that you already nodded through. So the instructions run in reverse as well as forward. On loading, the agent re-reads its own earlier replies and re-states the ones you could not have acted on: risky steps it already took, things it called done but never actually ran, decisions it made on your behalf, terms it never translated. A short catch-up list, oldest first, ending with anything that still needs a decision from you. You can trigger it from any agent, installed or not: *go back over what you’ve told me so far — anything I would have missed?*
 
 ### 🔁 A loop that keeps it honest
 The dictionary isn't a one-time snapshot someone tried to write in advance — it grows from the words that actually trip people up, and mostly you don't have to do anything for that to happen. Your agent does it: when it explains a term the shipped dictionary doesn't cover yet, it files that word back here — just the term and its plain-English meaning, never your code or project details. You never have to notice the gap yourself. And on the live site, searching for a word and coming up empty is enough: the "Suggest a term" button drafts the whole issue for you in one click. Once enough different people independently flag the same word, an automated check drafts it straight into [`GLOSSARY.md`](GLOSSARY.md) and opens it for a maintainer to review — never merged automatically, always reviewed by a person first. Plain language flows out to you; real confusion flows back in and becomes the next entry.
@@ -100,9 +103,9 @@ Then check it took. Start a new session and ask:
 
 > How many Dejargonizer rules are you following, and what is rule 11?
 
-Thirteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
+Fourteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
 
-## Five questions you can always ask
+## Six questions you can always ask
 
 Keep these in your back pocket. They work with any agent, any time, and they put you back in control:
 
@@ -111,8 +114,9 @@ Keep these in your back pocket. They work with any agent, any time, and they put
 3. **"Is this reversible?"**
 4. **"What did you decide for me?"**
 5. **"Did you run it, or do you expect it to work?"**
+6. **"Go back over what you’ve told me so far — anything I would have missed?"**
 
-The fourth is the one nobody thinks to ask, and it catches the most. Agents make small, reasonable calls constantly and rarely volunteer them. Asking turns a status report into something you can manage. The fifth is the one to ask most often: "it should work" and "I ran it and watched it work" are completely different claims, and only one of them is a result.
+The fourth is the one nobody thinks to ask, and it catches the most. Agents make small, reasonable calls constantly and rarely volunteer them. Asking turns a status report into something you can manage. The fifth is the one to ask most often: "it should work" and "I ran it and watched it work" are completely different claims, and only one of them is a result. The sixth is the one to ask the day you install this, because everything said before that point is still in the old language — and then whenever you have been away from the project for a while.
 
 ## Who this is for
 
