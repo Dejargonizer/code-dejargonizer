@@ -199,6 +199,13 @@ window.GLOSSARY_DATA = [
         "m": "A command that checks your project's dependencies for known security problems and tells you how many it found.",
         "p": "A quick health inspection of every ingredient in your pantry, flagging any that have been recalled.",
         "note": "It's just running a routine check, not fixing or changing anything in your code yet."
+      },
+      {
+        "t": "Workflow",
+        "m": "A saved list of steps that runs by itself when something happens, like every time work is saved to the project.",
+        "p": "a dishwasher cycle. You load it and press start once; the sequence runs the same way every time.",
+        "aka": "GitHub Actions, action, pipeline, job, runner",
+        "note": "a workflow going green means the steps ran without complaining. Worth asking what the steps actually check, because a workflow can pass while checking almost nothing."
       }
     ]
   },
@@ -572,6 +579,13 @@ window.GLOSSARY_DATA = [
         "p": "showing a passport you already own instead of filling in a whole new form.",
         "aka": "\"sign in with Google\"",
         "note": "this is the safe, boring, correct choice. It means one fewer pile of passwords for you to be responsible for."
+      },
+      {
+        "t": "CDN",
+        "m": "A network of servers around the world that keeps copies of your site so it loads quickly wherever someone is.",
+        "p": "local warehouses instead of shipping everything from one factory.",
+        "aka": "content delivery network, edge, cached at the edge",
+        "note": "CDNs hold on to old copies for a few minutes, which is the usual reason your change is live but you still cannot see it. Ask how long before it refreshes."
       }
     ]
   },
@@ -1204,6 +1218,13 @@ window.GLOSSARY_DATA = [
         "p": "the first few miles included, then the meter starts.",
         "aka": "free plan, quota, credits",
         "note": "ask what happens at the limit. Some services stop and some start charging, and those are very different surprises."
+      },
+      {
+        "t": "Byte",
+        "m": "The unit files and data get measured in. A thousand bytes is a kilobyte, a thousand of those a megabyte.",
+        "p": "grams and kilograms, but for information.",
+        "aka": "bytes, KB, MB, GB, kilobyte, megabyte",
+        "note": "useful for one thing - noticing when something is far bigger than it should be. A page that weighs several megabytes will feel slow on a phone."
       }
     ]
   },
