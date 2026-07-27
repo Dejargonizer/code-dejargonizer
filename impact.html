@@ -79,10 +79,42 @@
 
   <p class="sub">So the scoring is sealed. Every line of agent-speak in the sample is scored <strong>once</strong>, on the day it arrives, against the dictionary as it stood that day. That result is frozen. Writing the entry afterwards fixes the dictionary and changes nothing here, ever. The number below can go down, and deleting an awkward line does not help, because records are kept after a line leaves the sample.</p>
 
+  <p class="sub">There is one exception, and it only cuts one way. If the matching rule itself turns out to be wrong, sealed records are re-scored under the corrected rule and the new result is kept only where it is the same or worse. A correction can lower a past score. It cannot raise one.</p>
+
   <div class="cards">
     <div class="card"><div class="big" id="nFirstLook">&#8230;</div><div class="lab">of the jargon in a line already had a plain-English entry <strong>the first time the dictionary met that line</strong></div></div>
     <div class="card"><div class="big" id="nEverMissed">&#8230;</div><div class="lab">words it has missed on first sight. The list is never cleared, only added to</div></div>
-    <div class="card"><div class="big" id="nOutside">&#8230;</div><div class="lab">lines in the sample contributed by anyone outside this project. The weakest number here, and the one we most want to see rise</div></div>
+    <div class="card"><div class="big" id="nOutside">&#8230;</div><div class="lab">lines in the sample came from a builder outside this project, scored on arrival like everything else. Still the weakest number here, and the one we most want to see rise</div></div>
+  </div>
+
+  <h2>What happened when lines from outside arrived</h2>
+
+  <p class="sub">Every line in the sample used to be one we had written or chosen. Then a builder sent over what their agent had just reported on their own codebase. Six lines, scored on arrival, against the dictionary as it stood that morning.</p>
+
+  <div class="panel">
+    <ul class="rows" id="bySource"></ul>
+  </div>
+
+  <p class="sub">The lines we wrote ourselves score perfectly, which tells you about our sample rather than about the dictionary. The six from somebody else's agent are the only hard part of this test, and they pulled the headline down the day they landed. Take them out and the number goes back up. They are staying in.</p>
+
+  <h2>One line, read closely</h2>
+
+  <p class="sub">This is the middle of that report, exactly as it was sent:</p>
+
+  <div class="panel" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.6;white-space:pre-wrap">npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load &#8212; a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)</div>
+
+  <p class="sub">Nothing in it is dishonest and all of it may be correct. It is still four separate claims travelling under one green number. <strong>3794/3794</strong> sits outside the bracket and the part that failed sits inside it. <strong>Five files</strong> timed out, then <strong>three</strong> were re-run &#8212; those two numbers do not agree, which usually means the summary was written from memory rather than read off the output. <strong>A Mac-side flake</strong> is a diagnosis presented as an observation. <strong>In isolation: 21/21</strong> is a pass under different conditions than the failure, so it answers a different question. <strong>Not a code failure</strong> is the conclusion all of that was carrying, stated as fact.</p>
+
+  <p class="sub">The reply that settles it is short: run the same command, the same way, twice more. All five of those signs are now entries in section 17 of the dictionary, written from this line.</p>
+
+  <h2>A correction that could only go one way</h2>
+
+  <p class="sub">Scoring those six lines exposed a fault in the scorer. It had been counting a word as covered whenever an entry name appeared anywhere inside it as raw text, so <strong>vitest</strong> counted as covered because the letters t-e-s-t are in it. Substring luck, recorded as understanding.</p>
+
+  <p class="sub">Matching now has to line up with whole words, and every sealed record was re-scored under the new rule. Two of them got worse. None of them could get better, because the code will not keep a re-score that improves a past result.</p>
+
+  <div class="panel">
+    <ul class="rows" id="corrections"></ul>
   </div>
 
   <h2>First look, in full</h2>
@@ -180,6 +212,37 @@
       set('nFirstLook', f.coveragePct + '%');
       set('nEverMissed', m.everMissed.length);
       set('nOutside', s.fromOutsideThisProject);
+
+      var labels = {
+        representative: 'Written here to stand in for a pattern we kept seeing',
+        'build-session': 'Produced by an agent working on this repository',
+        contributed: 'Sent in by a builder from their own project'
+      };
+      var bsHost = el('bySource'), bs = f.bySource || {};
+      if (bsHost) {
+        Object.keys(bs).forEach(function(k){
+          var b = bs[k], li = document.createElement('li');
+          var sp = document.createElement('span');
+          sp.textContent = (labels[k] || k) + ' \u2014 ' + b.lines + ' lines, ' + b.markedWords + ' words marked as jargon';
+          var bo = document.createElement('b');
+          bo.textContent = b.coveragePct + '%';
+          li.appendChild(sp); li.appendChild(bo); bsHost.appendChild(li);
+        });
+      }
+
+      var mc = m.matcherCorrections, cHost = el('corrections');
+      if (cHost && mc) {
+        [['Matching rule in force', mc.rule],
+         ['Sealed records the correction made worse', mc.recordsLowered],
+         ['Words that moved from explained to missed', mc.wordsMovedToMissed],
+         ['Sealed records the correction improved', 'not possible by design']
+        ].forEach(function(row){
+          var li = document.createElement('li');
+          var sp = document.createElement('span'); sp.textContent = row[0];
+          var bo = document.createElement('b'); bo.textContent = row[1];
+          li.appendChild(sp); li.appendChild(bo); cHost.appendChild(li);
+        });
+      }
 
       set('rLines', f.linesScored);
       set('rRetired', f.linesRetiredButStillCounted);
