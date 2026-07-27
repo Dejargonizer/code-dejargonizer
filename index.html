@@ -181,6 +181,10 @@
     border-bottom:1px solid var(--accent-wash);padding-bottom:2px}
   .ctalink:hover{border-bottom-color:var(--accent)}
   .ctahint{font-size:14.5px;color:var(--ink-faint);margin:10px 0 0}
+    .routes{list-style:none;padding:0;margin:18px 0 4px;display:grid;gap:12px}
+    .routes li{font-size:15px;line-height:1.55;color:var(--ink-soft);padding-left:14px;border-left:2px solid var(--accent-wash)}
+    .routes a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-wash)}
+    .checkit{font-size:14.5px;line-height:1.6;color:var(--ink-soft);background:var(--good-wash);border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;margin:18px 0 0}
   .tryit{font:inherit;font-weight:700;color:var(--ink);background:var(--accent-wash);border:0;
     border-radius:6px;padding:2px 6px;cursor:pointer;text-align:left}
   .tryit:hover{background:var(--accent);color:#fff}
@@ -226,9 +230,15 @@
 <p>A dictionary helps when you already know which word to look up. Better is an agent that never makes you look one up. These are plain instructions — no install, no account, nothing tied to one tool. Paste them into your agent and tell it you are not an engineer.</p>
 <div class="ctarow">
 <button type="button" class="ctabtn" id="copyShort">Copy the instructions</button>
-<a class="ctalink" href="https://github.com/Dejargonizer/code-dejargonizer#turn-it-on-for-your-agent">Where to paste them, per tool</a>
+<a class="ctalink" href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md">Full install guide, per tool</a>
 </div>
-<p class="ctahint" id="copyHint">Works in Claude Code, Cursor, Copilot, Windsurf, Gemini, ChatGPT, Lovable, Replit, Bolt — anywhere there is a chat box or a rules file. The longer version, and the one-line-per-tool instructions, are <a href="https://github.com/Dejargonizer/code-dejargonizer">on GitHub</a>.</p>
+<ul class="routes">
+        <li><strong>You have files in your project</strong> — Claude Code, Cursor, Copilot, Windsurf, Cline, Aider, Codex. Put the full instructions in your tool’s rules file. <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md#option-a-tools-where-you-have-files">Exact paths for 12 tools</a></li>
+        <li><strong>You only have a chat box</strong> — Lovable, Replit, Bolt, v0, ChatGPT, Claude. Paste the block above into its standing-instructions box. <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md#option-b-tools-where-you-only-have-a-chat-box">Exact place for each</a></li>
+        <li><strong>You are building your own agent</strong> — fetch the raw file into your system prompt and pin it to a commit. <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md#option-c-your-own-agent-or-harness">Raw URLs and the glossary as data</a></li>
+      </ul>
+      <p class="checkit"><strong>Then check it took.</strong> Start a new session and ask: <em>How many Dejargonizer rules are you following, and what is rule 10?</em> Ten rules, and rule 10 is about naming the decisions it made for you. If you get that back, it is live. If it guesses, the file is in the wrong place.</p>
+      <p class="ctahint" id="copyHint">Works in Claude Code, Cursor, Copilot, Windsurf, Gemini, ChatGPT, Lovable, Replit, Bolt — anywhere there is a chat box or a rules file. The longer, ten-rule version lives in <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/INSTALL.md">the install guide</a>.</p>
 <p class="ctahint">Can’t install anything where you are building? Then use the <a href="#questions">four questions</a>. They need no setup at all.</p>
 </section>
 </div>
