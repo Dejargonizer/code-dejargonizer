@@ -4,9 +4,11 @@
 
 Coding agents are astonishingly capable. But they talk like engineers, because they learned from engineers. So you get sentences like *"I'll squash-merge the PR once CI is green, then verify the deploy."* Every word of that means something specific and simple. Nobody ever told you what.
 
+That gap is not a comprehension problem. It is a management problem. You are not reading that sentence out of curiosity — you are reading it to decide whether to let the work carry on. The job is not understanding code. The job is directing the thing that writes it.
+
 This is the missing translation layer. Find the word you're stuck on below. Each entry tells you three things: **what it means in one plain sentence**, **something to picture**, and **what to actually do when your agent says it.**
 
-You do not need to read this top to bottom. It's grouped by *situation* — the moment you're in when the strange word shows up. Skim to your moment.
+You do not need to read this top to bottom. It's grouped by *situation* — the moment you're in when the strange word shows up. Skim to your moment. If you read only one section, read [section 10](#10-phrases-that-mean-a-decision-got-made-for-you) — those are the phrases that quietly become your product.
 
 ---
 
@@ -496,6 +498,87 @@ When your agent puts something in `this typeface`, it means "this is an exact li
 A file name, a colon, and a number: `index.html:367` means line 367 of that file.
 *Picture:* a page-and-line reference in a book, so two people can look at the same sentence.
 *When your agent says it:* it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework.
+
+---
+
+## 10. Phrases that mean a decision got made for you
+
+Most jargon is only unfamiliar. This lot is different. Every phrase here sounds like a progress update and is really a decision your agent already made on your behalf — usually a sensible one, usually taken to keep moving. They matter because these are the choices that end up inside the thing you ship. A "for now" that nobody came back to is how a shortcut becomes permanent. You do not need to ban any of it. You need to be able to hear it go past.
+
+**"Hardcoded for now"** (also: hard-coded, baked in)
+A specific value typed straight into the code, instead of being looked up or made changeable.
+*Picture:* writing today's date on a sign in permanent marker instead of hanging a clock.
+*When your agent says it:* it is true today and will quietly stop being true later. Worth asking: "what breaks when that value needs to change, and who changes it?"
+
+**"I mocked that out"** (also: stubbed it out, placeholder data, dummy data, fake data)
+It built a stand-in that behaves like the real thing, so the rest of the work could carry on before the real thing was connected. (*Stub / mock* in section 5 is the same idea as a noun.)
+*Picture:* a film-set kitchen. The taps look perfect. No water.
+*When your agent says it:* what you are looking at is not connected to anything real, however finished it looks. Ask "is this real data yet?" before you show it to anyone who matters.
+
+**"I'll add tests later"** (also: skipping tests for now, no coverage on that yet)
+It wrote the working code but not the automatic checks that prove the code keeps working.
+*Picture:* fitting a smoke alarm and not putting a battery in.
+*When your agent says it:* nothing is wrong yet. The cost arrives later, when some future change breaks this and no alarm goes off. A perfectly good answer is "fine for now — add them before this goes live."
+
+**"I left a TODO"** (also: FIXME, TODO comment, a note in the code)
+A note it wrote to itself inside the code marking that part as unfinished.
+*Picture:* a sticky note on the fridge that only the person who wrote it will ever read.
+*When your agent says it:* it has flagged its own loose end honestly, which is good — but nothing will ever remind either of you again. Ask for the list: "what TODOs are open right now?"
+
+**"I commented it out"** (also: disabled it, left it in but switched off)
+It turned some code off by marking it as a note, so the computer skips it, rather than deleting it.
+*Picture:* not throwing the ingredient away — just leaving it out of the recipe and keeping the jar in the cupboard.
+*When your agent says it:* something that used to happen no longer happens. One question covers it: "what stopped working when you did that, and was that on purpose?"
+
+**"It's a workaround"** (also: a hack, a band-aid, a quick fix, a patch job)
+Something that works without fixing what actually caused the problem.
+*Picture:* a bucket under the leak. The floor stays dry. The roof is still broken.
+*When your agent says it:* it is being straight with you, which is worth encouraging. Ask "what's the real fix, and how long would it take?" — then decide. Sometimes the bucket genuinely is the right call.
+
+**"I added a package for that"** (also: pulled in a dependency, installed a library)
+Rather than writing the code itself, it borrowed working code written by strangers. (See *Library / package / dependency* in section 5.)
+*Picture:* buying a ready-made part instead of machining one. Faster, and now you depend on whoever makes it.
+*When your agent says it:* usually the right call. Occasionally a very large tool has been brought in to do a very small job. Fair question: "how big is it, and how many people rely on it?"
+
+**"It handles the happy path"** (also: happy path only, works in the normal case)
+It works when everything goes as expected, and has not been taught what to do when things don't.
+*Picture:* a recipe written on the assumption you will never drop an egg.
+*When your agent says it:* real people find the unhappy paths within a day — empty fields, lost connections, the same button pressed twice. Ask "what does someone see when it goes wrong?"
+
+**"I'm swallowing the error"** (also: catching and ignoring it, failing silently)
+When something goes wrong at that spot, the code hides the complaint and carries on instead of reporting it.
+*Picture:* a smoke alarm unplugged because the beeping was annoying.
+*When your agent says it:* this is the shortcut most likely to cost you later, because breakage stops being visible — silence starts meaning nothing at all rather than nothing wrong. Reasonable push-back: "I'd rather it told us. Can we at least write it down somewhere?"
+
+**"I turned off the check"** (also: disabled the linter, added an ignore, silenced the warning, used `any`)
+A warning kept appearing, so it switched the warning off rather than resolving what caused it.
+*Picture:* the seatbelt chime stops. Nobody put a seatbelt on.
+*When your agent says it:* sometimes the tool was wrong and muting it is correct. Sometimes the tool was right. One question separates the two: "was the warning correct?" (See also *Suppression safety*, section 7.)
+
+**"I refactored while I was in there"** (also: tidied it up along the way, cleaned a few things up)
+It rearranged code you did not ask it to touch, without changing what that code does.
+*Picture:* asking someone to fix the door handle and finding they rearranged the room.
+*When your agent says it:* the intent is good and the risk is real — more changed than you asked for, so more can break. Not a crime. Just say "keep changes to what I asked for unless you check with me first."
+
+**"I force-pushed"** (also: overwrote the history, reset the branch)
+It replaced the saved history of the work with its own version instead of adding to it.
+*Picture:* not writing today's diary entry, but tearing out yesterday's page and rewriting it.
+*When your agent says it:* earlier saved versions may be gone, possibly ones you wanted. Ask immediately: "did anything get lost, and can you get it back?" Better still, this is one to catch beforehand — which is exactly what "is this reversible?" is for.
+
+**"I assumed you wanted"** (also: I went ahead and, I took the liberty of, I figured you'd want)
+It reached a decision, made the decision, and mentioned it afterwards.
+*Picture:* a builder who chose the tiles because you weren't answering your phone.
+*When your agent says it:* it is showing you a fork in the road you never saw. Nothing rude about walking back to it: "tell me what you chose and what the other option was."
+
+**"It's stored in plain text"** (also: unencrypted, in the clear, plaintext)
+Information saved in a form that anyone who opens the file can simply read.
+*Picture:* the alarm code written on the back of the front door.
+*When your agent says it:* completely fine for a shopping list, not fine for passwords, keys, or anything belonging to someone else. The question that matters: "would it be bad if a stranger read this?"
+
+**"That should work"** (also: it ought to be fine, I believe that's fixed)
+It has not checked. This is a prediction — often a good one — and it is not a result.
+*Picture:* the difference between "the cake is baked" and "the cake should be baked by now."
+*When your agent says it:* the only follow-up you need is "did you run it and watch it work?" A good agent answers honestly, and soon starts volunteering the difference unprompted. (See also *Verification-boundary honesty*, section 7.)
 
 ---
 
