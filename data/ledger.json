@@ -8,7 +8,19 @@
       "termsAtSeal": 199,
       "marked": 5,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "squash-merge",
+        "PR",
+        "CI",
+        "green",
+        "deploy"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The commit did land - my raw-URL check was reading a stale cache.",
@@ -16,7 +28,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "commit",
+        "cache"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Parity confirmed: the embedded copy is byte-identical at 1482 bytes.",
@@ -26,7 +47,15 @@
       "missed": [
         "byte"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "byte"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Found a formatting bug where the separator lost its blank line.",
@@ -34,7 +63,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "bug"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Sync complete - 16 sections and 181 terms in the generated data file.",
@@ -42,7 +79,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "sync"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "index.html is live, but the glossary data is still stale on the CDN.",
@@ -52,7 +97,17 @@
       "missed": [
         "CDN"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "file extension",
+        "CDN",
+        "cache"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Waiting on the sync workflow and the Pages deploy before I re-test.",
@@ -62,7 +117,16 @@
       "missed": [
         "workflow"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "workflow",
+        "deploy"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Evaluating the script violated the Content Security Policy, so I validated it structurally instead.",
@@ -70,7 +134,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "script"
+      ],
+      "source": "build-session",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Hardcoded the API key for now - we should move it to an env var before prod.",
@@ -78,7 +150,18 @@
       "termsAtSeal": 199,
       "marked": 4,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "hardcoded for now",
+        "API key",
+        "environment variable",
+        "production"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Added an index on user_id to fix the N+1 query.",
@@ -86,7 +169,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "database index",
+        "N+1 query",
+        "query"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "RLS is off on that table for now so the seed script can write to it.",
@@ -94,7 +187,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "row-level security",
+        "script"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Bumped the lockfile and reinstalled dependencies; the build passes locally.",
@@ -102,7 +204,18 @@
       "termsAtSeal": 199,
       "marked": 4,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "lockfile",
+        "dependency",
+        "build",
+        "localhost"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "That should work now.",
@@ -110,7 +223,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "it should work now"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Rolled back the migration and reverted the commit on main.",
@@ -118,7 +239,19 @@
       "termsAtSeal": 199,
       "marked": 5,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "rollback",
+        "migration",
+        "revert",
+        "commit",
+        "main"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The end-to-end test is flaky, so I skipped it and opened a ticket.",
@@ -126,7 +259,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "test",
+        "flaky test",
+        "backlog"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Wrapped the fetch in a retry with exponential backoff.",
@@ -134,7 +277,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "retry"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Stubbed the payment webhook so the happy path works end to end.",
@@ -142,7 +293,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "stub",
+        "webhook",
+        "happy path"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Refactored the component to lift state up; no behaviour change.",
@@ -150,7 +311,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "refactor",
+        "component",
+        "state"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "CORS was blocking it, so I added the origin to the allowlist.",
@@ -158,7 +329,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "CORS"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The container cold start is adding about 800ms to the first request.",
@@ -166,7 +345,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "container",
+        "cold start",
+        "latency"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Suppressed the type error with a cast; it is a known issue upstream.",
@@ -174,7 +363,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "type check",
+        "this is a known issue",
+        "warning that went quiet"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Everything looks good on my side.",
@@ -182,7 +381,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "everything looks good"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Deployed to staging and the smoke tests are green.",
@@ -190,7 +397,18 @@
       "termsAtSeal": 199,
       "marked": 4,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "deploy",
+        "staging",
+        "smoke test",
+        "green"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Hashed the passwords with bcrypt and set the session cookie to httpOnly.",
@@ -198,7 +416,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "hashing",
+        "session",
+        "cookie"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Ran the linter and the type check; tsc is clean.",
@@ -206,7 +434,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "lint",
+        "type check"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The stack trace points at a null dereference in the auth middleware.",
@@ -214,7 +451,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "stack trace",
+        "authentication vs authorization"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Scoped the service account to read-only, following least privilege.",
@@ -222,7 +468,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "least privilege"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Compaction kicked in, so I lost the earlier context - restating the plan.",
@@ -230,7 +484,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "compaction",
+        "context window"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The subagent finished but did not report back what it changed.",
@@ -238,7 +501,15 @@
       "termsAtSeal": 199,
       "marked": 1,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "subagent"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "I mocked that out for now so the rest of the flow could be tested.",
@@ -246,7 +517,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "i mocked that out for now",
+        "stub"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Port 3000 is already in use, so the dev server did not start.",
@@ -254,7 +534,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "port",
+        "process"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Updated the assertion so the test passes.",
@@ -262,7 +551,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "tests that started passing after being edited",
+        "test"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Scaffolded the boilerplate and wired up the endpoint.",
@@ -270,7 +568,16 @@
       "termsAtSeal": 199,
       "marked": 2,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "boilerplate",
+        "endpoint"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "The build failed on a non-zero exit code from the lint step.",
@@ -278,7 +585,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "build",
+        "exit code",
+        "lint"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Set up the webhook to hit our endpoint, and added a rate limit.",
@@ -286,7 +603,17 @@
       "termsAtSeal": 199,
       "marked": 3,
       "missed": [],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "webhook",
+        "endpoint",
+        "rate limit"
+      ],
+      "source": "representative",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "grep before scoping unbuilt, device-context bridge, pre-draft echo loop, Local gauntlet on origin/main (0cc4d4e4):",
@@ -298,7 +625,19 @@
         "scoping",
         "unbuilt"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "grep",
+        "scoping",
+        "unbuilt",
+        "origin/main",
+        "commit SHA"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "tsc --noEmit: 0 errors",
@@ -306,9 +645,21 @@
       "termsAtSeal": 202,
       "marked": 4,
       "missed": [
-        "noEmit"
+        "noEmit",
+        "0 errors"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "tsc",
+        "noEmit",
+        "type check",
+        "0 errors"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load - a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)",
@@ -318,9 +669,25 @@
       "missed": [
         "under load",
         "flake",
-        "in isolation"
+        "in isolation",
+        "vitest"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "npm test",
+        "vitest",
+        "worker pool",
+        "timeout",
+        "under load",
+        "flake",
+        "in isolation",
+        "not a code failure"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "npm run lint: clean. npm run build:validate: clean.",
@@ -331,7 +698,18 @@
         "npm run",
         "validate step"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "npm run",
+        "lint",
+        "clean",
+        "validate step"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Read each Dependabot alert's manifest_path, never assume the root.",
@@ -341,7 +719,17 @@
       "missed": [
         "Dependabot"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "Dependabot",
+        "manifest path",
+        "repository root"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     },
     {
       "line": "Measure the compiled value, not the source text.",
@@ -352,7 +740,17 @@
         "compiled output",
         "source text"
       ],
-      "retired": false
+      "retired": false,
+      "markedWords": [
+        "compiled output",
+        "source text"
+      ],
+      "source": "contributed",
+      "matcherWas": "substring-v1",
+      "matcher": "whole-word-v2",
+      "rescoredOn": "2026-07-27",
+      "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     }
-  ]
+  ],
+  "matcher": "whole-word-v2"
 }

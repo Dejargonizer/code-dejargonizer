@@ -6,16 +6,68 @@
     "linesScored": 41,
     "linesRetiredButStillCounted": 0,
     "markedWords": 108,
-    "explained": 93,
-    "missed": 15,
-    "coveragePct": 86.1,
+    "explained": 91,
+    "missed": 17,
+    "coveragePct": 84.3,
     "linesFullyExplained": 32,
     "linesFullyExplainedPct": 78,
-    "sealedThisRun": 6,
+    "sealedThisRun": 0,
     "lowestTermCountAtSeal": 199,
-    "highestTermCountAtSeal": 202
+    "highestTermCountAtSeal": 202,
+    "bySource": {
+      "representative": {
+        "lines": 28,
+        "markedWords": 71,
+        "explained": 71,
+        "missed": 0,
+        "coveragePct": 100
+      },
+      "build-session": {
+        "lines": 7,
+        "markedWords": 11,
+        "explained": 8,
+        "missed": 3,
+        "coveragePct": 72.7
+      },
+      "contributed": {
+        "lines": 6,
+        "markedWords": 26,
+        "explained": 12,
+        "missed": 14,
+        "coveragePct": 46.2
+      }
+    }
+  },
+  "matcherCorrections": {
+    "rule": "whole-word-v2",
+    "note": "A correction to the matching rule is the only thing allowed to reopen a sealed record, and it can only make the score the same or worse.",
+    "recordsLowered": 2,
+    "wordsMovedToMissed": 2,
+    "detail": [
+      {
+        "line": "tsc --noEmit: 0 errors",
+        "missedWas": 1,
+        "missedNow": 2,
+        "movedToMissed": [
+          "0 errors"
+        ]
+      },
+      {
+        "line": "npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load - a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)",
+        "missedWas": 3,
+        "missedNow": 4,
+        "movedToMissed": [
+          "vitest"
+        ]
+      }
+    ]
   },
   "everMissed": [
+    {
+      "word": "0 errors",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
     {
       "word": "byte",
       "firstMissedOn": "2026-07-27",
@@ -87,6 +139,11 @@
       "writtenSince": false
     },
     {
+      "word": "vitest",
+      "firstMissedOn": "2026-07-27",
+      "writtenSince": false
+    },
+    {
       "word": "workflow",
       "firstMissedOn": "2026-07-27",
       "writtenSince": true
@@ -97,6 +154,8 @@
     "scoping",
     "unbuilt",
     "noEmit",
+    "0 errors",
+    "vitest",
     "under load",
     "flake",
     "in isolation",
@@ -132,7 +191,7 @@
     "tells": 18
   },
   "notProven": [
-    "Every line in the sample was written or chosen by us. Lines contributed by people outside this project would be a harder test, and there are none yet.",
+    "6 of 41 lines came from outside this project. That is a start, not a sample. The rest we wrote or chose ourselves, which makes them the easier half of the test.",
     "The sample is small. 41 lines is enough to find missing words and nowhere near enough to describe how agents talk in general.",
     "Whether builders ship fewer defects with this installed. No study run.",
     "Whether agents keep following the rules over long sessions. Not measured.",
