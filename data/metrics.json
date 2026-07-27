@@ -36,34 +36,10 @@
   "entryQuality": {
     "entries": 202,
     "withPicture": 202,
-    "withAction": 179,
-    "finished": 179,
-    "finishedPct": 88.6,
-    "unfinished": [
-      "Build",
-      "CI (continuous integration)",
-      "CORS",
-      "Cache",
-      "DNS",
-      "Deploy / deployment",
-      "Diff",
-      "Green / red",
-      "Library / package / dependency",
-      "Lint / linter",
-      "Migration",
-      "Production (prod)",
-      "Rate limit",
-      "Refactor",
-      "Reproduce (repro)",
-      "Root (of the project)",
-      "Root cause",
-      "Script",
-      "Ship / ship it",
-      "Test suite",
-      "Type check",
-      "Verification-boundary honesty",
-      "Verify / verification"
-    ]
+    "withAction": 202,
+    "finished": 202,
+    "finishedPct": 100,
+    "unfinished": []
   },
   "sample": {
     "lines": 35,
