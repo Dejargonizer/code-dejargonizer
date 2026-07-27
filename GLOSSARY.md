@@ -459,12 +459,12 @@ Letting people log in using an account they already have, so you never see or st
 
 Not words exactly — shapes. Your agent will write something like `scripts/process-term-suggestion.mjs` and carry on as though that explained itself. It does not, and none of it is difficult once somebody tells you how to read it.
 
-**File path**
+**File path** (also: path, filepath, directory, folder, src/, slashes)
 Directions to one exact file, with slashes standing for "inside". `scripts/process-term-suggestion.mjs` means: the file named `process-term-suggestion.mjs`, which lives inside the folder named `scripts`.
 *Picture:* an address written back to front and squashed together — country, then city, then street, then house.
 *When your agent says it:* it is telling you precisely which file it touched, which is a good habit, not a demand on you. If it matters, ask "what did you change in that file?"
 
-**File extension** (also: .js, .mjs, .ts, .json, .md, .yml, .css, .html)
+**File extension** (also: .js, .mjs, .cjs, .ts, .tsx, .jsx, .json, .md, .yml, .yaml, .toml, .css, .scss, .html, .py, .rb, .go, .rs, .java, .sql, .sh, .lock, .svg, .png)
 The bit after the last dot, which says what kind of file it is.
 *Picture:* the label on a jar. Same shape of jar, completely different contents.
 *When your agent says it:* the common ones are worth knowing. `.md` is notes for humans (this file is one). `.json` and `.yml` are settings. `.js`, `.mjs` and `.ts` are instructions the computer runs. `.html` is a page and `.css` is how it looks.
