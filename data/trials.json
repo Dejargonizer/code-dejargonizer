@@ -1,0 +1,12 @@
+{
+  "note": "Paired trials. One record per pair: the same line of raw agent output handed to the same model twice - once with nothing, once with the short instructions and the dictionary - and both answers judged on the four things this project promises. Written by scripts/paired-trial.mjs. Append-only: a pair is recorded whichever way it comes out, and records are never edited or removed. An empty list means no trial has been run yet, which is the honest state until one has.",
+  "promises": {
+    "termsDefined": "No technical word, file path or flag from the line is left standing on its own in the answer.",
+    "resultVsPrediction": "What was actually run and seen is kept apart from what is only expected.",
+    "decisionsNamed": "Shortcuts, placeholders, skipped checks and either-way calls are stated as decisions. Marked n/a when the line has no decision in it, because having nothing to declare is not a pass.",
+    "riskFlagged": "Anything hard to undo is named as such. Marked n/a when the line carries no risk."
+  },
+  "judge": "promises-v1, rule-based, in scripts/paired-trial.mjs. It can be wrong: the last checker written in this repo counted 'vitest' as covered because the letters 'test' are inside it. Two things follow. Every answer is stored in full so a person can overrule the checker, and where the rules guess they guess against us - a term explained in a shape the rules do not know is recorded as unexplained.",
+  "humanReview": "Any pair can be given a humanVerdict. Where a person disagrees with the checker, the person is right and the disagreement stays in the record.",
+  "pairs": []
+}
