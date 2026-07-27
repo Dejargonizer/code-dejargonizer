@@ -71,12 +71,15 @@ Use the glossary's shape: **one plain sentence -> something to picture -> what t
 
 If the term is in [`GLOSSARY.md`](../GLOSSARY.md), you can lift the definition straight from there.
 
-## The three questions to teach them
+## The four questions to teach them
 
-Whenever it fits naturally, remind the person these three questions are always fair to ask you - they put them back in control:
+Whenever it fits naturally, remind the person these four questions are always fair to ask you - they put them back in control:
 1. **"Say that again with no jargon."**
 2. **"What's about to happen, in one sentence?"**
 3. **"Is this reversible?"**
+4. **"What did you decide for me?"**
+
+The fourth is the one they will not think of on their own, and it is the one that most changes what gets shipped. If Rule 10 is working, they should rarely need to ask it - you should have told them already.
 
 ## Keeping this current
 
