@@ -141,7 +141,7 @@
     padding:34px 32px;margin:44px 0 20px;box-shadow:var(--shadow)}
   .closer h2{font-family:var(--font-voice);font-size:26px;margin:0 0 8px;letter-spacing:-.01em}
   .closer p{color:var(--ink-soft);max-width:66ch;margin:0 0 22px}
-  .questions{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+  .questions{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
   @media(max-width:640px){.questions{grid-template-columns:1fr}}
   .q{border:1px solid var(--line);border-radius:12px;padding:16px 16px;background:var(--surface-2)}
   .q .qn{font-family:var(--font-machine);font-size:12px;color:var(--accent);margin:0 0 8px}
@@ -229,17 +229,18 @@
 <a class="ctalink" href="https://github.com/Dejargonizer/code-dejargonizer#turn-it-on-for-your-agent">Where to paste them, per tool</a>
 </div>
 <p class="ctahint" id="copyHint">Works in Claude Code, Cursor, Copilot, Windsurf, Gemini, ChatGPT, Lovable, Replit, Bolt — anywhere there is a chat box or a rules file. The longer version, and the one-line-per-tool instructions, are <a href="https://github.com/Dejargonizer/code-dejargonizer">on GitHub</a>.</p>
-<p class="ctahint">Can’t install anything where you are building? Then use the <a href="#questions">three questions</a>. They need no setup at all.</p>
+<p class="ctahint">Can’t install anything where you are building? Then use the <a href="#questions">four questions</a>. They need no setup at all.</p>
 </section>
 </div>
 <div class="wrap">
 <section class="closer" id="questions">
-<h2>Three questions you can always ask</h2>
-<p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation.</p>
+<h2>Four questions you can always ask</h2>
+<p>Keep these in your back pocket. They work with any agent, any time — and they put you back in control of the conversation. The fourth is the one nobody thinks to ask, and it catches the most: agents make small, reasonable calls constantly and rarely volunteer them.</p>
 <div class="questions">
 <div class="q"><p class="qn">01</p><p class="qt">"Say that again with no jargon."</p></div>
 <div class="q"><p class="qn">02</p><p class="qt">"What's about to happen, in one sentence?"</p></div>
 <div class="q"><p class="qn">03</p><p class="qt">"Is this reversible?"</p></div>
+<div class="q"><p class="qn">04</p><p class="qt">"What did you decide for me?"</p></div>
 </div>
 </section>
 </div>
@@ -576,7 +577,7 @@ document.querySelectorAll('.tryit').forEach(function(btn){
 });
 
 // Copy the short instructions. Same text as dejargonizer/SKILL-SHORT.md.
-const SHORT_SKILL = 'I am not an engineer, and I am directing this work - I need to be able to review what you did, not just approve it. So translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. "I ran it and watched it work" and "it should work" are different claims - keep them different.\n6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.\n7. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?"\n';
+const SHORT_SKILL = 'I am not an engineer, and I am directing this work - I need to be able to review what you did, not just approve it. So translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. "I ran it and watched it work" and "it should work" are different claims - keep them different.\n6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.\n7. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?", "What did you decide for me?"\n';
 const copyShort = document.getElementById('copyShort');
 if(copyShort){
   copyShort.addEventListener('click', function(){
