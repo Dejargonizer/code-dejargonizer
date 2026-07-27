@@ -8,7 +8,7 @@ That gap is not a comprehension problem. It is a management problem. You are not
 
 This is the missing translation layer. Find the word you're stuck on below. Each entry tells you three things: **what it means in one plain sentence**, **something to picture**, and **what to actually do when your agent says it.**
 
-You do not need to read this top to bottom. It's grouped by *situation* — the moment you're in when the strange word shows up. Skim to your moment. If you read only one section, read [section 10](#10-phrases-that-mean-a-decision-got-made-for-you) — those are the phrases that quietly become your product.
+You do not need to read this top to bottom. It's grouped by *situation* — the moment you're in when the strange word shows up. Skim to your moment. If you read only two, read [section 10](#10-phrases-that-mean-a-decision-got-made-for-you) — the phrases that quietly become your product — and [section 17](#17-signs-the-work-was-not-actually-checked), which is how you tell a result from a guess.
 
 ---
 
@@ -1031,6 +1031,51 @@ Repeating near-identical attempts is guessing, not diagnosing.
 The check got moved to fit the code, instead of the code being fixed to satisfy the check.
 *Picture:* moving the target after the arrow has landed.
 *When your agent says it:* ask which tests changed and why. Sometimes it is right. Often it has just switched off your alarm.
+
+**A warning that went quiet** (also: suppressed, silenced, added an exception, ignored for now)
+The message telling you something was wrong got turned off rather than dealt with.
+*Picture:* a piece of tape over the check-engine light.
+*When your agent says it:* ask what the warning actually said before it was silenced.
+
+**Answering an easier question** (also: drifting off the question)
+You ask whether something is safe and you are told what it does. The gap between those two is where the risk sits.
+*Picture:* asking whether the bridge will hold and being told the year it was built.
+*When your agent says it:* repeat your question word for word, once. If the second answer drifts too, it does not know.
+
+**Talk with no tool calls behind it** (also: a long explanation with nothing run)
+Paragraphs of confident description, with nothing in the transcript showing it opened a file or ran a command.
+*Picture:* a guided tour of a house, given from the pavement.
+*When your agent says it:* work you can check has evidence attached to it. Ask what it actually opened.
+
+**"Everything looks good"** (also: all set, we are good, looks fine to me)
+A conclusion with no observation underneath it, and the easiest sentence in the world to produce.
+*Picture:* a thumbs up through a closed door.
+*When your agent says it:* ask what it checked and what it did not check. The second half of that answer is the useful half.
+
+**A number with no source** (also: about 40% faster, roughly 200ms, most users)
+A figure that sounds measured and was actually estimated.
+*Picture:* a price quoted with great confidence and no price list in sight.
+*When your agent says it:* ask where the number came from. If it is an estimate, that is fine. It just is not evidence.
+
+**Scope that quietly shrank** (also: a simplified version, the basic case, just the happy path)
+What arrived is narrower than what you asked for, and the narrowing was never announced.
+*Picture:* ordering a coat and being handed one sleeve, presented as progress.
+*When your agent says it:* ask which part of your original request is not in there yet.
+
+**An apology followed by the same answer** (also: you are right, let me correct that, and then nothing changes)
+Agreement without a different result. The correction was accepted socially rather than actually.
+*Picture:* a nod, then the same wrong turn.
+*When your agent says it:* ask what specifically it is doing differently this time. If it cannot name the difference, there is not one.
+
+**Success reported faster than the work could take** (also: done, already finished)
+A slow job announced as complete almost immediately.
+*Picture:* laundry declared dry two minutes after going in.
+*When your agent says it:* ask what it saw that told it the job had finished.
+
+**"This is a known issue"** (also: that is expected behavior, a limitation of the tool)
+Handing the problem to the outside world. Sometimes true, and always a convenient place to stop looking.
+*Picture:* blaming the weather without going outside.
+*When your agent says it:* ask for a link, or for what it would take to be certain. Vague authority is not a diagnosis.
 
 ---
 
