@@ -11,6 +11,10 @@
 <a href="#contributing"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-b45309"></a>
 </p>
 
+<p align="center">
+<a href="https://dejargonizer.github.io/code-dejargonizer/"><strong>Look up a word</strong></a> &nbsp;·&nbsp; <a href="INSTALL.md"><strong>Install it in your tool</strong></a> &nbsp;·&nbsp; <a href="GLOSSARY.md"><strong>All 181 terms</strong></a>
+</p>
+
 ---
 
 AI coding agents just handed millions of people the power to build software. Talking *to* them already works: you type plain English, they understand it fine. It's the direction coming *back* that's broken. The status update, the error, the question — they come back in engineering-speak, because that's the language these agents learned from. So a person with a real idea and no computer-science degree opens the tool and reads this:
@@ -66,51 +70,21 @@ The first example saves you a confusing minute. The second one saves you a bug i
 
 ## Turn it on for your agent
 
-**Quickest version, works everywhere:** copy [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md) and paste it into your agent, or hit **Copy the instructions** on the [live site](https://dejargonizer.github.io/code-dejargonizer/). It is one short block, deliberately small enough for a custom-instructions box with a character limit, and it needs no files and no install. That covers Lovable, Replit, Bolt, v0, ChatGPT and anything else where you only get a chat window.
+**[→ Full install guide: INSTALL.md](INSTALL.md)** — exact file paths for 12 coding tools, the right settings box for 7 vibe-coding platforms, how to wire it into your own agent, and a one-question test to prove it took effect.
 
-The rest of this section is the fuller version, for when you have a project you can put files in.
+The short version:
 
-The skill is one plain-text file of instructions — [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md). It isn't tied to any one tool or model. Whatever agent you use, the job is the same: **get those instructions in front of it, and tell it you're not an engineer.** The simplest universal way, which works everywhere:
+- **You have files in your project** — Claude Code, Cursor, Copilot, Windsurf, Cline, Aider, Codex. Put [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your tool's rules file. [Exact paths →](INSTALL.md#option-a-tools-where-you-have-files)
+- **You only have a chat box** — Lovable, Replit, Bolt, v0, ChatGPT. Paste [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md), or hit **Copy the instructions** on the [live site](https://dejargonizer.github.io/code-dejargonizer/). It is sized to fit a settings box with a character limit. [Exact places →](INSTALL.md#option-b-tools-where-you-only-have-a-chat-box)
+- **You are building your own agent** — fetch the raw file into your system prompt, and pin it to a commit if you need consistent behavior. [Raw URLs and the glossary as data →](INSTALL.md#option-c-your-own-agent-or-harness)
 
-> Paste the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your chat at the start of a session, then add: *"Follow these for everything from here on. I am not an engineer — explain in plain English, define any technical term in the same sentence, and give me a plain heads-up before anything risky or hard to undo."*
+Whichever route you take, add one line in your own words: **you are not an engineer, and you are directing this work.** That sentence does more than the rest of the file.
 
-Most agents also have an "always-on rules" spot so you don't have to paste it every time:
+Then check it took. Start a new session and ask:
 
-<details>
-<summary><strong>Claude Code</strong></summary>
+> How many Dejargonizer rules are you following, and what is rule 10?
 
-Copy the `dejargonizer` folder into your project's `.claude/skills/` folder. Then add one line to your project's `CLAUDE.md` (create it if it doesn't exist):
-
-> Always use the `dejargonizer` skill. I am not an engineer — explain everything in plain English, define any technical term in the same sentence, and give me a plain heads-up before anything risky or hard to undo.
-
-</details>
-
-<details>
-<summary><strong>Cursor</strong></summary>
-
-Paste the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your project's rules file (`.cursor/rules`, or the older `.cursorrules`). It then applies to every session automatically.
-
-</details>
-
-<details>
-<summary><strong>Anything that reads AGENTS.md (the cross-tool convention)</strong></summary>
-
-A growing number of agents look for a file called `AGENTS.md` in the project root and follow it with no configuration at all. If yours does, that is the least work available: copy this repo's [`AGENTS.md`](AGENTS.md) into your own project root, or add a line to yours pointing at the instructions.
-
-</details>
-
-<details>
-<summary><strong>Any other agent (Copilot, Gemini, Windsurf, Aider, ChatGPT, plain API, …)</strong></summary>
-
-Put the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) wherever that agent keeps standing instructions — a custom-instructions box, a system prompt, a project rules file — or just paste it into the chat at the start of a session. There's nothing tool-specific inside it; it's plain instructions any capable model can follow.
-
-</details>
-
-From then on your agent leads with the point, translates as it goes, tells you who did what, and warns you — in plain words — before it does anything you'd want to be asked about first.
-
-By default, when your agent defines a term the shipped glossary doesn't cover yet, it files that term back to this project — just the word and its plain-English meaning, never your code or project details. You don't have to spot the gap or report it, which is the whole point: the person who can't tell a word is missing shouldn't be the one responsible for reporting it. It only does anything if your agent can actually open a GitHub issue from where it's running, and it files the same kind of issue the site's "Suggest a term" button does — so the glossary keeps growing from real sessions across everyone using the skill, not only visitors to the site.
-
-If you'd rather it filed nothing, just tell your agent so, or delete the last paragraph of "Keeping this current" from `dejargonizer/SKILL.md`.
+Ten rules, and rule 10 is about naming the decisions it made for you. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
 
 ## Four questions you can always ask
 
