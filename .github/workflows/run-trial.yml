@@ -1,0 +1,107 @@
+name: Run a trial
+
+# What this is, in plain words.
+#
+# It takes one line of real agent output from data/corpus.json and asks a model
+# to report that line to the person it is helping - twice. Once with nothing in
+# front of it. Once with the short instructions and the dictionary loaded. Both
+# answers are then judged on the four things this project promises, and both are
+# stored in full in data/trials.json, whichever way the result comes out.
+#
+# You do not need a terminal to run it. Go to the Actions tab, pick "Run a
+# trial" on the left, then press "Run workflow" on the right, fill in the two
+# boxes and press the green button. It takes about a minute.
+#
+# It needs one key, which only you can add, and which is never printed in the
+# log: Settings - Secrets and variables - Actions - New repository secret,
+# named ANTHROPIC_API_KEY or OPENAI_API_KEY. Without one, the dry run below
+# still works and shows you exactly what would be sent.
+
+on:
+  workflow_dispatch:
+    inputs:
+      line:
+        description: 'Which line to test - a number. Run it once with Dry run ticked to see the list, or open data/corpus.json and count from 0. 37 is a good first one.'
+        required: true
+        default: '37'
+      model:
+        description: 'Which model to ask, by its exact name. There is no default on purpose: a wrong guess here would quietly change the result.'
+        required: true
+      arms:
+        description: 'What to compare. Leave this alone unless you have a reason.'
+        required: true
+        default: 'control,skill+glossary'
+      dry_run:
+        description: 'Show the two prompts and stop. No key needed, nothing sent, nothing recorded.'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  trial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check there is a key to use
+        if: inputs.dry_run == false
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
+            echo "No key is set on this repository, so there is nothing to ask." >&2
+            echo "Add one yourself: Settings - Secrets and variables - Actions -" >&2
+            echo "New repository secret, named ANTHROPIC_API_KEY or OPENAI_API_KEY." >&2
+            echo "Nobody else can add it for you, and it is never shown in this log." >&2
+            exit 1
+          fi
+
+      - name: Ask the same line twice
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LINE: ${{ inputs.line }}
+          MODEL: ${{ inputs.model }}
+          ARMS: ${{ inputs.arms }}
+          DRY: ${{ inputs.dry_run }}
+        run: |
+          # The values above are passed as environment variables rather than
+          # pasted into this command, so that whatever is typed into the form
+          # is treated as text and cannot run as a command.
+          if [ "$DRY" = "true" ]; then
+            node scripts/paired-trial.mjs --list
+            echo "----"
+            node scripts/paired-trial.mjs --line "$LINE" --arms "$ARMS" --dry-run
+          else
+            node scripts/paired-trial.mjs --line "$LINE" --arms "$ARMS" --model "$MODEL"
+          fi
+
+      - name: Fold the result into the numbers
+        if: inputs.dry_run == false
+        run: node scripts/build-metrics.mjs
+
+      - name: Keep the record
+        if: inputs.dry_run == false
+        env:
+          LINE: ${{ inputs.line }}
+        run: |
+          # Stage first. git diff on its own cannot see a file that is not
+          # tracked yet, which would turn this into a silent no-op.
+          git add data/trials.json data/metrics.json data/ledger.json
+          if git diff --cached --quiet -- data/trials.json data/metrics.json data/ledger.json; then
+            echo "Nothing was recorded. If you expected a result, read the log above."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Trial: one pair on line $LINE [skip ci]"
+            # Another workflow may have pushed while this one was running.
+            git pull --rebase --autostash origin main
+            git push
+          fi
