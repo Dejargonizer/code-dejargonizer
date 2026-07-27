@@ -1365,6 +1365,69 @@ window.GLOSSARY_DATA = [
         "p": "moving the target after the arrow has landed.",
         "aka": "updated the test, adjusted the assertion, skipped that one",
         "note": "ask which tests changed and why. Sometimes it is right. Often it has just switched off your alarm."
+      },
+      {
+        "t": "A warning that went quiet",
+        "m": "The message telling you something was wrong got turned off rather than dealt with.",
+        "p": "a piece of tape over the check-engine light.",
+        "aka": "suppressed, silenced, added an exception, ignored for now",
+        "note": "ask what the warning actually said before it was silenced."
+      },
+      {
+        "t": "Answering an easier question",
+        "m": "You ask whether something is safe and you are told what it does. The gap between those two is where the risk sits.",
+        "p": "asking whether the bridge will hold and being told the year it was built.",
+        "aka": "drifting off the question",
+        "note": "repeat your question word for word, once. If the second answer drifts too, it does not know."
+      },
+      {
+        "t": "Talk with no tool calls behind it",
+        "m": "Paragraphs of confident description, with nothing in the transcript showing it opened a file or ran a command.",
+        "p": "a guided tour of a house, given from the pavement.",
+        "aka": "a long explanation with nothing run",
+        "note": "work you can check has evidence attached to it. Ask what it actually opened."
+      },
+      {
+        "t": "\"Everything looks good\"",
+        "m": "A conclusion with no observation underneath it, and the easiest sentence in the world to produce.",
+        "p": "a thumbs up through a closed door.",
+        "aka": "all set, we are good, looks fine to me",
+        "note": "ask what it checked and what it did not check. The second half of that answer is the useful half."
+      },
+      {
+        "t": "A number with no source",
+        "m": "A figure that sounds measured and was actually estimated.",
+        "p": "a price quoted with great confidence and no price list in sight.",
+        "aka": "about 40% faster, roughly 200ms, most users",
+        "note": "ask where the number came from. If it is an estimate, that is fine. It just is not evidence."
+      },
+      {
+        "t": "Scope that quietly shrank",
+        "m": "What arrived is narrower than what you asked for, and the narrowing was never announced.",
+        "p": "ordering a coat and being handed one sleeve, presented as progress.",
+        "aka": "a simplified version, the basic case, just the happy path",
+        "note": "ask which part of your original request is not in there yet."
+      },
+      {
+        "t": "An apology followed by the same answer",
+        "m": "Agreement without a different result. The correction was accepted socially rather than actually.",
+        "p": "a nod, then the same wrong turn.",
+        "aka": "you are right, let me correct that, and then nothing changes",
+        "note": "ask what specifically it is doing differently this time. If it cannot name the difference, there is not one."
+      },
+      {
+        "t": "Success reported faster than the work could take",
+        "m": "A slow job announced as complete almost immediately.",
+        "p": "laundry declared dry two minutes after going in.",
+        "aka": "done, already finished",
+        "note": "ask what it saw that told it the job had finished."
+      },
+      {
+        "t": "\"This is a known issue\"",
+        "m": "Handing the problem to the outside world. Sometimes true, and always a convenient place to stop looking.",
+        "p": "blaming the weather without going outside.",
+        "aka": "that is expected behavior, a limitation of the tool",
+        "note": "ask for a link, or for what it would take to be certain. Vague authority is not a diagnosis."
       }
     ]
   }
