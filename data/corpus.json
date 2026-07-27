@@ -294,7 +294,7 @@
       ]
     },
     {
-      "line": "grep before scoping unbuilt, device-context bridge, pre-draft echo loop, Local gauntlet on origin/main (0cc4d4e4):",
+      "line": "grep before scoping unbuilt, surface-state bridge, pre-send echo pass, Local full sweep on origin/main (a1b2c3d4):",
       "source": "contributed",
       "jargon": [
         "grep",
@@ -302,7 +302,8 @@
         "unbuilt",
         "origin/main",
         "commit SHA"
-      ]
+      ],
+      "note": "Stand-ins. The person who contributed this line asked that their internal codenames not be published, so three invented names and a commit hash were swapped for words of the same shape. The words being scored, and the score, are unchanged."
     },
     {
       "line": "tsc --noEmit: 0 errors",
