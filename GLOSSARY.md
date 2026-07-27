@@ -1003,12 +1003,12 @@ How much else is affected if this change goes wrong.
 The words in every section above are unfamiliar. This lot is worse, because they are familiar. Every line here reads like a finished piece of work, and every one of them can be produced without the work having happened. None of it means your agent is lying to you. It means it is predicting instead of reporting, and predicting is what it falls back on when it has not looked. You are not auditing anything. You are listening for one thing: did it see this, or does it expect this?
 
 **"It should work now"** (also: that should fix it, this ought to, I believe that resolves it)
-A prediction dressed up as a result. The word "should" is the tell: it means the thing has not been run.
+A prediction wearing a result’s clothes. The word "should" is the tell — it means the thing never ran.
 *Picture:* a cook telling you the dish is delicious without tasting it.
 *When your agent says it:* ask "did you run it, and what did it print?" Often the answer is no. That is fine, but it changes what you do next.
 
 **"I verified it" with nothing shown** (also: confirmed, validated, tested it, double-checked)
-A claim of checking with no evidence of the check attached.
+A claim, not evidence. The checking is asserted and never shown, so there is nothing for you to look at.
 *Picture:* a receipt with the word "paid" written on it by hand.
 *When your agent says it:* ask which command it ran and what came back. Verification you cannot see may not have happened.
 
@@ -1033,7 +1033,7 @@ Reporting the prediction rather than the observation. It shows up most when noth
 *When your agent says it:* ask what actually happened, in the output's own words.
 
 **A summary that just repeats the plan** (also: here is what I did, followed by the to-do list)
-The wrap-up lists intentions rather than outcomes, which is what happens when the outcomes were never read.
+A summary that repeats the plan word for word usually means the outcome was never read — intentions listed back to you in place of results.
 *Picture:* a shopping list handed over as a receipt.
 *When your agent says it:* hold the summary against the original plan. If they match word for word, ask what changed along the way. Something always does.
 
