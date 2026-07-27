@@ -1023,5 +1023,278 @@ window.GLOSSARY_DATA = [
         "note": "deleting it later is not enough, because the history keeps a copy. The key has to be replaced."
       }
     ]
+  },
+  {
+    "n": "14",
+    "title": "What your users actually see",
+    "blurb": "This section is about the surface: the part a real person looks at and clicks. It is where \"it works\" and \"it is usable\" turn out to be two different claims. Your agent can honestly report a feature as done while the screen is unreadable on a phone, or a button gives no sign that anything happened.",
+    "terms": [
+      {
+        "t": "UI / UX",
+        "m": "UI is what is on the screen. UX is what using it feels like.",
+        "p": "UI is the dashboard layout. UX is whether the car is pleasant to drive.",
+        "aka": "interface, user experience",
+        "note": "\"the UI is done\" is not \"the UX is good.\" Ask it to walk you through the flow as a first-time user."
+      },
+      {
+        "t": "Component",
+        "m": "One reusable piece of screen, like a button or a card, defined once and used in many places.",
+        "p": "a Lego brick. Make it once, click it in anywhere.",
+        "aka": "React component, widget, shared component",
+        "note": "changing a component changes it everywhere it appears. Ask where else it is used before agreeing to a tweak."
+      },
+      {
+        "t": "Responsive",
+        "m": "The layout rearranging itself to fit whatever screen size it is on.",
+        "p": "water taking the shape of the glass.",
+        "aka": "mobile-friendly, breakpoint, media query",
+        "note": "ask it to show you the phone width. Most layout problems only exist on small screens."
+      },
+      {
+        "t": "State",
+        "m": "What the screen currently remembers: what you typed, what is selected, whether it is still loading.",
+        "p": "a whiteboard beside the form, wiped when you leave the room.",
+        "aka": "local state, stale state, out of sync",
+        "note": "\"a state issue\" usually means the screen and the truth disagree. Ask which of the two is stale."
+      },
+      {
+        "t": "Loading state",
+        "m": "What the user sees while they are waiting.",
+        "p": "the kettle light that tells you it is on.",
+        "aka": "spinner, skeleton, pending",
+        "note": "a button with no loading state gets clicked three times. Worth asking about for anything slow."
+      },
+      {
+        "t": "Empty state",
+        "m": "What the screen shows before there is anything in it.",
+        "p": "a noticeboard with instructions pinned to it, rather than just bare cork.",
+        "aka": "zero state, no data yet",
+        "note": "new users only ever see the empty state. It is the first impression and it is usually the last thing built."
+      },
+      {
+        "t": "Error state",
+        "m": "What the user sees when something goes wrong.",
+        "p": "a sign telling you which door to use, not just a locked door.",
+        "aka": "error message, error handling in the interface",
+        "note": "ask what the user is told and what they can do next. \"Something went wrong\" is a dead end."
+      },
+      {
+        "t": "Form validation",
+        "m": "Checking what someone typed before accepting it.",
+        "p": "the clerk pointing at the empty box before taking the form.",
+        "aka": "validation, required field, input validation",
+        "note": "ask whether it checks on the screen only, or on the server too. Screen-only checks can be skipped by anyone who wants to."
+      },
+      {
+        "t": "Accessibility",
+        "m": "Making the thing usable by people with different sight, hearing, or movement.",
+        "p": "the ramp beside the steps, built in rather than added on.",
+        "aka": "a11y, screen reader, keyboard navigation, contrast",
+        "note": "ask two things. Can you do everything with just the keyboard, and does every image have a text description."
+      },
+      {
+        "t": "Assets",
+        "m": "The pictures, fonts, icons, and files your app serves alongside the code.",
+        "p": "the furniture, as opposed to the building.",
+        "aka": "static files, images, fonts, favicon",
+        "note": "large unoptimized images are the most common reason a simple page feels slow."
+      },
+      {
+        "t": "Copy",
+        "m": "The actual words on the screen: buttons, labels, error messages.",
+        "p": "the signage inside a building.",
+        "aka": "microcopy, strings, labels, placeholder text",
+        "note": "agents write filler copy and filler copy ships. Read every word a user will see before you call it done."
+      },
+      {
+        "t": "Dark mode",
+        "m": "A second color scheme for the same interface.",
+        "p": "the same room with the lights turned down.",
+        "aka": "theme, light mode, color scheme",
+        "note": "if it added dark mode, ask it to check contrast in both. Text often becomes unreadable in one of them."
+      }
+    ]
+  },
+  {
+    "n": "15",
+    "title": "Speed, size, and what it costs you",
+    "blurb": "Software gets slow and expensive gradually, through choices that each seemed fine at the time. These are the words your agent uses while making one of those choices. You do not need to optimize anything yourself. You need to notice when something has just been decided about your bill or your users' patience.",
+    "terms": [
+      {
+        "t": "Latency",
+        "m": "How long something takes to respond, measured from the user's side.",
+        "p": "the wait between ordering and the plate arriving.",
+        "aka": "response time, lag, slow",
+        "note": "averages hide the worst cases. Ask what the slowest requests look like, not the typical one."
+      },
+      {
+        "t": "N+1 query",
+        "m": "Asking the database a hundred separate small questions when one question would have done.",
+        "p": "walking to the archive a hundred times instead of carrying the whole box back once.",
+        "aka": "query in a loop, too many queries",
+        "note": "this is the most common reason a page that flew with ten records crawls with a thousand."
+      },
+      {
+        "t": "Database index",
+        "m": "An extra lookup table that lets the database find records without reading every row.",
+        "p": "the index at the back of a book, versus reading every page.",
+        "aka": "index, indexed, add an index",
+        "note": "missing indexes are invisible until your data grows. Cheap to add now, painful to discover later."
+      },
+      {
+        "t": "Pagination",
+        "m": "Handing out results a page at a time instead of all at once.",
+        "p": "serving courses rather than tipping the whole buffet onto the table.",
+        "aka": "paging, infinite scroll, limit",
+        "note": "a list with no limit works today and falls over once you have real users."
+      },
+      {
+        "t": "Bundle size",
+        "m": "How much code the browser must download before your page works.",
+        "p": "the weight of the parcel someone has to carry up the stairs.",
+        "aka": "bundle, payload, tree shaking",
+        "note": "every library it installs adds weight. Ask what the page weighed before and after."
+      },
+      {
+        "t": "Memory leak",
+        "m": "The program holding on to things it no longer needs, until it runs out of room and stops.",
+        "p": "never emptying the bin. Eventually there is nowhere left to stand.",
+        "aka": "leaking memory, growing memory",
+        "note": "the tell is something that runs fine for an hour and dies overnight."
+      },
+      {
+        "t": "Timeout",
+        "m": "Giving up on something that is taking too long.",
+        "p": "hanging up after the phone has rung for two minutes.",
+        "aka": "timed out, gave up waiting",
+        "note": "raising a timeout hides slowness rather than fixing it. Ask which one it did."
+      },
+      {
+        "t": "Retry",
+        "m": "Trying a failed request again, ideally waiting a little longer each time.",
+        "p": "knocking again, rather than hammering on the door.",
+        "aka": "retries, backoff, exponential backoff",
+        "note": "retries with no wait can turn one glitch into an outage. Ask whether there is a pause between attempts and a limit on them."
+      },
+      {
+        "t": "Queue",
+        "m": "Putting slow work in a line to be done later, so the user is not left waiting.",
+        "p": "a dry cleaner's ticket. You leave, they work, you come back.",
+        "aka": "background job, worker, async job",
+        "note": "ask what the user sees while it is queued, and what happens if the job fails after they have gone."
+      },
+      {
+        "t": "Cold start",
+        "m": "The extra delay the first time something runs after sitting idle.",
+        "p": "the first pull of the espresso machine in the morning.",
+        "aka": "warm up, serverless cold start",
+        "note": "your first visitor of the day gets the slow version. Worth knowing whether that visitor is a customer."
+      },
+      {
+        "t": "Usage-based pricing",
+        "m": "Being billed for how much you use rather than a flat fee.",
+        "p": "a taxi meter instead of a bus fare.",
+        "aka": "pay per request, metered, per-seat, per-token",
+        "note": "ask what the bill looks like if usage goes up ten times. Loops and retries multiply cost quietly."
+      },
+      {
+        "t": "Free tier",
+        "m": "The amount a paid service lets you use for nothing before it starts charging.",
+        "p": "the first few miles included, then the meter starts.",
+        "aka": "free plan, quota, credits",
+        "note": "ask what happens at the limit. Some services stop and some start charging, and those are very different surprises."
+      }
+    ]
+  },
+  {
+    "n": "16",
+    "title": "Deciding what gets built",
+    "blurb": "These are the words for scope: what is in, what is out, and what counts as finished. With an agent, this is most of your actual job. An agent will build the wrong thing beautifully and it will not tell you that you asked for the wrong thing.",
+    "terms": [
+      {
+        "t": "Scope",
+        "m": "The agreed boundary of what a piece of work includes.",
+        "p": "the fence around the building site.",
+        "aka": "in scope, out of scope, scope creep",
+        "note": "\"while I was in there I also...\" is scope creep. Sometimes helpful, always worth knowing about."
+      },
+      {
+        "t": "Requirement",
+        "m": "A written statement of what the thing must do, specific enough to check.",
+        "p": "the shopping list, not the mood of the meal.",
+        "aka": "spec, specification, acceptance criteria",
+        "note": "if you cannot check a requirement by looking at something, it is not a requirement yet."
+      },
+      {
+        "t": "MVP",
+        "m": "The smallest version worth putting in front of real people.",
+        "p": "a working bicycle rather than half a car.",
+        "aka": "minimum viable product, v1, first version",
+        "note": "the risk is that MVP becomes the reason to skip things that were never optional, like keeping logins safe."
+      },
+      {
+        "t": "Trade-off",
+        "m": "Getting one thing by giving up another, on purpose.",
+        "p": "a lighter bag, achieved by packing fewer clothes.",
+        "aka": "tradeoff, either way",
+        "note": "good sign. Ask what the other option was and why it lost. That exchange is the review."
+      },
+      {
+        "t": "Technical debt",
+        "m": "Work left undone that costs more to fix the longer it is left.",
+        "p": "a borrowed tool you keep meaning to return while the late fee grows.",
+        "aka": "tech debt, cutting corners, clean it up later",
+        "note": "ask for it in writing, in the project. Debt nobody wrote down is debt nobody pays."
+      },
+      {
+        "t": "Spike",
+        "m": "A quick rough build made to answer a question, not to keep.",
+        "p": "a cardboard model of the kitchen.",
+        "aka": "proof of concept, POC, prototype, throwaway",
+        "note": "prototypes ship by accident constantly. Say out loud whether this one is meant to survive."
+      },
+      {
+        "t": "Feature flag",
+        "m": "A switch that turns a feature on or off without changing the code.",
+        "p": "a light switch for a room you have already wired.",
+        "aka": "flag, toggle, gated behind a flag",
+        "note": "flags let you release quietly and switch things off fast. Old flags nobody removed become their own mess."
+      },
+      {
+        "t": "Definition of done",
+        "m": "The agreed list of what has to be true before work counts as finished.",
+        "p": "the checklist taped to the door before you hand over the keys.",
+        "aka": "done done, acceptance, checklist",
+        "note": "write yours down once. \"Tests pass, works on a phone, no filler text, I have seen it with my own eyes\" beats arguing every time."
+      },
+      {
+        "t": "Assumption",
+        "m": "Something treated as true without anyone checking.",
+        "p": "building a shelf for a book you never measured.",
+        "aka": "assuming, I assumed",
+        "note": "ask it to list its assumptions before it starts. This is the cheapest review you will ever get."
+      },
+      {
+        "t": "Backlog",
+        "m": "The list of things you have decided to do but have not done.",
+        "p": "the in-tray, not the desk.",
+        "aka": "todo, issue list, ticket",
+        "note": "\"I added it to the backlog\" often means it will not happen. That is fine, as long as you both know it."
+      },
+      {
+        "t": "Rewrite",
+        "m": "Throwing the existing version away and building it again.",
+        "p": "knocking the house down instead of fixing the roof.",
+        "aka": "rewriting from scratch, start over, greenfield",
+        "note": "rewrites take longer than the estimate and lose behavior nobody wrote down. Ask what the smallest fix would be first."
+      },
+      {
+        "t": "Blast radius",
+        "m": "How much else is affected if this change goes wrong.",
+        "p": "how many rooms lose power when you flip one breaker.",
+        "aka": "impact, what else this touches",
+        "note": "ask this before any change touching logins, payments, or data. It is the question that prevents the worst afternoons."
+      }
+    ]
   }
 ];
