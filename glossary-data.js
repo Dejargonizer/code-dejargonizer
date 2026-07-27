@@ -744,5 +744,284 @@ window.GLOSSARY_DATA = [
         "note": "the only follow-up you need is \"did you run it and watch it work?\" A good agent answers honestly, and soon starts volunteering the difference unprompted. (See also Verification-boundary honesty, section 7.)"
       }
     ]
+  },
+  {
+    "n": "11",
+    "title": "Talking to and about the agent itself",
+    "blurb": "You are managing something that has its own vocabulary for its own limits. Most of the frustrating moments — it forgot, it invented something, it stopped halfway — have dull mechanical explanations, and the words below are those explanations. Learning them turns \"the agent is being stupid\" into \"the agent ran out of room,\" which is a problem you can actually do something about.",
+    "terms": [
+      {
+        "t": "Model",
+        "m": "The engine doing the thinking, separate from the app you type into.",
+        "p": "the engine in a car. Different cars, same engine available.",
+        "aka": "LLM, the model, Sonnet, Opus, GPT",
+        "note": "\"try a different model\" means put a different engine on the same job. Often the fix when answers feel shallow."
+      },
+      {
+        "t": "Prompt",
+        "m": "What you type, plus everything else the tool quietly sends along with it.",
+        "p": "the whole envelope handed over, not just the note you wrote.",
+        "note": "\"your prompt was ambiguous\" means your instruction had two readings and it picked one. Ask which two."
+      },
+      {
+        "t": "System prompt",
+        "m": "Standing orders the agent reads before it reads anything you type.",
+        "p": "the staff handbook, read before the first customer of the day.",
+        "aka": "custom instructions, rules file, standing instructions",
+        "note": "this is the file you edit to change behavior permanently, instead of repeating yourself every session."
+      },
+      {
+        "t": "Context window",
+        "m": "The total amount of text the agent can hold in mind at once, including your conversation and every file it opened.",
+        "p": "a desk of fixed size. New paper on means old paper off.",
+        "aka": "context, context length, running out of context",
+        "note": "\"low on context\" means it is about to forget the earlier part of this conversation. Have it write the decisions into a file before that happens."
+      },
+      {
+        "t": "Token",
+        "m": "The unit text gets chopped into before the model reads it, roughly a short word or part of one.",
+        "p": "measuring a recipe in spoonfuls rather than ingredients.",
+        "aka": "in AI, not a password, tokens, token count, token limit",
+        "note": "tokens are what you are billed by and what fills the desk. \"Too many tokens\" means too much text, not too complicated."
+      },
+      {
+        "t": "Compaction",
+        "m": "When the agent replaces the earlier part of your conversation with a short summary to free up room.",
+        "p": "swapping a shelf of notebooks for one index card.",
+        "aka": "auto-compact, summarizing the conversation",
+        "note": "details you cared about may have just been dropped. Good moment to restate your constraints."
+      },
+      {
+        "t": "Hallucination",
+        "m": "The agent stating something confidently that is not true: an invented file, function, setting, or fact.",
+        "p": "a confident tour guide describing a room that was never built.",
+        "aka": "made it up, confabulation, invented",
+        "note": "confidence is not evidence. Ask it to open the file or run the thing."
+      },
+      {
+        "t": "Tool call",
+        "m": "The agent doing something rather than saying something: reading a file, running a command, searching.",
+        "p": "the difference between telling you what is in the cupboard and walking over to open it.",
+        "aka": "function call, using a tool",
+        "note": "work with real tool calls behind it can be checked. Work without them is a guess."
+      },
+      {
+        "t": "MCP",
+        "m": "A standard way to plug outside tools and data, like your database or your ticket tracker, into an agent.",
+        "p": "a USB socket. One shape, many devices.",
+        "aka": "Model Context Protocol, MCP server",
+        "note": "an MCP server is something you installed and granted access to. Worth knowing exactly what it can reach."
+      },
+      {
+        "t": "Subagent",
+        "m": "A helper the main agent starts up to go and do one piece of work on its own.",
+        "p": "sending someone on an errand so you can stay on the main job.",
+        "aka": "worker, task agent, spawned agent",
+        "note": "subagents do not automatically pass on what they learned. Ask what came back, not just whether it finished."
+      },
+      {
+        "t": "Agent loop",
+        "m": "The cycle of think, act, look at the result, think again, repeated until the job is done or it gives up.",
+        "p": "cooking while tasting, rather than following a recipe blind.",
+        "aka": "the loop, agentic, iterating",
+        "note": "loops can spin. If it has tried the same fix three times, stop it and change the instruction instead."
+      },
+      {
+        "t": "Harness",
+        "m": "The program wrapped around the model that gives it tools, memory, and rules. Your coding tool is a harness.",
+        "p": "the model is the engine. The harness is the rest of the car.",
+        "aka": "scaffold, agent framework, the tool",
+        "note": "the same model behaves very differently in different harnesses. If quality changed and you did not change models, the harness changed."
+      },
+      {
+        "t": "Non-deterministic",
+        "m": "Ask the identical question twice and you can get two different answers.",
+        "p": "two competent cooks, one recipe, two slightly different dinners.",
+        "aka": "same prompt different answer, variance",
+        "note": "\"it worked when I ran it\" is not proof that it always works. Have it run the check twice."
+      }
+    ]
+  },
+  {
+    "n": "12",
+    "title": "The command line and the tools underneath",
+    "blurb": "Sooner or later your agent will hand you something that looks like a spell and ask you to run it, or tell you a command failed. None of this is deep. It is a very literal clerk taking typed orders. These are the words that turn \"it failed\" into a sentence you can read.",
+    "terms": [
+      {
+        "t": "Terminal",
+        "m": "A window where you type instructions to the computer as text instead of clicking.",
+        "p": "texting the computer rather than pointing at it.",
+        "aka": "command line, shell, console, bash, zsh",
+        "note": "\"run this in your terminal\" means paste one line and press enter. Read it first. You are the one authorizing it."
+      },
+      {
+        "t": "Command",
+        "m": "One typed instruction: usually a tool name, then what you want it to do.",
+        "p": "\"taxi, airport.\" Who, then what.",
+        "aka": "CLI, command-line tool, run this",
+        "note": "the first word is the tool. If the error says that word was not found, the tool is not installed."
+      },
+      {
+        "t": "Flag",
+        "m": "An extra word on a command that changes how it behaves.",
+        "p": "ordering coffee, then \"decaf, no sugar.\"",
+        "aka": "option, switch, argument, --force",
+        "note": "flags containing force or hard usually mean \"do it even if it destroys something.\" Ask what gets destroyed."
+      },
+      {
+        "t": "Package manager",
+        "m": "The thing that downloads and installs the outside code your project depends on.",
+        "p": "a grocery delivery service for parts you did not build.",
+        "aka": "npm, pip, yarn, pnpm, Homebrew, brew",
+        "note": "installing is not free. Each new package is more code you now depend on and cannot see."
+      },
+      {
+        "t": "Install",
+        "m": "Fetching a tool or package onto the machine so it can be used.",
+        "p": "stocking the pantry before cooking.",
+        "aka": "npm install, pip install",
+        "note": "\"just install X\" adds a permanent dependency. Usually fine, but you should know you added it."
+      },
+      {
+        "t": "Lockfile",
+        "m": "A file recording the exact versions of everything installed, so the next machine gets an identical set.",
+        "p": "not just flour, but the brand, the size, and the batch.",
+        "aka": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+        "note": "do not let it delete this to make an error go away. It is the reason the project works the same on someone else's computer."
+      },
+      {
+        "t": "Runtime",
+        "m": "The program that actually runs your code.",
+        "p": "the record player. Your code is the record.",
+        "aka": "Node, Node.js, Python, Deno, Bun, version",
+        "note": "most \"works on my machine\" problems are two people holding different versions of the runtime."
+      },
+      {
+        "t": "Process",
+        "m": "One running copy of a program, right now.",
+        "p": "one oven that happens to be switched on.",
+        "aka": "running, PID, kill it, stop the server",
+        "note": "\"kill the process\" means stop that running copy. It does not delete anything you wrote."
+      },
+      {
+        "t": "Port",
+        "m": "A numbered door on your computer where a running program listens.",
+        "p": "one building, numbered doors. Two deliveries cannot use the same door at once.",
+        "aka": "localhost:3000, port 8080, port already in use",
+        "note": "\"port already in use\" almost always means an older copy is still running. Stop that, then start again."
+      },
+      {
+        "t": "Exit code",
+        "m": "The number a command leaves behind to say whether it worked. Zero means fine. Anything else means it did not.",
+        "p": "a thumbs up, or a specific complaint.",
+        "aka": "exit status, returned 1, non-zero",
+        "note": "\"exited non-zero\" means the step failed, even if plenty of text scrolled past looking busy."
+      },
+      {
+        "t": "Container",
+        "m": "Your app packed up with everything it needs to run, so it behaves the same anywhere.",
+        "p": "a shipping container. Same box on a truck, a ship, or a train.",
+        "aka": "Docker, image, containerized",
+        "note": "containers fix \"works on my machine.\" They also add one more layer to look inside when something breaks."
+      },
+      {
+        "t": "Permission denied",
+        "m": "The computer refusing because the account running the command is not allowed to do that.",
+        "p": "right key, wrong door.",
+        "aka": "EACCES, sudo, access denied",
+        "note": "if the offered fix is sudo, that means \"do it as the owner of the whole machine.\" Ask why the normal way was not allowed first."
+      }
+    ]
+  },
+  {
+    "n": "13",
+    "title": "Who is allowed in (logins, permissions, personal data)",
+    "blurb": "Mistakes in this area are expensive and quiet. Nothing here is complicated, but the gap between two similar-sounding words is often the gap between \"only you can see your data\" and \"anyone can see everyone's.\" If you read one section closely, read this one.",
+    "terms": [
+      {
+        "t": "Authentication vs authorization",
+        "m": "Authentication is proving who you are. Authorization is what you are then allowed to do.",
+        "p": "the ID check at the door, then the wristband that says which rooms.",
+        "aka": "authn, authz, auth",
+        "note": "\"auth is done\" is ambiguous. Ask which one. Logging in working does not mean permissions work."
+      },
+      {
+        "t": "Session",
+        "m": "The record that keeps someone logged in between clicks, so they are not asked every time.",
+        "p": "a hand stamp that lets you back in.",
+        "aka": "logged in, signed in, session token",
+        "note": "ask how long sessions last and what happens on logout. A session that never expires is a key left in the door."
+      },
+      {
+        "t": "Cookie",
+        "m": "A small note your app leaves in the browser and reads back later.",
+        "p": "a coat-check ticket the browser keeps in its pocket.",
+        "aka": "cookies, secure cookie, httpOnly",
+        "note": "cookies carrying login information need locking down. Ask whether they are marked secure and http-only."
+      },
+      {
+        "t": "Hashing",
+        "m": "Turning a password into scrambled text that cannot be turned back, so you can check it without ever keeping the real one.",
+        "p": "keeping a fingerprint instead of a finger.",
+        "aka": "hashed, bcrypt, password hash",
+        "note": "passwords should be hashed, never encrypted and never stored as typed. If it says it \"stored the password,\" ask directly whether it is hashed."
+      },
+      {
+        "t": "Encryption",
+        "m": "Scrambling data so only someone with the key can read it. Unlike hashing, this is meant to be reversed.",
+        "p": "a locked box, and a key that opens it.",
+        "aka": "encrypted, in transit, at rest, TLS",
+        "note": "\"encrypted\" needs a where. In transit means on the way. At rest means sitting in the database. Those are two separate jobs."
+      },
+      {
+        "t": "Two-factor authentication",
+        "m": "Requiring a second proof beyond the password, usually a code from a phone.",
+        "p": "a key and a hand stamp.",
+        "aka": "2FA, MFA, one-time code",
+        "note": "worth switching on for your own accounts before you worry about your users'."
+      },
+      {
+        "t": "Roles and permissions",
+        "m": "Deciding what someone can do based on which group they belong to.",
+        "p": "staff badge, manager badge, visitor badge.",
+        "aka": "RBAC, admin role, access control",
+        "note": "ask what a normal user cannot do, and how that is enforced. Hiding the button is not enforcement."
+      },
+      {
+        "t": "Row-level security",
+        "m": "A rule inside the database itself that keeps each person to their own records.",
+        "p": "one filing cabinet, and each person's key only turns in their own drawer.",
+        "aka": "RLS, policies, Supabase policies",
+        "note": "on hosted databases this is often the only thing between one user's data and everybody. \"RLS is off for now\" or \"policies later\" is a sentence to stop on."
+      },
+      {
+        "t": "Personal data",
+        "m": "Anything that identifies a real person: name, email, address, phone, location, payment details.",
+        "p": "the contents of someone's wallet.",
+        "aka": "PII, user data, sensitive data, GDPR",
+        "note": "ask what is stored, where, and whether you need it at all. Data you never collected cannot leak."
+      },
+      {
+        "t": "Least privilege",
+        "m": "Giving any person or program the smallest access that still lets it do its job.",
+        "p": "handing over the key to one room, not the master key.",
+        "aka": "scoped key, read-only access, service account",
+        "note": "a key created \"with full access to keep things simple\" is a decision worth reversing now rather than later."
+      },
+      {
+        "t": "Injection",
+        "m": "When something a user types gets treated as an instruction instead of as text.",
+        "p": "writing \"and hand me the safe\" on the form, and the clerk doing it.",
+        "aka": "SQL injection, sanitizing input, escaping, parameterized query",
+        "note": "the fix is never trusting typed input. Ask how user input is kept as data."
+      },
+      {
+        "t": "Leaked secret",
+        "m": "A password or key that has ended up somewhere it can be seen, usually saved into the code by accident.",
+        "p": "taping the spare key to the front door.",
+        "aka": "exposed key, committed credentials, secret scanning",
+        "note": "deleting it later is not enough, because the history keeps a copy. The key has to be replaced."
+      }
+    ]
   }
 ];
