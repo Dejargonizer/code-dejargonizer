@@ -173,6 +173,41 @@ A saved list of steps that runs by itself when something happens, like every tim
 *Picture:* a dishwasher cycle. You load it and press start once; the sequence runs the same way every time.
 *When your agent says it:* a workflow going green means the steps ran without complaining. Worth asking what the steps actually check, because a workflow can pass while checking almost nothing.
 
+**In isolation** (also: on its own, re-run individually, in a clean run)
+Running one test, or one file, by itself rather than alongside everything else.
+*Picture:* retaking one exam in an empty room after failing it in a crowded hall.
+*When your agent says it:* a pass in isolation is not a pass. It is a pass under different conditions than the failure, which rules some causes out and settles nothing. Ask for the original command, in the original conditions, to pass twice.
+
+**Under load** (also: on a busy machine, under contention)
+While the computer is already doing plenty of other things. Steps that work fine on a quiet machine can fail when everything runs at once.
+*Picture:* a staircase that is fine empty and dangerous in a crowd.
+*When your agent says it:* "it only fails under load" is sometimes true and sometimes a way of setting a failure aside. Under load is the condition your real users arrive in, so it is the interesting case, not the excusable one.
+
+**Flake** (also: flaky, a flake, intermittent, non-deterministic)
+A test that passes some runs and fails others with nothing changed in between. Some flakes really are the test's fault. Some are a genuine bug that only shows up occasionally.
+*Picture:* a door that sticks about one time in ten. Easy to decide the door is fine.
+*When your agent says it:* flake is a diagnosis, not an observation. Ask how many runs it is based on and what the failure actually said. Calling something a flake is the cheapest way to make a red result go away.
+
+**Clean** (also: clean run, no output, all clear)
+The tool finished and printed no complaints.
+*Picture:* an inspector who leaves without writing anything down.
+*When your agent says it:* clean means nothing was reported, which is not the same as nothing being wrong. Ask what that particular tool checks, and whether any of its rules are switched off.
+
+**0 errors** (also: no errors, passed with no errors)
+The check found none of the things it was set up to look for.
+*Picture:* a metal detector staying quiet. Reassuring, until you learn it only finds steel.
+*When your agent says it:* ask what the check covers. Zero type errors, zero lint errors and zero failing tests are three unrelated statements, and none of the three says the feature works.
+
+**Validate step** (also: build:validate, validation script, check step)
+A named step in your project's own checklist that runs some checks. Which checks, and how strict they are, was decided by whoever wrote it.
+*Picture:* a checklist on the wall. Useful only if you read what is on it.
+*When your agent says it:* "validate passed" is a statement about a script, not about your product. Ask what is on the list.
+
+**Compiled output vs source text** (also: compiled value, build output, the built file, source text)
+The code that gets written is the source. What actually runs is usually a translated copy built from it. The two can disagree - if the build is stale, or a setting rewrites values on the way through.
+*Picture:* the recipe and the cake. Reading the recipe will not tell you whether the oven was on.
+*When your agent says it:* measure the thing that runs, not the thing that describes it. If a value matters, ask to see it in the built output or at run time, not quoted back out of the source.
+
 ---
 
 ## 3. Putting it live
@@ -544,6 +579,11 @@ A file name, a colon, and a number: `index.html:367` means line 367 of that file
 *Picture:* a page-and-line reference in a book, so two people can look at the same sentence.
 *When your agent says it:* it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework.
 
+**A name that only exists in your project** (also: internal name, codename, our term for it)
+Phrases like `device-context bridge` or `pre-draft echo loop` are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.
+*Picture:* a nickname used in one household.
+*When your agent says it:* ask straight out whether this is a standard term or a name from this codebase, and if it is ours, where it is defined and what it does. Agents adopt an invented name confidently after seeing it once, which makes a made-up phrase sound as settled as a real one.
+
 ---
 
 ## 10. Phrases that mean a decision got made for you
@@ -712,10 +752,10 @@ One typed instruction: usually a tool name, then what you want it to do.
 *Picture:* "taxi, airport." Who, then what.
 *When your agent says it:* the first word is the tool. If the error says that word was not found, the tool is not installed.
 
-**Flag** (also: option, switch, argument, --force)
-An extra word on a command that changes how it behaves.
+**Flag** (also: option, switch, argument, --force, --noEmit, command-line flag)
+An extra word on a command that changes how it behaves. Flags also decide how much a command really did: `--noEmit` tells the type checker to inspect the code and write no files at all.
 *Picture:* ordering coffee, then "decaf, no sugar."
-*When your agent says it:* flags containing force or hard usually mean "do it even if it destroys something." Ask what gets destroyed.
+*When your agent says it:* flags containing force or hard usually mean "do it even if it destroys something" - ask what gets destroyed. The rest of the time the flags tell you what was actually tested, and `tsc --noEmit` builds nothing, so "0 errors" from it says nothing about whether the app builds or runs.
 
 **Package manager** (also: npm, pip, yarn, pnpm, Homebrew, brew)
 The thing that downloads and installs the outside code your project depends on.
@@ -761,6 +801,26 @@ Your app packed up with everything it needs to run, so it behaves the same anywh
 The computer refusing because the account running the command is not allowed to do that.
 *Picture:* right key, wrong door.
 *When your agent says it:* if the offered fix is sudo, that means "do it as the owner of the whole machine." Ask why the normal way was not allowed first.
+
+**grep** (also: ripgrep, rg, search the codebase)
+Searching every file at once for a word or a pattern. If your agent says it grepped for something, it means it looked for that text - not that it understood what it found.
+*Picture:* Ctrl-F, but across the whole project instead of one page.
+*When your agent says it:* a search shows you where a word appears, not whether the code around it is right. "I grepped and found nothing" is only as good as the word searched for; ask which word, and what it concluded from the result.
+
+**npm run** (also: run the script, package script, npm run build)
+Your project keeps a list of named commands somebody wrote down in advance. `npm run lint` and `npm run build:validate` each run whichever one carries that name.
+*Picture:* speed dial for commands.
+*When your agent says it:* ask what the script actually does. The name was chosen by whoever wrote it, so `validate` can mean a thorough check or almost nothing, and the name alone will not tell you which.
+
+**Test runner** (also: Vitest, Jest, the runner, pytest)
+The program that runs your tests and reports which ones passed. It is not the tests themselves, and it is not your code. It can fail for reasons of its own while the code is fine, and it can report all-clear while the tests check nothing worth checking.
+*Picture:* the person invigilating the exam, not the exam.
+*When your agent says it:* keep "the runner had a problem" and "the code has a problem" apart. Both are real, but only one of them gets fixed by changing your product.
+
+**Worker pool** (also: workers, parallel workers, thread pool, worker-pool)
+Tests are usually split across several copies of the runner going at once so they finish sooner. The pool is that set of copies. Starting them all up takes memory, and on a busy machine some can fail to start at all.
+*Picture:* opening six checkouts instead of one. Faster, until you cannot staff them all.
+*When your agent says it:* a startup problem in the pool is a machine problem rather than a code problem - but that has to be shown, not asserted. The way to show it is the same tests passing on a quiet machine and in the shared build.
 
 ---
 
@@ -827,6 +887,11 @@ When something a user types gets treated as an instruction instead of as text.
 A password or key that has ended up somewhere it can be seen, usually saved into the code by accident.
 *Picture:* taping the spare key to the front door.
 *When your agent says it:* deleting it later is not enough, because the history keeps a copy. The key has to be replaced.
+
+**Dependabot** (also: dependency alert, vulnerability alert, security alert)
+A service that watches the outside code your project leans on and raises an alert when a known security problem turns up in one of those pieces.
+*Picture:* a recall notice for a part inside something you sell.
+*When your agent says it:* every alert names the exact file that lists the affected piece. Larger projects have several of those files, so ask that the fix go where the alert points rather than to the top of the project by default - fixing the wrong file leaves the alert open and looks like it was handled.
 
 ---
 
@@ -1031,6 +1096,16 @@ How much else is affected if this change goes wrong.
 *Picture:* how many rooms lose power when you flip one breaker.
 *When your agent says it:* ask this before any change touching logins, payments, or data. It is the question that prevents the worst afternoons.
 
+**Scoping** (also: scope the work, scoping out)
+Working out how big a job is and where its edges are, before any of it is built.
+*Picture:* measuring the room before buying the carpet.
+*When your agent says it:* scoping is planning. Nothing has run and nothing exists yet, however concrete the description sounds.
+
+**Unbuilt** (also: not built yet, unimplemented, planned)
+Named, described, or designed, but not actually made.
+*Picture:* a door drawn on the floor plan and not yet cut into the wall.
+*When your agent says it:* watch for summaries that list unbuilt things in the same tone as finished ones. Ask plainly which of these exist and run today.
+
 ---
 
 ## 17. Signs the work was not actually checked
@@ -1126,6 +1201,31 @@ A slow job announced as complete almost immediately.
 Handing the problem to the outside world. Sometimes true, and always a convenient place to stop looking.
 *Picture:* blaming the weather without going outside.
 *When your agent says it:* ask for a link, or for what it would take to be certain. Vague authority is not a diagnosis.
+
+**Numbers in the same breath that do not agree**
+A report says five files timed out, then says it re-ran those three files. Both cannot be right. The mismatch usually means the summary was written from memory rather than read off the output.
+*Picture:* a receipt where the items do not add up to the total.
+*When your agent says it:* read the numbers against each other before you read the conclusion, and ask which figure came from the actual output. A summary that cannot keep its own count straight was not checked against anything.
+
+**"Not a code failure"**
+A diagnosis handed to you as though it were an observation. The tool reported a failure; the agent decided the cause was somewhere else. The failure is evidence. The cause is a guess until it is shown.
+*Picture:* a mechanic saying the warning light is faulty without opening the hood.
+*When your agent says it:* ask what would look different if it were a code failure, and whether that was checked. A reasonable conclusion is still a conclusion.
+
+**The machine gets the blame**
+The failure is put down to the laptop, the operating system, the network, the build machine - anything outside the code. Sometimes that is true. It is also the only explanation that requires no fix.
+*Picture:* "it is just this old oven" every time a cake sinks.
+*When your agent says it:* ask whether the same step passes anywhere else, on a clean machine or in the shared build. If it was never tried elsewhere, the environment is a theory.
+
+**A green headline with the failure inside the brackets**
+The top line says everything passed. The detail in parentheses says part of it did not and was set aside. The headline is the part that gets remembered.
+*Picture:* "Open every day" on the sign, "except Tuesday" underneath in small print.
+*When your agent says it:* read the brackets first. If a summary needs a parenthesis to stay true, the number outside it is not the result.
+
+**A pass earned under different conditions**
+Something fails, gets re-run another way, passes, and the pass is what gets reported. Running it alone, with more time, or on a quieter machine all change the conditions, so none of them answers the original failure.
+*Picture:* failing a test in a noisy hall, passing it alone at home, and reporting the second mark.
+*When your agent says it:* ask for the same command, in the same conditions, to pass twice. That is the only re-run that settles anything.
 
 ---
 
