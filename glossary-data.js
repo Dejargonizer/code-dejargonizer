@@ -1326,14 +1326,14 @@ window.GLOSSARY_DATA = [
     "terms": [
       {
         "t": "\"It should work now\"",
-        "m": "A prediction dressed up as a result. The word \"should\" is the tell: it means the thing has not been run.",
+        "m": "A prediction wearing a result’s clothes. The word \"should\" is the tell — it means the thing never ran.",
         "p": "a cook telling you the dish is delicious without tasting it.",
         "aka": "that should fix it, this ought to, I believe that resolves it",
         "note": "ask \"did you run it, and what did it print?\" Often the answer is no. That is fine, but it changes what you do next."
       },
       {
         "t": "\"I verified it\" with nothing shown",
-        "m": "A claim of checking with no evidence of the check attached.",
+        "m": "A claim, not evidence. The checking is asserted and never shown, so there is nothing for you to look at.",
         "p": "a receipt with the word \"paid\" written on it by hand.",
         "aka": "confirmed, validated, tested it, double-checked",
         "note": "ask which command it ran and what came back. Verification you cannot see may not have happened."
@@ -1368,7 +1368,7 @@ window.GLOSSARY_DATA = [
       },
       {
         "t": "A summary that just repeats the plan",
-        "m": "The wrap-up lists intentions rather than outcomes, which is what happens when the outcomes were never read.",
+        "m": "A summary that repeats the plan word for word usually means the outcome was never read — intentions listed back to you in place of results.",
         "p": "a shopping list handed over as a receipt.",
         "aka": "here is what I did, followed by the to-do list",
         "note": "hold the summary against the original plan. If they match word for word, ask what changed along the way. Something always does."
