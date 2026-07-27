@@ -1,5 +1,5 @@
 {
-  "note": "Status lines of the kind AI coding agents actually produce, used only to measure how much of that language the dictionary can explain. 'jargon' is marked by hand: the words a capable person with no coding background would trip on. source 'build-session' means the line came from an agent working on this repository; 'representative' means it was written to stand in for a pattern seen repeatedly. Nothing here contains anyone's private project data.",
+  "note": "Status lines of the kind AI coding agents actually produce, used only to measure how much of that language the dictionary can explain. 'jargon' is marked by hand: the words a capable person with no coding background would trip on. source 'build-session' means the line came from an agent working on this repository; 'representative' means it was written to stand in for a pattern seen repeatedly; 'contributed' means a builder outside this project supplied it from their own agent's output, published as supplied. Names invented inside someone's own project - a feature codename, an internal module - are left unmarked, because no general dictionary could explain a word that exists in one repository. Nothing here contains credentials, customer data, or anyone's source code.",
   "lines": [
     {
       "line": "I'll squash-merge the PR once CI is green, then verify the deploy.",
@@ -291,6 +291,68 @@
         "webhook",
         "endpoint",
         "rate limit"
+      ]
+    },
+    {
+      "line": "grep before scoping unbuilt, device-context bridge, pre-draft echo loop, Local gauntlet on origin/main (0cc4d4e4):",
+      "source": "contributed",
+      "jargon": [
+        "grep",
+        "scoping",
+        "unbuilt",
+        "origin/main",
+        "commit SHA"
+      ]
+    },
+    {
+      "line": "tsc --noEmit: 0 errors",
+      "source": "contributed",
+      "jargon": [
+        "tsc",
+        "noEmit",
+        "type check",
+        "0 errors"
+      ]
+    },
+    {
+      "line": "npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load - a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)",
+      "source": "contributed",
+      "jargon": [
+        "npm test",
+        "vitest",
+        "worker pool",
+        "timeout",
+        "under load",
+        "flake",
+        "in isolation",
+        "not a code failure"
+      ]
+    },
+    {
+      "line": "npm run lint: clean. npm run build:validate: clean.",
+      "source": "contributed",
+      "jargon": [
+        "npm run",
+        "lint",
+        "clean",
+        "validate step"
+      ]
+    },
+    {
+      "line": "Read each Dependabot alert's manifest_path, never assume the root.",
+      "source": "contributed",
+      "jargon": [
+        "Dependabot",
+        "manifest path",
+        "repository root"
+      ]
+    },
+    {
+      "line": "Measure the compiled value, not the source text.",
+      "source": "contributed",
+      "jargon": [
+        "compiled output",
+        "source text"
       ]
     }
   ]
