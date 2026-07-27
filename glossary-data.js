@@ -211,6 +211,55 @@ window.GLOSSARY_DATA = [
         "p": "a dishwasher cycle. You load it and press start once; the sequence runs the same way every time.",
         "aka": "GitHub Actions, action, pipeline, job, runner",
         "note": "a workflow going green means the steps ran without complaining. Worth asking what the steps actually check, because a workflow can pass while checking almost nothing."
+      },
+      {
+        "t": "In isolation",
+        "m": "Running one test, or one file, by itself rather than alongside everything else.",
+        "p": "retaking one exam in an empty room after failing it in a crowded hall.",
+        "aka": "on its own, re-run individually, in a clean run",
+        "note": "a pass in isolation is not a pass. It is a pass under different conditions than the failure, which rules some causes out and settles nothing. Ask for the original command, in the original conditions, to pass twice."
+      },
+      {
+        "t": "Under load",
+        "m": "While the computer is already doing plenty of other things. Steps that work fine on a quiet machine can fail when everything runs at once.",
+        "p": "a staircase that is fine empty and dangerous in a crowd.",
+        "aka": "on a busy machine, under contention",
+        "note": "\"it only fails under load\" is sometimes true and sometimes a way of setting a failure aside. Under load is the condition your real users arrive in, so it is the interesting case, not the excusable one."
+      },
+      {
+        "t": "Flake",
+        "m": "A test that passes some runs and fails others with nothing changed in between. Some flakes really are the test's fault. Some are a genuine bug that only shows up occasionally.",
+        "p": "a door that sticks about one time in ten. Easy to decide the door is fine.",
+        "aka": "flaky, a flake, intermittent, non-deterministic",
+        "note": "flake is a diagnosis, not an observation. Ask how many runs it is based on and what the failure actually said. Calling something a flake is the cheapest way to make a red result go away."
+      },
+      {
+        "t": "Clean",
+        "m": "The tool finished and printed no complaints.",
+        "p": "an inspector who leaves without writing anything down.",
+        "aka": "clean run, no output, all clear",
+        "note": "clean means nothing was reported, which is not the same as nothing being wrong. Ask what that particular tool checks, and whether any of its rules are switched off."
+      },
+      {
+        "t": "0 errors",
+        "m": "The check found none of the things it was set up to look for.",
+        "p": "a metal detector staying quiet. Reassuring, until you learn it only finds steel.",
+        "aka": "no errors, passed with no errors",
+        "note": "ask what the check covers. Zero type errors, zero lint errors and zero failing tests are three unrelated statements, and none of the three says the feature works."
+      },
+      {
+        "t": "Validate step",
+        "m": "A named step in your project's own checklist that runs some checks. Which checks, and how strict they are, was decided by whoever wrote it.",
+        "p": "a checklist on the wall. Useful only if you read what is on it.",
+        "aka": "build:validate, validation script, check step",
+        "note": "\"validate passed\" is a statement about a script, not about your product. Ask what is on the list."
+      },
+      {
+        "t": "Compiled output vs source text",
+        "m": "The code that gets written is the source. What actually runs is usually a translated copy built from it. The two can disagree - if the build is stale, or a setting rewrites values on the way through.",
+        "p": "the recipe and the cake. Reading the recipe will not tell you whether the oven was on.",
+        "aka": "compiled value, build output, the built file, source text",
+        "note": "measure the thing that runs, not the thing that describes it. If a value matters, ask to see it in the built output or at run time, not quoted back out of the source."
       }
     ]
   },
@@ -675,6 +724,13 @@ window.GLOSSARY_DATA = [
         "m": "A file name, a colon, and a number: index.html:367 means line 367 of that file.",
         "p": "a page-and-line reference in a book, so two people can look at the same sentence.",
         "note": "it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework."
+      },
+      {
+        "t": "A name that only exists in your project",
+        "m": "Phrases like device-context bridge or pre-draft echo loop are not industry terms. Somebody working on your project invented them. No dictionary has them and searching online will hand you something unrelated.",
+        "p": "a nickname used in one household.",
+        "aka": "internal name, codename, our term for it",
+        "note": "ask straight out whether this is a standard term or a name from this codebase, and if it is ours, where it is defined and what it does. Agents adopt an invented name confidently after seeing it once, which makes a made-up phrase sound as settled as a real one."
       }
     ]
   },
@@ -908,10 +964,10 @@ window.GLOSSARY_DATA = [
       },
       {
         "t": "Flag",
-        "m": "An extra word on a command that changes how it behaves.",
+        "m": "An extra word on a command that changes how it behaves. Flags also decide how much a command really did: --noEmit tells the type checker to inspect the code and write no files at all.",
         "p": "ordering coffee, then \"decaf, no sugar.\"",
-        "aka": "option, switch, argument, --force",
-        "note": "flags containing force or hard usually mean \"do it even if it destroys something.\" Ask what gets destroyed."
+        "aka": "option, switch, argument, --force, --noEmit, command-line flag",
+        "note": "flags containing force or hard usually mean \"do it even if it destroys something\" - ask what gets destroyed. The rest of the time the flags tell you what was actually tested, and tsc --noEmit builds nothing, so \"0 errors\" from it says nothing about whether the app builds or runs."
       },
       {
         "t": "Package manager",
@@ -975,6 +1031,34 @@ window.GLOSSARY_DATA = [
         "p": "right key, wrong door.",
         "aka": "EACCES, sudo, access denied",
         "note": "if the offered fix is sudo, that means \"do it as the owner of the whole machine.\" Ask why the normal way was not allowed first."
+      },
+      {
+        "t": "grep",
+        "m": "Searching every file at once for a word or a pattern. If your agent says it grepped for something, it means it looked for that text - not that it understood what it found.",
+        "p": "Ctrl-F, but across the whole project instead of one page.",
+        "aka": "ripgrep, rg, search the codebase",
+        "note": "a search shows you where a word appears, not whether the code around it is right. \"I grepped and found nothing\" is only as good as the word searched for; ask which word, and what it concluded from the result."
+      },
+      {
+        "t": "npm run",
+        "m": "Your project keeps a list of named commands somebody wrote down in advance. npm run lint and npm run build:validate each run whichever one carries that name.",
+        "p": "speed dial for commands.",
+        "aka": "run the script, package script, npm run build",
+        "note": "ask what the script actually does. The name was chosen by whoever wrote it, so validate can mean a thorough check or almost nothing, and the name alone will not tell you which."
+      },
+      {
+        "t": "Test runner",
+        "m": "The program that runs your tests and reports which ones passed. It is not the tests themselves, and it is not your code. It can fail for reasons of its own while the code is fine, and it can report all-clear while the tests check nothing worth checking.",
+        "p": "the person invigilating the exam, not the exam.",
+        "aka": "Vitest, Jest, the runner, pytest",
+        "note": "keep \"the runner had a problem\" and \"the code has a problem\" apart. Both are real, but only one of them gets fixed by changing your product."
+      },
+      {
+        "t": "Worker pool",
+        "m": "Tests are usually split across several copies of the runner going at once so they finish sooner. The pool is that set of copies. Starting them all up takes memory, and on a busy machine some can fail to start at all.",
+        "p": "opening six checkouts instead of one. Faster, until you cannot staff them all.",
+        "aka": "workers, parallel workers, thread pool, worker-pool",
+        "note": "a startup problem in the pool is a machine problem rather than a code problem - but that has to be shown, not asserted. The way to show it is the same tests passing on a quiet machine and in the shared build."
       }
     ]
   },
@@ -1066,6 +1150,13 @@ window.GLOSSARY_DATA = [
         "p": "taping the spare key to the front door.",
         "aka": "exposed key, committed credentials, secret scanning",
         "note": "deleting it later is not enough, because the history keeps a copy. The key has to be replaced."
+      },
+      {
+        "t": "Dependabot",
+        "m": "A service that watches the outside code your project leans on and raises an alert when a known security problem turns up in one of those pieces.",
+        "p": "a recall notice for a part inside something you sell.",
+        "aka": "dependency alert, vulnerability alert, security alert",
+        "note": "every alert names the exact file that lists the affected piece. Larger projects have several of those files, so ask that the fix go where the alert points rather than to the top of the project by default - fixing the wrong file leaves the alert open and looks like it was handled."
       }
     ]
   },
@@ -1346,6 +1437,20 @@ window.GLOSSARY_DATA = [
         "p": "how many rooms lose power when you flip one breaker.",
         "aka": "impact, what else this touches",
         "note": "ask this before any change touching logins, payments, or data. It is the question that prevents the worst afternoons."
+      },
+      {
+        "t": "Scoping",
+        "m": "Working out how big a job is and where its edges are, before any of it is built.",
+        "p": "measuring the room before buying the carpet.",
+        "aka": "scope the work, scoping out",
+        "note": "scoping is planning. Nothing has run and nothing exists yet, however concrete the description sounds."
+      },
+      {
+        "t": "Unbuilt",
+        "m": "Named, described, or designed, but not actually made.",
+        "p": "a door drawn on the floor plan and not yet cut into the wall.",
+        "aka": "not built yet, unimplemented, planned",
+        "note": "watch for summaries that list unbuilt things in the same tone as finished ones. Ask plainly which of these exist and run today."
       }
     ]
   },
@@ -1479,6 +1584,36 @@ window.GLOSSARY_DATA = [
         "p": "blaming the weather without going outside.",
         "aka": "that is expected behavior, a limitation of the tool",
         "note": "ask for a link, or for what it would take to be certain. Vague authority is not a diagnosis."
+      },
+      {
+        "t": "Numbers in the same breath that do not agree",
+        "m": "A report says five files timed out, then says it re-ran those three files. Both cannot be right. The mismatch usually means the summary was written from memory rather than read off the output.",
+        "p": "a receipt where the items do not add up to the total.",
+        "note": "read the numbers against each other before you read the conclusion, and ask which figure came from the actual output. A summary that cannot keep its own count straight was not checked against anything."
+      },
+      {
+        "t": "\"Not a code failure\"",
+        "m": "A diagnosis handed to you as though it were an observation. The tool reported a failure; the agent decided the cause was somewhere else. The failure is evidence. The cause is a guess until it is shown.",
+        "p": "a mechanic saying the warning light is faulty without opening the hood.",
+        "note": "ask what would look different if it were a code failure, and whether that was checked. A reasonable conclusion is still a conclusion."
+      },
+      {
+        "t": "The machine gets the blame",
+        "m": "The failure is put down to the laptop, the operating system, the network, the build machine - anything outside the code. Sometimes that is true. It is also the only explanation that requires no fix.",
+        "p": "\"it is just this old oven\" every time a cake sinks.",
+        "note": "ask whether the same step passes anywhere else, on a clean machine or in the shared build. If it was never tried elsewhere, the environment is a theory."
+      },
+      {
+        "t": "A green headline with the failure inside the brackets",
+        "m": "The top line says everything passed. The detail in parentheses says part of it did not and was set aside. The headline is the part that gets remembered.",
+        "p": "\"Open every day\" on the sign, \"except Tuesday\" underneath in small print.",
+        "note": "read the brackets first. If a summary needs a parenthesis to stay true, the number outside it is not the result."
+      },
+      {
+        "t": "A pass earned under different conditions",
+        "m": "Something fails, gets re-run another way, passes, and the pass is what gets reported. Running it alone, with more time, or on a quieter machine all change the conditions, so none of them answers the original failure.",
+        "p": "failing a test in a noisy hall, passing it alone at home, and reporting the second mark.",
+        "note": "ask for the same command, in the same conditions, to pass twice. That is the only re-run that settles anything."
       }
     ]
   }
