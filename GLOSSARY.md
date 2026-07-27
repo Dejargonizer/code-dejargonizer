@@ -785,6 +785,204 @@ A password or key that has ended up somewhere it can be seen, usually saved into
 
 ---
 
+## 14. What your users actually see
+
+This section is about the surface: the part a real person looks at and clicks. It is where "it works" and "it is usable" turn out to be two different claims. Your agent can honestly report a feature as done while the screen is unreadable on a phone, or a button gives no sign that anything happened.
+
+**UI / UX** (also: interface, user experience)
+UI is what is on the screen. UX is what using it feels like.
+*Picture:* UI is the dashboard layout. UX is whether the car is pleasant to drive.
+*When your agent says it:* "the UI is done" is not "the UX is good." Ask it to walk you through the flow as a first-time user.
+
+**Component** (also: React component, widget, shared component)
+One reusable piece of screen, like a button or a card, defined once and used in many places.
+*Picture:* a Lego brick. Make it once, click it in anywhere.
+*When your agent says it:* changing a component changes it everywhere it appears. Ask where else it is used before agreeing to a tweak.
+
+**Responsive** (also: mobile-friendly, breakpoint, media query)
+The layout rearranging itself to fit whatever screen size it is on.
+*Picture:* water taking the shape of the glass.
+*When your agent says it:* ask it to show you the phone width. Most layout problems only exist on small screens.
+
+**State** (also: local state, stale state, out of sync)
+What the screen currently remembers: what you typed, what is selected, whether it is still loading.
+*Picture:* a whiteboard beside the form, wiped when you leave the room.
+*When your agent says it:* "a state issue" usually means the screen and the truth disagree. Ask which of the two is stale.
+
+**Loading state** (also: spinner, skeleton, pending)
+What the user sees while they are waiting.
+*Picture:* the kettle light that tells you it is on.
+*When your agent says it:* a button with no loading state gets clicked three times. Worth asking about for anything slow.
+
+**Empty state** (also: zero state, no data yet)
+What the screen shows before there is anything in it.
+*Picture:* a noticeboard with instructions pinned to it, rather than just bare cork.
+*When your agent says it:* new users only ever see the empty state. It is the first impression and it is usually the last thing built.
+
+**Error state** (also: error message, error handling in the interface)
+What the user sees when something goes wrong.
+*Picture:* a sign telling you which door to use, not just a locked door.
+*When your agent says it:* ask what the user is told and what they can do next. "Something went wrong" is a dead end.
+
+**Form validation** (also: validation, required field, input validation)
+Checking what someone typed before accepting it.
+*Picture:* the clerk pointing at the empty box before taking the form.
+*When your agent says it:* ask whether it checks on the screen only, or on the server too. Screen-only checks can be skipped by anyone who wants to.
+
+**Accessibility** (also: a11y, screen reader, keyboard navigation, contrast)
+Making the thing usable by people with different sight, hearing, or movement.
+*Picture:* the ramp beside the steps, built in rather than added on.
+*When your agent says it:* ask two things. Can you do everything with just the keyboard, and does every image have a text description.
+
+**Assets** (also: static files, images, fonts, favicon)
+The pictures, fonts, icons, and files your app serves alongside the code.
+*Picture:* the furniture, as opposed to the building.
+*When your agent says it:* large unoptimized images are the most common reason a simple page feels slow.
+
+**Copy** (also: microcopy, strings, labels, placeholder text)
+The actual words on the screen: buttons, labels, error messages.
+*Picture:* the signage inside a building.
+*When your agent says it:* agents write filler copy and filler copy ships. Read every word a user will see before you call it done.
+
+**Dark mode** (also: theme, light mode, color scheme)
+A second color scheme for the same interface.
+*Picture:* the same room with the lights turned down.
+*When your agent says it:* if it added dark mode, ask it to check contrast in both. Text often becomes unreadable in one of them.
+
+---
+
+## 15. Speed, size, and what it costs you
+
+Software gets slow and expensive gradually, through choices that each seemed fine at the time. These are the words your agent uses while making one of those choices. You do not need to optimize anything yourself. You need to notice when something has just been decided about your bill or your users' patience.
+
+**Latency** (also: response time, lag, slow)
+How long something takes to respond, measured from the user's side.
+*Picture:* the wait between ordering and the plate arriving.
+*When your agent says it:* averages hide the worst cases. Ask what the slowest requests look like, not the typical one.
+
+**N+1 query** (also: query in a loop, too many queries)
+Asking the database a hundred separate small questions when one question would have done.
+*Picture:* walking to the archive a hundred times instead of carrying the whole box back once.
+*When your agent says it:* this is the most common reason a page that flew with ten records crawls with a thousand.
+
+**Database index** (also: index, indexed, add an index)
+An extra lookup table that lets the database find records without reading every row.
+*Picture:* the index at the back of a book, versus reading every page.
+*When your agent says it:* missing indexes are invisible until your data grows. Cheap to add now, painful to discover later.
+
+**Pagination** (also: paging, infinite scroll, limit)
+Handing out results a page at a time instead of all at once.
+*Picture:* serving courses rather than tipping the whole buffet onto the table.
+*When your agent says it:* a list with no limit works today and falls over once you have real users.
+
+**Bundle size** (also: bundle, payload, tree shaking)
+How much code the browser must download before your page works.
+*Picture:* the weight of the parcel someone has to carry up the stairs.
+*When your agent says it:* every library it installs adds weight. Ask what the page weighed before and after.
+
+**Memory leak** (also: leaking memory, growing memory)
+The program holding on to things it no longer needs, until it runs out of room and stops.
+*Picture:* never emptying the bin. Eventually there is nowhere left to stand.
+*When your agent says it:* the tell is something that runs fine for an hour and dies overnight.
+
+**Timeout** (also: timed out, gave up waiting)
+Giving up on something that is taking too long.
+*Picture:* hanging up after the phone has rung for two minutes.
+*When your agent says it:* raising a timeout hides slowness rather than fixing it. Ask which one it did.
+
+**Retry** (also: retries, backoff, exponential backoff)
+Trying a failed request again, ideally waiting a little longer each time.
+*Picture:* knocking again, rather than hammering on the door.
+*When your agent says it:* retries with no wait can turn one glitch into an outage. Ask whether there is a pause between attempts and a limit on them.
+
+**Queue** (also: background job, worker, async job)
+Putting slow work in a line to be done later, so the user is not left waiting.
+*Picture:* a dry cleaner's ticket. You leave, they work, you come back.
+*When your agent says it:* ask what the user sees while it is queued, and what happens if the job fails after they have gone.
+
+**Cold start** (also: warm up, serverless cold start)
+The extra delay the first time something runs after sitting idle.
+*Picture:* the first pull of the espresso machine in the morning.
+*When your agent says it:* your first visitor of the day gets the slow version. Worth knowing whether that visitor is a customer.
+
+**Usage-based pricing** (also: pay per request, metered, per-seat, per-token)
+Being billed for how much you use rather than a flat fee.
+*Picture:* a taxi meter instead of a bus fare.
+*When your agent says it:* ask what the bill looks like if usage goes up ten times. Loops and retries multiply cost quietly.
+
+**Free tier** (also: free plan, quota, credits)
+The amount a paid service lets you use for nothing before it starts charging.
+*Picture:* the first few miles included, then the meter starts.
+*When your agent says it:* ask what happens at the limit. Some services stop and some start charging, and those are very different surprises.
+
+---
+
+## 16. Deciding what gets built
+
+These are the words for scope: what is in, what is out, and what counts as finished. With an agent, this is most of your actual job. An agent will build the wrong thing beautifully and it will not tell you that you asked for the wrong thing.
+
+**Scope** (also: in scope, out of scope, scope creep)
+The agreed boundary of what a piece of work includes.
+*Picture:* the fence around the building site.
+*When your agent says it:* "while I was in there I also..." is scope creep. Sometimes helpful, always worth knowing about.
+
+**Requirement** (also: spec, specification, acceptance criteria)
+A written statement of what the thing must do, specific enough to check.
+*Picture:* the shopping list, not the mood of the meal.
+*When your agent says it:* if you cannot check a requirement by looking at something, it is not a requirement yet.
+
+**MVP** (also: minimum viable product, v1, first version)
+The smallest version worth putting in front of real people.
+*Picture:* a working bicycle rather than half a car.
+*When your agent says it:* the risk is that MVP becomes the reason to skip things that were never optional, like keeping logins safe.
+
+**Trade-off** (also: tradeoff, either way)
+Getting one thing by giving up another, on purpose.
+*Picture:* a lighter bag, achieved by packing fewer clothes.
+*When your agent says it:* good sign. Ask what the other option was and why it lost. That exchange is the review.
+
+**Technical debt** (also: tech debt, cutting corners, clean it up later)
+Work left undone that costs more to fix the longer it is left.
+*Picture:* a borrowed tool you keep meaning to return while the late fee grows.
+*When your agent says it:* ask for it in writing, in the project. Debt nobody wrote down is debt nobody pays.
+
+**Spike** (also: proof of concept, POC, prototype, throwaway)
+A quick rough build made to answer a question, not to keep.
+*Picture:* a cardboard model of the kitchen.
+*When your agent says it:* prototypes ship by accident constantly. Say out loud whether this one is meant to survive.
+
+**Feature flag** (also: flag, toggle, gated behind a flag)
+A switch that turns a feature on or off without changing the code.
+*Picture:* a light switch for a room you have already wired.
+*When your agent says it:* flags let you release quietly and switch things off fast. Old flags nobody removed become their own mess.
+
+**Definition of done** (also: done done, acceptance, checklist)
+The agreed list of what has to be true before work counts as finished.
+*Picture:* the checklist taped to the door before you hand over the keys.
+*When your agent says it:* write yours down once. "Tests pass, works on a phone, no filler text, I have seen it with my own eyes" beats arguing every time.
+
+**Assumption** (also: assuming, I assumed)
+Something treated as true without anyone checking.
+*Picture:* building a shelf for a book you never measured.
+*When your agent says it:* ask it to list its assumptions before it starts. This is the cheapest review you will ever get.
+
+**Backlog** (also: todo, issue list, ticket)
+The list of things you have decided to do but have not done.
+*Picture:* the in-tray, not the desk.
+*When your agent says it:* "I added it to the backlog" often means it will not happen. That is fine, as long as you both know it.
+
+**Rewrite** (also: rewriting from scratch, start over, greenfield)
+Throwing the existing version away and building it again.
+*Picture:* knocking the house down instead of fixing the roof.
+*When your agent says it:* rewrites take longer than the estimate and lose behavior nobody wrote down. Ask what the smallest fix would be first.
+
+**Blast radius** (also: impact, what else this touches)
+How much else is affected if this change goes wrong.
+*Picture:* how many rooms lose power when you flip one breaker.
+*When your agent says it:* ask this before any change touching logins, payments, or data. It is the question that prevents the worst afternoons.
+
+---
+
 ## How to use this with your agent
 
 - **You are the manager here, not the student.** You do not need to know how any of this works. You need to read the report well enough to say "no, not like that" — which is the whole reason the vocabulary matters. [Section 10](#10-phrases-that-mean-a-decision-got-made-for-you) is where saying it matters most.
