@@ -179,6 +179,7 @@ const metrics = {
   // The honest half: what the dictionary cannot explain yet.
   gaps: [...misses.values()].sort(),
   notProven: [
+    'Coverage is measured against our own corpus, which we assembled and marked ourselves. A bigger corpus contributed by other people would be a harder and fairer test.',
     'Whether builders ship fewer defects with this installed. No study run.',
     'Whether agents comply with the rules over long sessions. Not measured.',
     'Any aggregate effect across users. We collect nothing, so we cannot claim it.'
