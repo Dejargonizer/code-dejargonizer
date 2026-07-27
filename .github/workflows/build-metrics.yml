@@ -36,5 +36,8 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git commit -m "Auto-update data/metrics.json [skip ci]"
+            # The glossary sync workflow fires on the same commit and also pushes,
+            # so whoever finishes second has to catch up before pushing.
+            git pull --rebase --autostash origin main
             git push
           fi
