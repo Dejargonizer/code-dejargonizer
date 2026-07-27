@@ -106,7 +106,7 @@ window.GLOSSARY_DATA = [
         "t": "Diff",
         "m": "The exact list of what changed — what lines were added, what was removed.",
         "p": "\"track changes\" in a Word document. Red for deleted, green for added.",
-        "note": "it's showing you precisely what it touched. If you want to know \"what did you actually change?\", this is the answer. ask to see it. The diff is the shortest honest answer to what did you actually change, and it is much harder to overstate than a summary."
+        "note": "it's showing you precisely what it touched. If you want to know \"what did you actually change?\", this is the answer."
       },
       {
         "t": "Stash",
@@ -132,7 +132,7 @@ window.GLOSSARY_DATA = [
         "t": "Test suite",
         "m": "The whole collection of tests, run together.",
         "p": "the full panel of taste-testers, not just one.",
-        "note": "every automatic checker approved. This is one of the strongest \"it's fine\" signals there is. ask how many ran and how many passed. A green suite means nothing if part of it is switched off.",
+        "note": "every automatic checker approved. This is one of the strongest \"it's fine\" signals there is. Worth asking how many actually ran, not just that it came back green — a suite with parts switched off is still green.",
         "tone": "good"
       },
       {
@@ -159,32 +159,32 @@ window.GLOSSARY_DATA = [
         "m": "The robot that automatically runs all the checks every time code changes — so nobody has to remember to.",
         "p": "an automatic quality-control line in a factory. Every item that comes off the belt gets inspected, no exceptions.",
         "aka": "continuous integration",
-        "note": "it's waiting for (or has received) the robot inspector's all-clear. Green = passed. Red = something failed, look before proceeding. the checks ran on a machine that is not your agent's, which makes the result harder to fudge. Ask what CI said, rather than what the agent expects it to say."
+        "note": "it's waiting for (or has received) the robot inspector's all-clear. Green = passed. Red = something failed, look before proceeding."
       },
       {
         "t": "Build",
         "m": "Turning the written code into the actual runnable product.",
         "p": "baking. The code is the recipe and ingredients; the build is the finished cake. \"The build failed\" means something went wrong in the oven — the cake didn't come out.",
-        "note": "the product assembled successfully. A failed build means it can't even be put together yet, let alone go live. it builds only means the product could be assembled. It says nothing about whether the thing does what you asked for."
+        "note": "the product assembled successfully. A failed build means it can't even be put together yet, let alone go live."
       },
       {
         "t": "Lint / linter",
         "m": "An automatic proofreader for code — catches sloppy style and small mistakes.",
         "p": "spellcheck and grammar-check, but for code.",
-        "note": "no style complaints. Minor, but tidy. lint is about tidiness, not correctness. A clean linter and a broken feature sit together quite happily."
+        "note": "no style complaints. Minor, but tidy."
       },
       {
         "t": "Type check",
         "m": "An automatic check that the pieces of code fit together — that you're not accidentally handing a phone number where a name was expected.",
         "p": "checking that every plug matches its socket before you switch the power on.",
         "aka": "tsc, typecheck",
-        "note": "the pieces are wired together correctly. If it fails, two parts don't fit and it would break. the pieces fit together. Whether they do the right thing is a separate question needing a separate check."
+        "note": "the pieces are wired together correctly. If it fails, two parts don't fit and it would break."
       },
       {
         "t": "Verify / verification",
         "m": "Actually confirming something works — not just assuming it does.",
         "p": "the difference between \"I mailed the invitation\" and \"I called and they said they got it.\"",
-        "note": "it checked with its own eyes/tools, rather than guessing. This is the good, careful kind of claim. If it says \"not verified,\" respect that — it's being honest that it didn't confirm. ask what it ran and what came back. Verified with nothing shown is a claim, not evidence.",
+        "note": "it checked with its own eyes/tools, rather than guessing. This is the good, careful kind of claim. If it says \"not verified,\" respect that — it's being honest that it didn't confirm. And ask what it ran and what came back — verified with nothing shown is a claim, not evidence.",
         "tone": "good"
       },
       {
@@ -197,7 +197,7 @@ window.GLOSSARY_DATA = [
         "t": "Green / red",
         "m": "Green = checks passed, all clear. Red = something failed.",
         "p": "traffic lights. Green means the checks let the work through; red means it is stopped until somebody deals with it.",
-        "note": "good to go. \"It's red\": stop and look. ask green on what. Green on the checks that exist is not the same as green on the checks that ought to exist."
+        "note": "good to go. \"It's red\": stop and look. Worth asking green on what — green on the checks that exist is not green on the checks that ought to exist."
       },
       {
         "t": "npm audit",
@@ -223,14 +223,14 @@ window.GLOSSARY_DATA = [
         "t": "Deploy / deployment",
         "m": "Putting your code live where real people can use it.",
         "p": "opening the shop doors. Up to now you were rehearsing inside; deploy is unlocking the front door.",
-        "note": "your change is going (or has gone) live. This is the real-consequences moment. real people can reach it now. Ask which environment — putting something on a practice copy and putting it in front of users are very different events."
+        "note": "your change is going (or has gone) live. This is the real-consequences moment."
       },
       {
         "t": "Production",
         "m": "The real, live version that actual users touch. The real world.",
         "p": "opening night, full audience — not the dress rehearsal.",
         "aka": "prod",
-        "note": "it's talking about the live thing, where mistakes are visible to users. Extra care warranted. mistakes here are visible to your users, not just to you. Anything called fine for now in production deserves a date attached.",
+        "note": "it's talking about the live thing, where mistakes are visible to users. Extra care warranted.",
         "tone": "look"
       },
       {
@@ -269,7 +269,7 @@ window.GLOSSARY_DATA = [
         "t": "Ship / ship it",
         "m": "Casual slang for \"release it / put it live.\"",
         "p": "the product literally leaving the warehouse on a truck.",
-        "note": "the work is done and it's proposing to make it live. Often your cue to say go or wait. it is calling the work done and out the door. Ask what it decided to leave out in order to say that."
+        "note": "the work is done and it's proposing to make it live. Often your cue to say go or wait."
       },
       {
         "t": "Server",
@@ -332,7 +332,7 @@ window.GLOSSARY_DATA = [
         "t": "Root cause",
         "m": "The actual underlying reason something broke — not just the symptom.",
         "p": "the puddle on the floor is the symptom; the leaking pipe behind the wall is the root cause. Mopping the puddle forever doesn't help.",
-        "note": "it's refusing to slap on a surface patch and instead finding the real problem. This is exactly what you want — even though it takes a bit longer. ask how it knows. A root cause you can state in one sentence and a symptom you have covered over look identical from the outside.",
+        "note": "it's refusing to slap on a surface patch and instead finding the real problem. This is exactly what you want — even though it takes a bit longer. When it says it has found one, ask how it knows: a root cause you can state in a sentence and a symptom you have covered over look identical from the outside.",
         "tone": "good"
       },
       {
@@ -340,7 +340,7 @@ window.GLOSSARY_DATA = [
         "m": "Make the bug happen again on purpose, so it can be studied and fixed.",
         "p": "a doctor trying to trigger the symptom in the office so they can actually see it, instead of taking your word for it.",
         "aka": "repro",
-        "note": "good — it can now see the problem directly, which means it can fix it with confidence rather than guessing. if it cannot make the problem happen on demand, any fix is a guess. Steps that reliably trigger the fault are worth more than a fast patch.",
+        "note": "good — it can now see the problem directly, which means it can fix it with confidence rather than guessing. The reverse matters just as much — if it cannot make the problem happen on demand, any fix that follows is a guess.",
         "tone": "good"
       },
       {
@@ -391,7 +391,7 @@ window.GLOSSARY_DATA = [
         "t": "Library / package / dependency",
         "m": "Pre-built code written by someone else that your project uses so it doesn't reinvent the wheel.",
         "p": "buying a pre-made pastry base instead of making it from scratch. A dependency is exactly that — your project depends on this outside piece to work.",
-        "note": "it wants to pull in an outside building block. Reasonable — but each one is a thing your project now relies on, which is why careful agents ask before adding new ones. you are now relying on someone else's code. Ask how widely used and how actively maintained it is, because you inherit its problems along with its help."
+        "note": "it wants to pull in an outside building block. Reasonable — but each one is a thing your project now relies on, which is why careful agents ask before adding new ones."
       },
       {
         "t": "Framework",
@@ -415,7 +415,7 @@ window.GLOSSARY_DATA = [
         "t": "Migration",
         "m": "A recorded, repeatable change to the shape of your database.",
         "p": "a renovation plan for the filing system — \"add a 'phone number' column to every customer record\" — written down so it can be applied cleanly and, if needed, reversed.",
-        "note": "it's carefully changing how data is stored. Careful is the operative word — these are done deliberately because they touch real stored information. existing data is being reshaped. Ask what happens to the records already in there, and whether the step can be undone.",
+        "note": "it's carefully changing how data is stored. Careful is the operative word — these are done deliberately because they touch real stored information. Ask what happens to the records already in there, and whether the step can be undone.",
         "tone": "look"
       },
       {
@@ -456,7 +456,7 @@ window.GLOSSARY_DATA = [
         "t": "Refactor",
         "m": "Tidying and reorganizing code so it's cleaner — without changing what it does.",
         "p": "reorganizing your closet. Same clothes, better arranged, easier to find. Nothing was thrown out; nothing new was bought.",
-        "note": "it's saying \"I cleaned up the structure but the behavior is identical.\" Low-risk by definition — though a careful agent still checks it didn't accidentally change anything. the shape changed and the behavior is meant to be identical. Ask what it ran afterwards to show that nothing moved."
+        "note": "it's saying \"I cleaned up the structure but the behavior is identical.\" Low-risk by definition — though a careful agent still checks it didn't accidentally change anything. Ask what it ran afterwards to show that nothing moved."
       },
       {
         "t": "Idempotent",
@@ -526,7 +526,7 @@ window.GLOSSARY_DATA = [
         "t": "Verification-boundary honesty",
         "m": "Being precise about exactly what an agent actually confirmed versus what it's assuming. \"I watched this work in the real, live system\" is a stronger claim than \"the automated tests passed\" — a careful agent never blurs the two together.",
         "p": "the difference between a chef who tasted the soup themselves and one who only read the recipe and assumes it's right. Both might be telling the truth — but only one actually tasted it, and a good agent always tells you which one it is.",
-        "note": "that is the honest, correct thing to say, not a failure. It means the automatic checks passed, but nobody has watched the real thing work yet. Read it as the agent refusing to guess — exactly what you want. it is drawing the line between what it watched happen and what it is assuming. Ask for that line out loud every time — the watched part is often smaller than the summary made it sound."
+        "note": "that is the honest, correct thing to say, not a failure. It means the automatic checks passed, but nobody has watched the real thing work yet. Read it as the agent refusing to guess — exactly what you want."
       },
       {
         "t": "Live-proof planning",
@@ -559,7 +559,7 @@ window.GLOSSARY_DATA = [
         "t": "DNS",
         "m": "The internet's phone book: it turns your domain into the actual location of the machine serving your site.",
         "p": "directory enquiries. You give a name, it gives back a number.",
-        "note": "your change is spreading around the world and is not instant. Minutes usually, up to a day at worst. Waiting is the fix, not a sign something failed. names are being pointed at machines. Changes here can take hours to reach everyone, so it is not working yet may simply mean not yet."
+        "note": "your change is spreading around the world and is not instant. Minutes usually, up to a day at worst. Waiting is the fix, not a sign something failed."
       },
       {
         "t": "HTTPS / SSL certificate",
@@ -571,7 +571,7 @@ window.GLOSSARY_DATA = [
         "t": "CORS",
         "m": "A browser rule that stops one website quietly helping itself to another's data. When it is set up wrong, your own two halves cannot talk to each other.",
         "p": "a bouncer with a guest list who simply has not been told your name yet.",
-        "note": "routine, and not an attack or a break-in. It is a permissions setting that needs your own address added to a list. Let it fix it. a browser is refusing to let one site talk to another. Ask what got opened up to make it work, because the usual quick fix is opening it to everybody."
+        "note": "routine, and not an attack or a break-in. It is a permissions setting that needs your own address added to a list. Let it fix it. Ask what it opened up to make it work, because the quick fix is opening it to everybody."
       },
       {
         "t": "404",
@@ -589,7 +589,7 @@ window.GLOSSARY_DATA = [
         "t": "Cache",
         "m": "A saved copy kept close by so things load fast — which sometimes means you are shown an old version.",
         "p": "leftovers in the fridge. Quick, but not necessarily today's cooking.",
-        "note": "you are looking at yesterday's copy of your own site. Nothing is broken; you are just not seeing the newest version yet. something is being served from an earlier copy. If a change appears not to have taken effect, suspect this first — it is also how an agent ends up reading an old result as proof that the new one worked."
+        "note": "you are looking at yesterday's copy of your own site. Nothing is broken; you are just not seeing the newest version yet. It is also how an agent fools itself: it re-checks, gets the copy from before the change, and reads that as proof the change worked."
       },
       {
         "t": "Webhook",
@@ -601,7 +601,7 @@ window.GLOSSARY_DATA = [
         "t": "Rate limit",
         "m": "A cap on how many times you may ask another service for something in a given stretch of time.",
         "p": "the free-sample stand. Two each, then come back later.",
-        "note": "nothing is broken and nothing is your fault. It is being told to slow down and will wait, or spread the requests out. there is a cap on how often something can be called. Ask what a real user sees when they hit the cap: being asked to wait is fine, silently losing their work is not."
+        "note": "nothing is broken and nothing is your fault. It is being told to slow down and will wait, or spread the requests out. Ask what a real user sees when they hit the cap: being asked to wait is fine, silently losing their work is not."
       },
       {
         "t": "OAuth",
@@ -650,7 +650,7 @@ window.GLOSSARY_DATA = [
         "m": "The top level of your project folder, where the big settings files sit.",
         "p": "the ground floor of a building. Everything else is upstairs, off it.",
         "aka": "of the project",
-        "note": "it means the outermost folder, not tucked inside any of the others. it means the top folder, nothing to do with permissions. Harmless word, easily confused with the other root."
+        "note": "it means the outermost folder, not tucked inside any of the others."
       },
       {
         "t": "package.json",
@@ -662,7 +662,7 @@ window.GLOSSARY_DATA = [
         "t": "Script",
         "m": "A saved command that does a job in one go, so nobody has to remember the long version.",
         "p": "a labelled button rather than a sequence of switches.",
-        "note": "it is triggering a job that was already written down and named, not inventing something new. a small program was written to do one job, once or on demand. Ask what it does before letting it run against anything real."
+        "note": "it is triggering a job that was already written down and named, not inventing something new. If it has just written a new one, ask what it does before letting it run against anything real."
       },
       {
         "t": "Backticks / monospace",
