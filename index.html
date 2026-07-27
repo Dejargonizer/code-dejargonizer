@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Dejargonizer — plain language for building software with AI agents</title>
-<meta name="description" content="Your AI coding agent understands plain English fine. The problem is what it says back. This dictionary translates the agent's replies — merge, deploy, smoke test, migration — into plain English, and grows from the words real people actually get stuck on.">
+<title>The Dejargonizer — manage your AI coding agent in plain language</title>
+<meta name="description" content="AI coding agents made you a manager. You cannot review work you cannot read — so shortcuts, fake data and skipped checks ship unexamined. A plain-English dictionary of what your agent is actually telling you, plus drop-in instructions that make it report back in words you can act on.">
 <style>
   :root{
     --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
@@ -195,12 +195,12 @@
 
 <header class="hero">
 <div class="wrap">
-<p class="eyebrow fade">The missing translation layer</p>
-<h1 class="fade" style="animation-delay:.05s">You don't need to be an engineer. You need a <em>translator.</em></h1>
-<p class="lede fade" style="animation-delay:.1s">Any AI coding agent — Claude Code, Cursor, Copilot, and the rest — understands your plain English fine. That direction was never the hard part. It's the direction coming <strong>back</strong> that breaks: the reply arrives in engineer, like <button type="button" class="tryit" id="heroExample">"I'll squash-merge the PR once CI is green, then verify the deploy."</button></p>
-<p class="lede fade" style="animation-delay:.13s">Natural language is meant to work in <strong>both</strong> directions. Right now it only works on the way in. This translates the way back too — the status update, the error, the question — so the whole conversation stays in words you can act on.</p>
-<p class="lede fade" style="animation-delay:.155s">Every word of that sentence means something specific and simple. Nobody ever told you what. This is where they tell you.</p>
-<p class="lede fade" style="animation-delay:.18s">And it keeps growing on its own: agents running these instructions file the words they had to explain, so the dictionary fills in from real confusion rather than guesswork. You can flag one yourself at the bottom — the word alone is enough.</p>
+<p class="eyebrow fade">Review the work, don't just approve it</p>
+<h1 class="fade" style="animation-delay:.05s">You can't <em>manage</em> what you can't read.</h1>
+<p class="lede fade" style="animation-delay:.1s">AI agents handed you a builder overnight. You decide what gets made, what is good enough and what ships — while the thing doing the building reports back in engineer, like <button type="button" class="tryit" id="heroExample">"I'll squash-merge the PR once CI is green, then verify the deploy."</button></p>
+<p class="lede fade" style="animation-delay:.13s">Every word of that means something specific and simple. Nobody ever told you what — so you nod it through, and the work carries on. That is the real cost of jargon, and it is not confusion: an agent you cannot review is an agent you can only <strong>approve</strong>.</p>
+<p class="lede fade" style="animation-delay:.155s">Meanwhile it keeps making calls you never made — the value typed in by hand, the fake data standing in for real data, the warning it switched off, the test it skipped for now. Every one of those ends up inside the thing you ship. <button type="button" class="tryit">"I mocked that out for now"</button> is not a progress update. It is a decision, and it was yours to make.</p>
+<p class="lede fade" style="animation-delay:.18s">So this is not about becoming an engineer. It is about reading the report, asking the one good question back, and getting a better product out the other end. And it keeps growing on its own: agents running these instructions file the words they had to explain, so the dictionary fills in from real confusion rather than guesswork. You can flag one yourself at the bottom — the word alone is enough.</p>
 <div class="translate fade" style="animation-delay:.18s">
 <div class="tcard machine"><p class="tlabel">Engineer says</p><p class="tval">squash-merge the PR once CI is green</p></div>
 <div class="tarrow">&#8594;</div>
@@ -566,18 +566,17 @@ render();
 document.getElementById('search').addEventListener('input', function(e){ render(e.target.value); });
 
 // Let people run the hero example rather than just read it.
-const heroExample = document.getElementById('heroExample');
-if(heroExample){
-  heroExample.addEventListener('click', function(){
+document.querySelectorAll('.tryit').forEach(function(btn){
+  btn.addEventListener('click', function(){
     const box = document.getElementById('search');
-    box.value = heroExample.textContent.replace(/^["\u201c]|["\u201d]$/g, '');
+    box.value = btn.textContent.replace(/^["\u201c]|["\u201d]$/g, '');
     render(box.value);
     document.querySelector('.searchbar').scrollIntoView({behavior:'smooth', block:'start'});
   });
-}
+});
 
 // Copy the short instructions. Same text as dejargonizer/SKILL-SHORT.md.
-const SHORT_SKILL = 'I am not an engineer. Translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. \"I ran it and watched it work\" and \"it should work\" are different claims - keep them different.\n6. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: \"Say that again with no jargon\", \"What is about to happen, in one sentence?\", \"Is this reversible?\"';
+const SHORT_SKILL = 'I am not an engineer, and I am directing this work - I need to be able to review what you did, not just approve it. So translate your side of this conversation into plain English, always.\n\n1. Lead with the point, then the detail. Verdict first, mechanism second.\n2. Define any technical term in the same sentence you use it - including file names, paths and extensions.\n3. Say who did what: I (the agent) did X, you did Y, an automatic checker did Z.\n4. Before anything risky or hard to undo, tell me in one plain sentence what is about to happen and whether it can be undone. Then wait for my yes.\n5. Be honest about what you have not checked. "I ran it and watched it work" and "it should work" are different claims - keep them different.\n6. Name the decisions you made for me. If you took a shortcut, faked something, skipped a check, added an outside package, or chose between two options, say so and say what it costs later.\n7. Scary-sounding words are usually routine. Errors, failed builds and merge conflicts are ordinary weather: say calmly what it means for me.\n\nI can always ask: "Say that again with no jargon", "What is about to happen, in one sentence?", "Is this reversible?"\n';
 const copyShort = document.getElementById('copyShort');
 if(copyShort){
   copyShort.addEventListener('click', function(){
