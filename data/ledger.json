@@ -752,5 +752,30 @@
       "matcherNote": "Re-scored when the matching rule was corrected. Kept because the result is the same or worse than the sealed one; a correction is never allowed to improve a past score."
     }
   ],
-  "matcher": "whole-word-v2"
+  "matcher": "whole-word-v2",
+  "correctionsNote": "Every time the matching rule is corrected, the records it made worse are listed here and never removed. A correction is only ever kept where the result is the same or worse, so this list is a record of the score being lowered on purpose. The two entries below were produced by the build that applied whole-word-v2 and are copied from that run's output.",
+  "corrections": [
+    {
+      "on": "2026-07-27",
+      "from": "substring-v1",
+      "to": "whole-word-v2",
+      "line": "tsc --noEmit: 0 errors",
+      "missedWas": 1,
+      "missedNow": 2,
+      "movedToMissed": [
+        "0 errors"
+      ]
+    },
+    {
+      "on": "2026-07-27",
+      "from": "substring-v1",
+      "to": "whole-word-v2",
+      "line": "npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load - a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)",
+      "missedWas": 3,
+      "missedNow": 4,
+      "movedToMissed": [
+        "vitest"
+      ]
+    }
+  ]
 }
