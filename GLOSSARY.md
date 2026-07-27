@@ -48,6 +48,11 @@ Taking the changes from a branch and folding them into another branch (usually i
 *Picture:* your sandbox experiment worked, so you copy it back into the real project.
 *When your agent says it:* "I'll merge this" = "I'm about to make these changes official." This is often the moment right before something goes live.
 
+**Squash-merge**
+Folding all the little saves from one piece of work into the real project as a single tidy change.
+*Picture:* twelve rough drafts of a letter going into the file as one clean final copy. The drafts are not kept; the result is.
+*When your agent says it:* "I'll squash-merge this" = "I'm about to make this work official, recorded as one change rather than twenty." It is the normal, tidy way to finish a piece of work — and usually the moment right before something goes live.
+
 **Merge conflict**
 Git got confused because two people changed the *same line* two different ways, and it doesn't know which one you want. It stops and asks.
 *Picture:* two editors wrote different sentences in the same spot of a document. Someone has to pick.
@@ -319,6 +324,11 @@ The settings that control how your product behaves, without changing the code it
 
 These describe the *manner* of a change or the agent's own process. They come up constantly and mean less than they sound.
 
+**Blocked**
+The agent has stopped because it needs something from you — an answer, a decision, a key — and cannot go on until it gets it.
+*Picture:* a builder standing in your hallway holding two tins of paint, waiting for you to point at one.
+*When your agent says it:* nothing is broken and nothing is lost. It is waiting on you. Find the question, answer it, and it carries on.
+
 **Refactor**
 Tidying and reorganizing code so it's cleaner — *without changing what it does*.
 *Picture:* reorganizing your closet. Same clothes, better arranged, easier to find. Nothing was thrown out; nothing new was bought.
@@ -384,6 +394,108 @@ Deciding, *before* a change ships, exactly how you're going to go watch the real
 The habits that keep multiple agents (or people) working in the same project folder from stepping on each other — especially when the official shared version of the project changes so often that a change can go stale before the safety checks on it even finish.
 *Picture:* two chefs sharing one cutting board. If one wipes it clean mid-chop, the other's ingredients go with it. The fix isn't "work faster" — it's "get your own board" (a separate, isolated copy) for anything that matters.
 *When your agent says it:* it might be explaining why a merge kept getting rejected and needing a re-sync — "the shared version moved again while the checks were still running." That's not a mistake; it's a busy shared project. The honest fix is either a faster path (turning on auto-merge, so the platform keeps re-syncing on its own) or working in a genuinely separate copy so a concurrent change can't destroy in-progress work.
+
+---
+
+## 8. Domains, keys, and the internet plumbing
+
+The words that turn up once your thing is real and reachable by other people: giving it an address, keeping your keys safe, and the handful of errors everyone meets on the way. This family hits hardest if you are building somewhere like Lovable, Replit, or Bolt, where your project is on the internet from the first day.
+
+**Domain (domain name)**
+The address people type to reach your thing — `yourproject.com`.
+*Picture:* the street address. Your site is the house; the domain is the number on the door.
+*When your agent says it:* "pointing the domain" means connecting the address you bought to the thing you built. Reversible, and nobody sees a broken version while you do it.
+
+**DNS**
+The internet's phone book: it turns your domain into the actual location of the machine serving your site.
+*Picture:* directory enquiries. You give a name, it gives back a number.
+*When your agent says "DNS is propagating":* your change is spreading around the world and is not instant. Minutes usually, up to a day at worst. Waiting is the fix, not a sign something failed.
+
+**HTTPS / SSL certificate**
+The padlock in the address bar: proof the site is really yours, and that what visitors send is scrambled on the way.
+*Picture:* a tamper-proof seal on a bottle. You can see nobody opened it in transit.
+*When your agent says it:* almost always automatic now. If it mentions a certificate problem, visitors may see a scary browser warning, so it is worth fixing before you share the link.
+
+**CORS**
+A browser rule that stops one website quietly helping itself to another's data. When it is set up wrong, your own two halves cannot talk to each other.
+*Picture:* a bouncer with a guest list who simply has not been told your name yet.
+*When your agent says "a CORS error":* routine, and not an attack or a break-in. It is a permissions setting that needs your own address added to a list. Let it fix it.
+
+**404**
+Nothing is at the address that was asked for.
+*Picture:* knocking on a door that was never built.
+*When your agent says it:* usually a wrong link or a page that moved. Cheap to fix, and it means the server is alive and answering — just not with what you wanted.
+
+**500 / server error**
+The server tried and fell over. The problem is on your side, not the visitor's.
+*Picture:* the kitchen catching fire rather than the customer ordering something off-menu.
+*When your agent says it:* more serious than a 404 because it is your code failing, not a missing page. The logs will say why; that is the agent's job, not yours.
+
+**Cache**
+A saved copy kept close by so things load fast — which sometimes means you are shown an old version.
+*Picture:* leftovers in the fridge. Quick, but not necessarily today's cooking.
+*When your agent says "clear the cache" or "it's cached":* you are looking at yesterday's copy of your own site. Nothing is broken; you are just not seeing the newest version yet.
+
+**Webhook**
+A way for another service to tap your project on the shoulder the moment something happens, instead of your project constantly asking.
+*Picture:* giving the delivery company your doorbell, rather than checking the porch every five minutes.
+*When your agent says it:* it is wiring up "when X happens over there, do Y over here" — a payment landing, a form being filled in.
+
+**Rate limit**
+A cap on how many times you may ask another service for something in a given stretch of time.
+*Picture:* the free-sample stand. Two each, then come back later.
+*When your agent says "we're rate limited":* nothing is broken and nothing is your fault. It is being told to slow down and will wait, or spread the requests out.
+
+**OAuth ("sign in with Google")**
+Letting people log in using an account they already have, so you never see or store their password.
+*Picture:* showing a passport you already own instead of filling in a whole new form.
+*When your agent says it:* this is the safe, boring, correct choice. It means one fewer pile of passwords for you to be responsible for.
+
+---
+
+## 9. The shapes you'll see (paths, files, and names)
+
+Not words exactly — shapes. Your agent will write something like `scripts/process-term-suggestion.mjs` and carry on as though that explained itself. It does not, and none of it is difficult once somebody tells you how to read it.
+
+**File path**
+Directions to one exact file, with slashes standing for "inside". `scripts/process-term-suggestion.mjs` means: the file named `process-term-suggestion.mjs`, which lives inside the folder named `scripts`.
+*Picture:* an address written back to front and squashed together — country, then city, then street, then house.
+*When your agent says it:* it is telling you precisely which file it touched, which is a good habit, not a demand on you. If it matters, ask "what did you change in that file?"
+
+**File extension** (also: .js, .mjs, .ts, .json, .md, .yml, .css, .html)
+The bit after the last dot, which says what kind of file it is.
+*Picture:* the label on a jar. Same shape of jar, completely different contents.
+*When your agent says it:* the common ones are worth knowing. `.md` is notes for humans (this file is one). `.json` and `.yml` are settings. `.js`, `.mjs` and `.ts` are instructions the computer runs. `.html` is a page and `.css` is how it looks.
+
+**Dotfile / dotfolder** (also: .env, .github, .claude, .gitignore)
+A file or folder whose name starts with a dot. Almost always settings, and hidden by default.
+*Picture:* the paperwork drawer rather than the display shelf. Deliberately out of sight, still important.
+*When your agent says it:* your computer hides these, which is why you looked and could not find it. `.env` is the one to be careful with — it usually holds your keys and should never be shared or posted.
+
+**Root (of the project)**
+The top level of your project folder, where the big settings files sit.
+*Picture:* the ground floor of a building. Everything else is upstairs, off it.
+*When your agent says "in the project root":* it means the outermost folder, not tucked inside any of the others.
+
+**package.json**
+A project's list of ingredients and its list of shortcut commands, in one file.
+*Picture:* a recipe card that also notes which shop-bought items you are relying on.
+*When your agent says it:* it is usually either adding an outside building block or defining a command like "start" or "test". Worth a glance when it adds something new.
+
+**Script**
+A saved command that does a job in one go, so nobody has to remember the long version.
+*Picture:* a labelled button rather than a sequence of switches.
+*When your agent says "I'll run the build script":* it is triggering a job that was already written down and named, not inventing something new.
+
+**Backticks / monospace**
+When your agent puts something in `this typeface`, it means "this is an exact literal name — copy it character for character."
+*Picture:* a name printed in block capitals on a form, to signal it is not a description but the actual thing.
+*When your agent says it:* no action needed, but it is a useful signal. Prose you can paraphrase; monospace you should copy exactly.
+
+**Line reference**
+A file name, a colon, and a number: `index.html:367` means line 367 of that file.
+*Picture:* a page-and-line reference in a book, so two people can look at the same sentence.
+*When your agent says it:* it is pointing at the exact spot, usually because something went wrong there. Evidence, not homework.
 
 ---
 
