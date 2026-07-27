@@ -4,7 +4,7 @@
 
 Coding agents are astonishingly capable. But they talk like engineers, because they learned from engineers. So you get sentences like *"I'll squash-merge the PR once CI is green, then verify the deploy."* Every word of that means something specific and simple. Nobody ever told you what.
 
-This is the missing translation layer. Find the word you're stuck on below. Each entry tells you three things: **what it means in one plain sentence**, a **picture to hang it on**, and **what to actually do when your agent says it.**
+This is the missing translation layer. Find the word you're stuck on below. Each entry tells you three things: **what it means in one plain sentence**, **something to picture**, and **what to actually do when your agent says it.**
 
 You do not need to read this top to bottom. It's grouped by *situation* — the moment you're in when the strange word shows up. Skim to your moment.
 
