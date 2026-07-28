@@ -94,6 +94,7 @@ The first example saves you a confusing minute. The second one saves you a bug i
 The short version:
 
 - **You have files in your project** — Claude Code, Cursor, Copilot, Windsurf, Cline, Aider, Codex. Put [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md) into your tool's rules file. [Exact paths →](INSTALL.md#option-a-tools-where-you-have-files)
+- **You use Codex on your Mac** — run `node scripts/install-codex-skill.mjs` once from this repo to install it as a personal Codex skill. It copies the dictionary too, so the skill does not load with a broken glossary link.
 - **You only have a chat box** — Lovable, Replit, Bolt, v0, ChatGPT. Paste [`dejargonizer/SKILL-SHORT.md`](dejargonizer/SKILL-SHORT.md), or hit **Copy the instructions** on the [live site](https://dejargonizer.github.io/code-dejargonizer/). It is sized to fit a settings box with a character limit. [Exact places →](INSTALL.md#option-b-tools-where-you-only-have-a-chat-box)
 - **You are building your own agent** — fetch the raw file into your system prompt, and pin it to a commit if you need consistent behavior. [Raw URLs and the glossary as data →](INSTALL.md#option-c-your-own-agent-or-harness)
 

@@ -8,6 +8,8 @@ Two things to know before you start.
 
 **Nothing here is tool-specific.** It is plain text. If your tool is not in the tables below, find where it keeps its standing instructions and put the same text there.
 
+**Codex has two useful install modes.** For one project, use `AGENTS.md` in that project. For every Codex task on your Mac, install it as a personal Codex skill with the command in the Codex row below.
+
 ---
 
 ## Step 1: which kind of tool are you using?
@@ -34,7 +36,9 @@ Put the instructions where your tool already looks for standing orders.
 | **Continue** | `.continue/rules/dejargonizer.md` |
 | **Aider** | `CONVENTIONS.md`, then start it with `aider --read CONVENTIONS.md` |
 | **JetBrains Junie** | `.junie/guidelines.md` |
-| **Codex, Amp, Jules, and others** | `AGENTS.md` in the project root — the cross-tool convention |
+| **Codex for one project** | `AGENTS.md` in the project root — the cross-tool convention |
+| **Codex for every project on this Mac** | Run `node scripts/install-codex-skill.mjs` from this repo |
+| **Amp, Jules, and others** | `AGENTS.md` in the project root — the cross-tool convention |
 | **Anything else** | Its rules file. Search its docs for "custom instructions" or "rules file" |
 
 **What goes in the file:** the contents of [`dejargonizer/SKILL.md`](dejargonizer/SKILL.md).
@@ -44,6 +48,30 @@ Put the instructions where your tool already looks for standing orders.
 > I am not an engineer and I am directing this work. Follow the Dejargonizer rules: plain English, define every technical word in one sentence the first time you use it, and name the decisions you made for me.
 
 If your tool supports both a skill folder and a rules file, use both. The folder holds the detail. The one line makes sure it gets picked up.
+
+### Codex personal skill install
+
+Run this from a checkout of this repo:
+
+```sh
+node scripts/install-codex-skill.mjs
+```
+
+That copies the skill into `~/.codex/skills/dejargonizer/`, which is Codex's personal skills folder on your Mac, and also copies `GLOSSARY.md` to the location the skill expects. `~` means your home folder.
+
+To see what it would do before it changes anything:
+
+```sh
+node scripts/install-codex-skill.mjs --dry-run
+```
+
+If your Codex folder is somewhere unusual:
+
+```sh
+node scripts/install-codex-skill.mjs --target /path/to/.codex
+```
+
+The installer updates `SKILL.md`, `SKILL-SHORT.md`, and the shared glossary. It does **not** overwrite `dejargonizer/local-glossary.md` if that file already exists, because that file is your private wording.
 
 ---
 
