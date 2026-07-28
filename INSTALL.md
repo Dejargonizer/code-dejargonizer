@@ -118,14 +118,31 @@ Outside a browser, drop the leading `window.GLOSSARY_DATA =` and the trailing se
 
 ## Step 2: check it actually worked
 
-Installing something and assuming it took effect is the exact habit this project exists to break. Start a **new** session and ask:
+Installing something and assuming it took effect is the exact habit this project exists to break. Start a **new** session, then ask the question that matches **what you installed**.
+
+### If you installed the short version (chat boxes / Copy short on the site)
+
+Ask:
+
+> Are you on the short Dejargonizer? How do you separate what you ran from what you only expect?
+
+| What you hear | What it means |
+|---|---|
+| It refuses to say “works” or “fixed” until it ran the thing, and names ran vs expected | Short version is live. Done. |
+| It guesses, or asks what the Dejargonizer is | It never read the paste. Wrong box, or the tool needs a new chat. |
+
+Do **not** ask “how many rules / what is rule 11?” after the short paste — that question only matches the full fourteen-rule file, and a correct short install will “fail” it.
+
+### If you installed the full version (rules file / skill folder)
+
+Ask:
 
 > How many Dejargonizer rules are you following, and what is rule 11?
 
 | What you hear | What it means |
 |---|---|
 | "Fourteen rules, and rule 11 is to separate what I saw from what I only expect" | The full version is live. Done. |
-| It knows about plain English, naming decisions and not saying "works" before running it, but not the numbering | The short version is live. That is correct behavior for the short version. |
+| It knows plain English and decisions, but not the numbering | You may have pasted the short version into a rules-file tool. Re-copy the full skill. |
 | It guesses, or asks what the Dejargonizer is | It never read the file. Wrong path, or the tool needs restarting. |
 
 

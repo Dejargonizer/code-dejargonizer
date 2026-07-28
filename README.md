@@ -103,11 +103,12 @@ The short version:
 
 Whichever route you take, add one line in your own words: **you are not an engineer, and you are directing this work.** That sentence does more than the rest of the file.
 
-Then check it took. Start a new session and ask:
+Then check it took. Start a new session and ask the question that matches **what you installed**:
 
-> How many Dejargonizer rules are you following, and what is rule 11?
+- **Short version (chat box / Copy short):** *Are you on the short Dejargonizer? How do you separate what you ran from what you only expect?* It should refuse “works” / “fixed” until it ran the thing.
+- **Full version (rules file / fourteen rules):** *How many Dejargonizer rules are you following, and what is rule 11?* Fourteen rules; rule 11 separates what it saw from what it only expects.
 
-Fourteen rules, and rule 11 is about separating what it actually saw from what it only expects. If you get that back, it is live. If it guesses, the file is in the wrong place — see [troubleshooting](INSTALL.md#if-it-is-not-working).
+If it guesses what the Dejargonizer is, the file never loaded — see [troubleshooting](INSTALL.md#if-it-is-not-working). Do not grade a short install with the full “rule 11” question; a correct short paste will look broken under that test.
 
 ## Six questions you can always ask
 

@@ -75,9 +75,17 @@
 
 <h1 class="lede">What we still can't explain</h1>
 
-<p class="sub">This page used to open with a coverage score: the share of jargon in our sample that already had an entry. It has been taken down. Not because it was invented - it was computed, sealed on the day each line arrived, and it fell twelve points the day a real agent report landed. It came down because of what it was actually describing. A dictionary we control, measured against a sample we choose, will always catch up. The number was a fact about our own filing, wearing the clothes of a fact about your project.</p>
+<p class="sub"><strong>Has the claim been proven?</strong> Not yet. The one test that would mean something — same agent line, same model, with the instructions versus without — has been <strong>run zero times</strong>. That is the honest state, not a placeholder. Everything else on this page is workshop detail: gaps in our dictionary and how we refuse to fake a score.</p>
 
-<p class="sub">The scoring still runs. It is a work list now, kept in <code>data/ledger.json</code>: every word that arrived in a line and could not be explained the first time it was seen. That is how we decide what to write next, and it belongs in the workshop rather than on the wall. What is below is the useful half of it - the gaps - followed by the one test that would actually mean something, which has not been run yet.</p>
+<p class="sub"><strong>What you can do in one minute instead:</strong> in a session with your agent, ask for a scorecard — how many technical terms it put in plain English, how many decisions it made for you, how many claims it verified versus assumed. That is rule 13. Run it once before install and once after on comparable work.</p>
+
+<p class="sub"><strong>To run the comparative trial:</strong> use the <a href="https://github.com/Dejargonizer/code-dejargonizer/actions/workflows/run-trial.yml">Run a trial</a> button on GitHub Actions (no terminal). You will need a model key stored once under repo secrets. Tick dry run first to see exactly what would be sent. Command-line equivalent is below if you prefer a developer machine.</p>
+
+<details style="margin:18px 0 8px">
+<summary style="cursor:pointer;color:var(--accent);font-weight:600">Why there is no coverage score on the wall anymore</summary>
+<p class="sub">There used to be a coverage score: the share of jargon in our sample that already had an entry. It was computed, sealed on the day each line arrived, and it fell twelve points the day a real agent report landed. It came down because of what it was describing. A dictionary we control, measured against a sample we choose, will always catch up. The number was a fact about our own filing, wearing the clothes of a fact about your project.</p>
+<p class="sub">The scoring still runs as a work list in <code>data/ledger.json</code>: every word that arrived in a line and could not be explained the first time it was seen. That decides what we write next. It belongs in the workshop, not as proof about your product.</p>
+</details>
 
 <div class="cards">
 <div class="card"><div class="big" id="nOpen">&#8230;</div><div class="lab">words in the sample with <strong>no entry today</strong>. The next thing to write</div></div>
