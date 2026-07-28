@@ -1,8 +1,10 @@
 <h1 align="center">The Dejargonizer</h1>
 
-<p align="center"><strong>You can't manage what you can't read. This makes your AI coding agent report back in words you can act on.</strong></p>
+<p align="center"><strong>Talking to coding agents in natural language is solved. The language they come back with is the problem, unless you're a software engineer.</strong></p>
 
-<p align="center"><em>Better management of the agent. Which means a better product.</em></p>
+<p align="center"><strong>Dejargonizer makes agents talk back in plain language — so you can manage them like a pro, without a CS degree.</strong></p>
+
+<p align="center"><em>You can't manage what you can't read. Better management of the agent means a better product.</em></p>
 
 <p align="center">
 <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
@@ -16,6 +18,8 @@
 </p>
 
 ---
+
+Talking to coding agents in natural language is solved. The language they come back with is the problem, unless you're a software engineer. Dejargonizer makes agents talk back in plain language — so you can manage them like a pro, without a CS degree.
 
 AI coding agents just handed millions of people the power to build software. Talking *to* them already works: you type plain English, they understand it fine. It's the direction coming *back* that's broken. The status update, the error, the question — they come back in engineering-speak, because that's the language these agents learned from. So a person with a real idea and no computer-science degree opens the tool and reads this:
 

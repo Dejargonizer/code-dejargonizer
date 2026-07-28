@@ -1,6 +1,8 @@
 # Install the Dejargonizer
 
-One goal: your coding agent explains itself in plain English every time, without you having to ask.
+Talking to coding agents in natural language is solved. The language they come back with is the problem, unless you're a software engineer. Dejargonizer makes agents talk back in plain language — so you can manage them like a pro, without a CS degree.
+
+One goal once it's on: your coding agent explains itself in plain English every time, without you having to ask.
 
 Two things to know before you start.
 
