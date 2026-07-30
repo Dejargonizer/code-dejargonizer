@@ -4,302 +4,380 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Dejargonizer — what we still cannot explain</title>
-<meta name="description" content="The words this dictionary could not explain the first time it met them, and the one test that would mean something: the same line of agent output explained with the dictionary and without it.">
 <style>
-  :root{
-    --paper:#eef1f2; --surface:#ffffff; --surface-2:#f6f8f8;
-    --ink:#16211f; --ink-soft:#4c5b58; --ink-faint:#7c8a87;
-    --line:#dde3e3; --line-soft:#e8eded;
-    --accent:#0f766e; --accent-ink:#0b5952; --accent-wash:#dcede9;
-    --good:#15803d; --good-wash:#dcefe0;
-    --warn:#b45309; --warn-wash:#f7eddd;
-    --font-voice:Georgia,"Iowan Old Style","Times New Roman",serif;
-    --font-human:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --font-machine:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
-    --shadow:0 1px 2px rgba(20,40,36,.04), 0 8px 30px rgba(20,40,36,.05);
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #0088b0;
+  --color-accent-2: #d6006c;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+
+  
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --color-accent-100: #e9f8ff;
+  --color-accent-200: #cbeeff;
+  --color-accent-300: #99e0ff;
+  --color-accent-400: #62c5ee;
+  --color-accent-500: #38a6cf;
+  --color-accent-600: #1186ac;
+  --color-accent-700: #006786;
+  --color-accent-800: #004961;
+  --color-accent-900: #0a303e;
+
+  --color-accent-2-100: #fff1f4;
+  --color-accent-2-200: #ffdee6;
+  --color-accent-2-300: #ffc0d0;
+  --color-accent-2-400: #ff90b1;
+  --color-accent-2-500: #ff458e;
+  --color-accent-2-600: #d82071;
+  --color-accent-2-700: #aa0b56;
+  --color-accent-2-800: #790e3d;
+  --color-accent-2-900: #4b1528;
+
+  
+  --color-process-yellow: #edbb00;
+
+  --font-heading: "Source Serif 4", system-ui, sans-serif;
+  --font-heading-weight: 600;
+  --font-body: "Source Serif 4", system-ui, sans-serif;
+
+  --space-1: 5.0px;
+  --space-2: 10.0px;
+  --space-3: 15.0px;
+  --space-4: 20.0px;
+  --space-6: 30.0px;
+  --space-8: 40.0px;
+
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+
+  
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+.halftone{position:relative;filter:grayscale(0.35) contrast(1.15);overflow:hidden}
+.halftone::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.22) 30%,transparent 32%);
+  background-size:3px 3px;mix-blend-mode:multiply}
+
+
+.cmyk{position:relative;overflow:hidden;background:var(--color-bg)}
+.cmyk img:first-child{opacity:0} 
+.cmyk img+img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.cmyk .sep-c{filter:url(#sep-c)}
+.cmyk .sep-m{filter:url(#sep-m)}
+.cmyk .sep-y{filter:url(#sep-y)}
+.cmyk .sep-k{filter:url(#sep-k)}
+.cmyk::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.22) 30%,transparent 32%);
+  background-size:3px 3px;mix-blend-mode:multiply}
+
+
+.cmyk .print{position:relative;width:100%;filter:url(#sep-all)}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .cmyk .print:hover{filter:none} 
+}
+.cmyk .print image-slot{width:100%;height:100%;display:block}
+
+
+.cmyk-num{--cmyk-num-ground:var(--color-bg);
+  position:relative;width:fit-content;line-height:0.9;
+  font-feature-settings:"pnum" 1;
+  background:var(--cmyk-num-ground);padding:0.12em;margin:-0.12em}
+.cmyk-num .paper{color:var(--color-bg); 
+  text-shadow:0.036em 0.025em 0 var(--color-bg),-0.031em -0.023em 0 var(--color-bg)}
+.cmyk-num .plate{position:absolute;inset:0.12em;mix-blend-mode:multiply;
+  text-box:trim-both cap alphabetic }
+.cmyk-num .plate-c{color:var(--color-accent)}
+
+
+.cmyk-head{position:relative}
+.cmyk-head .paper{color:var(--color-bg);
+  text-shadow:0.027em 0.0185em 0 var(--color-bg),-0.0245em -0.0175em 0 var(--color-bg)
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --paper:#0d1211; --surface:#141c1b; --surface-2:#101817;
-      --ink:#e9efee; --ink-soft:#a7b6b3; --ink-faint:#6f7e7b;
-      --line:#243230; --line-soft:#1c2827;
-      --accent:#33b3a6; --accent-ink:#5fd2c6; --accent-wash:#132a27;
-      --good:#4ade80; --good-wash:#12271b;
-      --warn:#f0b45c; --warn-wash:#2a2113;
-      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
-    }
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-human);line-height:1.6}
-  .wrap{max-width:820px;margin:0 auto;padding:28px 22px 80px}
-  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:38px;flex-wrap:wrap}
-  .home{font-family:var(--font-machine);font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px}
-  .stamp{font-family:var(--font-machine);font-size:12px;color:var(--ink-faint)}
-  h1{font-family:var(--font-voice);font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
-  .lede{font-size:17px;color:var(--ink-soft);margin:0 0 8px}
-  h2{font-family:var(--font-voice);font-size:23px;margin:44px 0 6px;letter-spacing:-.01em}
-  .sub{color:var(--ink-faint);font-size:14.5px;margin:0 0 18px}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 6px}
-  @media (max-width:640px){ .cards{grid-template-columns:1fr} }
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-  .big{font-family:var(--font-voice);font-size:40px;line-height:1;letter-spacing:-.02em;color:var(--accent)}
-  .lab{font-size:13.5px;color:var(--ink-faint);margin-top:8px}
-  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
-  .rows{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-  .rows li{display:flex;justify-content:space-between;gap:14px;font-size:15px;border-bottom:1px dashed var(--line-soft);padding-bottom:9px}
-  .rows li:last-child{border-bottom:0;padding-bottom:0}
-  .rows b{font-family:var(--font-machine);font-weight:600;color:var(--ink);white-space:nowrap}
-  .note{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--ink-soft);margin-top:16px}
-  .warnbox{background:var(--warn-wash);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
-  .warnbox h2{margin-top:0;color:var(--warn)}
-  .warnbox ul{margin:0;padding-left:20px}
-  .warnbox li{font-size:15px;color:var(--ink-soft);margin-bottom:9px}
-  .gaps{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .gap{font-family:var(--font-machine);font-size:13px;background:var(--warn-wash);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
-  .none{color:var(--good);font-size:15px}
-  .ask{font-family:var(--font-machine);font-size:14px;background:var(--accent-wash);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;display:block;color:var(--ink)}
-  code{font-family:var(--font-machine);font-size:.92em;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:5px;padding:1px 5px}
-  a{color:var(--accent)}
-  footer{margin-top:52px;color:var(--ink-faint);font-size:13.5px}
-  .gap small{display:block;font-size:11px;color:var(--ink-faint);font-family:var(--font-human);margin-top:3px;letter-spacing:0}
-  .gap.calm{background:var(--surface-2)}
+.cmyk-head .plate{position:absolute;inset:0;mix-blend-mode:multiply;
+  pointer-events:none;user-select:none;
+  text-box:trim-both cap alphabetic }
+.cmyk-head .plate-c{color:var(--color-accent)}
+.cmyk-head .plate-m{color:var(--color-accent-2);
+  translate:calc(0.018em + 0.009em*var(--press-nx, 0)) calc(0.0125em + 0.006em*var(--press-ny, 0))}
+.cmyk-head .plate-y{color:var(--color-process-yellow);
+  translate:calc(-0.0155em + 0.009em*var(--press-nx, 0)) calc(-0.0115em + 0.006em*var(--press-ny, 0))}
+.cmyk-num .plate-m{color:var(--color-accent-2);
+  translate:calc(0.036em + 0.018em*var(--press-nx, 0)) calc(0.025em + 0.0125em*var(--press-ny, 0))}
+.cmyk-num .plate-y{color:var(--color-process-yellow);
+  translate:calc(-0.031em + 0.018em*var(--press-nx, 0)) calc(-0.023em + 0.0125em*var(--press-ny, 0))}
+
+
+
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 25px; }
+h4 { font-size: 20px; }
+h5 { font-size: 16px; }
+h6 { font-size: 13px; }
+h6 { letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 11px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: var(--color-divider);
+}
+
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 14px; line-height: 1.2; color: var(--color-text); 
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--color-accent); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-accent-600); }
+.btn-primary:active { background: var(--color-accent-700); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+.btn-icon { width: 36px; height: 36px; padding: 0; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+
+.field > label {
+  display: block; font-size: 12px; margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.input {
+  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
+  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.input::placeholder { color: color-mix(in srgb, var(--color-text) 65%, transparent); opacity: 1; }
+  
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.radio input, .seg-opt input {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.radio .dot {
+  width: 16px; height: 16px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot { border-color: var(--color-accent); }
+.radio input:checked + .dot {
+  border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.seg {
+  display: inline-flex; overflow: hidden;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer;
+}
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+
+.card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
+}
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 17px; line-height: 1.2;
+}
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.card-meta {
+  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+}
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.elev-lg { box-shadow: var(--shadow-lg); }
+
+
+.tag {
+  display: inline-flex; align-items: center; font-size: 11px;
+  letter-spacing: 0.02em; padding: 3px 10px;
+  border-radius: calc(var(--radius-md) * 0.75);
+}
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+
+.nav {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: none;
+}
+.nav-brand {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 18px; margin-right: auto;
+}
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+
+
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
+
+
+.dialog-backdrop {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+}
+.dialog {
+  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-4); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-lg);
+}
+.dialog-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 20px;
+}
+.dialog-body { font-size: 14px; opacity: 0.85; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+
+
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}
+a{color:var(--color-accent-700)}
+a:hover{color:var(--color-accent)}
+.wrap{max-width:820px;margin:0 auto;padding:40px clamp(20px,5vw,32px) 80px}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-<div class="top">
-<a class="home" href="index.html">&#8592; the dictionary</a>
-<span class="stamp">measured <span id="stamp">&#8230;</span></span>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:36px;flex-wrap:wrap">
+    <a href="index.html" class="btn btn-ghost" style="text-decoration:none">← the dictionary</a>
+    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">measured against ourselves, not against you</span>
+  </div>
+
+  <span class="kicker" style="display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-700);margin:0 0 14px">What we can't explain yet</span>
+  <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 20px;letter-spacing:-.02em">What we still can't explain</h1>
+
+  <p style="font-size:17px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:0 0 14px"><strong style="color:var(--color-text)">Has the claim been proven?</strong> Not yet. The one test that would mean something — the same agent line, the same model, with the instructions versus without — has been <strong style="color:var(--color-text)">run zero times</strong>. That is the honest state, not a placeholder.</p>
+  <p style="font-size:17px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:0 0 40px"><strong style="color:var(--color-text)">What you can do in one minute instead:</strong> ask your agent for a scorecard — how many technical terms it put in plain English, how many decisions it made for you, how many claims it verified versus assumed.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 44px">
+    <div class="card elev-sm">
+      <div class="cmyk-num" style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:38px;line-height:1"><span class="paper">0</span><span class="plate plate-c" aria-hidden="true">0</span><span class="plate plate-m" aria-hidden="true">0</span><span class="plate plate-y" aria-hidden="true">0</span></div>
+      <p style="font-size:13.5px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:8px 0 0">paired trials run. It needs a model key, supplied by whoever runs it.</p>
+    </div>
+    <div class="card elev-sm">
+      <div class="cmyk-num" style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:38px;line-height:1"><span class="paper">14</span><span class="plate plate-c" aria-hidden="true">14</span><span class="plate plate-m" aria-hidden="true">14</span><span class="plate plate-y" aria-hidden="true">14</span></div>
+      <p style="font-size:13.5px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:8px 0 0">entries written from the one line that stumped it — five of the twenty-three signs came from it too.</p>
+    </div>
+    <div class="card elev-sm">
+      <div class="cmyk-num" style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:38px;line-height:1"><span class="paper">4</span><span class="plate plate-c" aria-hidden="true">4</span><span class="plate plate-m" aria-hidden="true">4</span><span class="plate plate-y" aria-hidden="true">4</span></div>
+      <p style="font-size:13.5px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:8px 0 0">things this project actually promises — measured by the trial, never assumed.</p>
+    </div>
+  </div>
+
+  <h2 style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px;letter-spacing:-.01em">Why there is no coverage score on the wall anymore</h2>
+  <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 32px">There used to be one: the share of jargon in a sample that already had an entry. It was sealed on the day each line arrived, and it fell twelve points the day a real agent report landed — because of what it was describing. A dictionary we control, scored against a sample we choose, will always catch up. The number was a fact about our own filing, wearing the clothes of a fact about your project.</p>
+
+  <h2 style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px;letter-spacing:-.01em">One line it could not explain</h2>
+  <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 14px">A builder sent over what their agent had just reported on their own project. This is the middle of it, exactly as it arrived:</p>
+  <div class="card elev-sm" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.6;margin:0 0 16px">npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load — a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)</div>
+  <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 40px">Nothing in it is dishonest and all of it may be correct. It is still four separate claims travelling under one green number — a pass in isolation is not a pass, and "a Mac-side flake" is a diagnosis presented as an observation. The reply that settles it is short: run the same command, the same way, twice more.</p>
+
+  <h2 style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px;letter-spacing:-.01em">The four things this project promises</h2>
+  <div class="card elev-sm" style="margin:0 0 40px">
+    <ul style="margin:0;padding:0;list-style:none;display:grid;gap:14px">
+      <li style="border-bottom:1px dashed var(--color-divider);padding-bottom:12px"><strong>Every term defined in the same breath</strong> — no jargon left to look up later.</li>
+      <li style="border-bottom:1px dashed var(--color-divider);padding-bottom:12px"><strong>What was run kept apart from what is only expected</strong> — a prediction never wears a result's clothes.</li>
+      <li style="border-bottom:1px dashed var(--color-divider);padding-bottom:12px"><strong>Decisions made for you, named out loud</strong> — not left inside the narration.</li>
+      <li><strong>Anything hard to undo, flagged as such</strong> — before it happens, not after.</li>
+    </ul>
+  </div>
+
+  <h2 style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px;letter-spacing:-.01em">What only you can measure</h2>
+  <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 14px">We collect nothing about your work, so we cannot tell you what changed for you. You can, in about a minute:</p>
+  <div class="card elev-sm" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.6;margin:0 0 40px">Give me a scorecard for this session: how many technical terms you put in plain English, how many decisions you made for me, how many claims you verified versus assumed, what checks you skipped, and anything you guessed.</div>
+
+  <h2 style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px;letter-spacing:-.01em">What we have not proven</h2>
+  <div class="card elev-sm" style="border-left:3px solid var(--color-accent-2);margin:0 0 40px">
+    <ul style="margin:0;padding-left:18px;display:grid;gap:10px">
+      <li>That the paired trial has ever been run, on any line, by anyone.</li>
+      <li>That the dictionary changes what an agent actually says, versus what it's told to say.</li>
+      <li>That people outside this project hit the same words we predicted they would.</li>
+      <li>That the entries themselves are all finished — a meaning without a "what to do" is half an entry.</li>
+    </ul>
+  </div>
+
+  <footer style="margin-top:52px;padding-top:20px;border-top:1px solid var(--color-divider);color:color-mix(in srgb, var(--color-text) 65%, transparent);font-size:13.5px">
+    Raw numbers: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/metrics.json">data/metrics.json</a> · The gap list: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/ledger.json">ledger.json</a> · The trial: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/scripts/paired-trial.mjs">paired-trial.mjs</a>
+  </footer>
 </div>
-
-<h1 class="lede">What we still can't explain</h1>
-
-<p class="sub"><strong>Has the claim been proven?</strong> Not yet. The one test that would mean something — same agent line, same model, with the instructions versus without — has been <strong>run zero times</strong>. That is the honest state, not a placeholder. Everything else on this page is workshop detail: gaps in our dictionary and how we refuse to fake a score.</p>
-
-<p class="sub"><strong>What you can do in one minute instead:</strong> in a session with your agent, ask for a scorecard — how many technical terms it put in plain English, how many decisions it made for you, how many claims it verified versus assumed. That is rule 13. Run it once before install and once after on comparable work.</p>
-
-<p class="sub"><strong>To run the comparative trial:</strong> use the <a href="https://github.com/Dejargonizer/code-dejargonizer/actions/workflows/run-trial.yml">Run a trial</a> button on GitHub Actions (no terminal). You will need a model key stored once under repo secrets. Tick dry run first to see exactly what would be sent. Command-line equivalent is below if you prefer a developer machine.</p>
-
-<details style="margin:18px 0 8px">
-<summary style="cursor:pointer;color:var(--accent);font-weight:600">Why there is no coverage score on the wall anymore</summary>
-<p class="sub">There used to be a coverage score: the share of jargon in our sample that already had an entry. It was computed, sealed on the day each line arrived, and it fell twelve points the day a real agent report landed. It came down because of what it was describing. A dictionary we control, measured against a sample we choose, will always catch up. The number was a fact about our own filing, wearing the clothes of a fact about your project.</p>
-<p class="sub">The scoring still runs as a work list in <code>data/ledger.json</code>: every word that arrived in a line and could not be explained the first time it was seen. That decides what we write next. It belongs in the workshop, not as proof about your product.</p>
-</details>
-
-<div class="cards">
-<div class="card"><div class="big" id="nOpen">&#8230;</div><div class="lab">words in the sample with <strong>no entry today</strong>. The next thing to write</div></div>
-<div class="card"><div class="big" id="nEverMissed">&#8230;</div><div class="lab">words the dictionary has missed on first sight. The list is never cleared, only added to</div></div>
-<div class="card"><div class="big" id="nOutside">&#8230;</div><div class="lab">lines in the sample came from a builder outside this project. The weakest number here, and the one we most want to see rise</div></div>
-</div>
-
-<h2>Every word it has missed on first sight</h2>
-<div class="panel">
-<p class="sub">A word lands here the first time it turns up in a line the dictionary could not explain, and it stays after the entry is written, because the miss happened. Writing the entry fixes the dictionary. It does not undo the gap.</p>
-<div class="gaps" id="everMissed"></div>
-<p class="note" id="everMissedNote"></p>
-</div>
-
-<h2>One line it could not explain</h2>
-
-<p class="sub">A builder sent over what their agent had just reported on their own project. This is the middle of it, exactly as it arrived:</p>
-
-<div class="panel" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.6;white-space:pre-wrap">npm test: 3794/3794 (5 files hit vitest worker-pool startup timeouts under load &#8212; a Mac-side flake; re-running those 3 files in isolation: 21/21 pass. Not a code failure.)</div>
-
-<p class="sub">Nothing in it is dishonest and all of it may be correct. It is still four separate claims travelling under one green number. <strong>3794/3794</strong> sits outside the bracket and the part that failed sits inside it. <strong>Five files</strong> timed out, then <strong>three</strong> were re-run - two numbers that do not agree, which usually means the summary was written from memory rather than read off the output. <strong>A Mac-side flake</strong> is a diagnosis presented as an observation. <strong>In isolation: 21/21</strong> is a pass under different conditions than the failure, so it answers a different question. <strong>Not a code failure</strong> is the conclusion all of that was carrying, stated as fact.</p>
-
-<p class="sub">The reply that settles it is short: run the same command, the same way, twice more. Five of the twenty-three signs in <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/GLOSSARY.md#17-signs-the-work-was-not-actually-checked">section 17</a> were written from this one line, along with fourteen entries for the words in it that had none.</p>
-
-<h2>The test that would mean something</h2>
-
-<p class="sub">Every number above describes our filing. None of them is the claim. The claim is that an agent with these files in front of it reports differently - so the test has to be an agent reporting something. The same line of raw output, the same model, the same task, one thing different: whether it has the instructions and the dictionary.</p>
-
-<p class="sub">Both answers are then read against the four things this project actually promises, and both are stored in full, so anyone can disagree with the verdict and see exactly what they are disagreeing with.</p>
-
-<div class="panel">
-<ul class="rows" id="promises"></ul>
-</div>
-
-<h2 style="font-size:19px;margin-top:26px">Where the trial stands</h2>
-<div class="panel">
-<ul class="rows" id="trialRows"></ul>
-<p class="note" id="trialNote"></p>
-</div>
-
-<p class="sub">It runs from the command line, on a line already in the public sample. Nothing about anyone's own project is sent anywhere:</p>
-
-<p class="ask">node scripts/paired-trial.mjs --line 37 --model &lt;name&gt;</p>
-
-<p class="sub">Or with no terminal at all: the <a href="https://github.com/Dejargonizer/code-dejargonizer/actions/workflows/run-trial.yml">Run a trial</a> button on the Actions tab asks for the same two things in a form, and records the result the same way. Tick the dry run box first to see exactly what would be sent, before anything is.</p>
-
-<p class="sub">Two things about it are worth saying before it produces anything. It needs a paid key for whichever model you point it at, supplied by whoever runs it - the script reads one from the environment and writes it nowhere. And the judge is a set of rules, not a person, so it can be wrong: the last checker written in this repo counted <strong>vitest</strong> as covered because the letters t-e-s-t are inside it. That one was fixed in the only direction a correction is allowed to go, which is down. This one is built to guess against us instead: a term explained in a shape the rules do not know is recorded as unexplained.</p>
-
-
-<h2>Whether the entries are actually finished</h2>
-<div class="panel">
-<p class="sub">Counting terms hides this. An entry that gives you a meaning but never says what to do when your agent uses the word is half an entry, and it counts the same in a total.</p>
-<p class="note">Worth saying, since this page is about not trusting your own checks: the first version of this counter looked for one exact wording, decided 57 finished entries were unfinished, and 23 of them got a second, redundant line of guidance before anyone noticed. It now looks for the shape rather than the string, and the 23 have been merged back. It tested for the words it expected instead of the thing it was measuring, which is <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/GLOSSARY.md#17-signs-the-work-was-not-actually-checked">section 17</a> in miniature.</p>
-<ul class="rows">
-<li><span>Entries with something to picture</span> <b id="qPic">&#8230;</b></li>
-<li><span>Entries that say what to do when your agent says it</span> <b id="qAct">&#8230;</b></li>
-<li><span>Entries with all three parts</span> <b id="qFin">&#8230;</b></li>
-</ul>
-<p class="note" id="qNote"></p>
-<div class="gaps" id="unfinished"></div>
-</div>
-
-<h2>What the sample is</h2>
-<div class="panel">
-<ul class="rows">
-<li><span>Lines in the sample</span> <b id="sLines">&#8230;</b></li>
-<li><span>Written by an agent working on this repository</span> <b id="sBuild">&#8230;</b></li>
-<li><span>Written to stand in for a pattern seen repeatedly</span> <b id="sRep">&#8230;</b></li>
-<li><span>Contributed by anyone outside this project</span> <b id="sOutside">&#8230;</b></li>
-</ul>
-<p class="note">That last figure is the weakest thing on this page and the easiest to fix. Lines from someone else's agent, in someone else's project, are a harder test than anything we can write for ourselves. If your agent said something you had to stop and decode, <a href="https://github.com/Dejargonizer/code-dejargonizer/issues/new">paste the line into an issue</a>. It goes into the gap list against the dictionary as it stands that day, before anyone is allowed to fix it.</p>
-</div>
-
-<h2>What only you can measure</h2>
-<div class="panel">
-<p class="sub">We collect nothing about your work, so we cannot tell you what changed for you. You can, in about a minute.</p>
-<p class="ask">Give me a scorecard for this session: how many technical terms you put in plain English, how many decisions you made for me, how many claims you verified versus assumed, what checks you skipped, and anything you guessed.</p>
-<p class="note">That is rule 13 of the skill. Run it once before you install anything and once after, on comparable work. The figure that tends to move first is decisions named - those calls were always being made, they just were not being said out loud.</p>
-</div>
-
-<h2>What we have not proven</h2>
-<div class="warnbox">
-<ul id="notProven"></ul>
-</div>
-<p class="note">If any of these ever get established, they will appear above with a method attached, not as an adjective.</p>
-
-<h2>Inventory</h2>
-<div class="panel">
-<p class="sub" id="invNote"></p>
-<ul class="rows">
-<li><span>Terms</span> <b id="iTerms">&#8230;</b></li>
-<li><span>Sections</span> <b id="iSections">&#8230;</b></li>
-<li><span>Alternative names an entry can be found by</span> <b id="iAliases">&#8230;</b></li>
-<li><span>Phrases that mean a decision was made for you</span> <b id="iDec">&#8230;</b></li>
-<li><span>Signs the work was not actually checked</span> <b id="iTells">&#8230;</b></li>
-</ul>
-</div>
-
-<footer>
-Raw numbers: <a href="data/metrics.json">data/metrics.json</a> &middot;
-The gap list: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/ledger.json">ledger.json</a> &middot;
-The trial: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/scripts/paired-trial.mjs">paired-trial.mjs</a> &middot;
-<a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/trials.json">trials.json</a> &middot;
-Sample: <a href="https://github.com/Dejargonizer/code-dejargonizer/blob/main/data/corpus.json">corpus.json</a>
-</footer>
-</div>
-
-<script>
-(function(){
-function el(id){ return document.getElementById(id); }
-function set(id, val){ var n = el(id); if (n) n.textContent = val; }
-function row(host, label, value){
-  var li = document.createElement('li');
-  var sp = document.createElement('span'); sp.textContent = label;
-  var bo = document.createElement('b'); bo.textContent = value;
-  li.appendChild(sp); li.appendChild(bo); host.appendChild(li);
-}
-
-var ARM_LABELS = {
-  control: 'Given nothing',
-  skill: 'Given the short instructions',
-  glossary: 'Given the dictionary only',
-  'skill+glossary': 'Given the instructions and the dictionary'
-};
-var PROMISE_LABELS = {
-  termsDefined: 'Every term defined in the same breath',
-  resultVsPrediction: 'What was run kept apart from what is expected',
-  decisionsNamed: 'Decisions made for you named out loud',
-  riskFlagged: 'Anything hard to undo flagged as such'
-};
-
-fetch('data/metrics.json?v=' + Date.now(), { cache: 'no-store' })
-.then(function(r){ return r.json(); })
-.then(function(m){
-var q = m.entryQuality, s = m.sample, i = m.inventory, t = m.trial || {};
-
-set('stamp', m.generatedAt);
-set('nOpen', m.openGaps.length);
-set('nEverMissed', m.everMissed.length);
-set('nOutside', s.fromOutsideThisProject);
-
-var box = el('everMissed');
-if (!m.everMissed.length) {
-  box.innerHTML = '<p class="none">Nothing yet. Either the dictionary has met every word the sample has thrown at it, or the sample is not trying hard enough.</p>';
-} else {
-  box.innerHTML = m.everMissed.map(function(x){
-    return '<span class="gap' + (x.writtenSince ? ' calm' : '') + '">' + x.word +
-      '<small> &#183; ' + x.firstMissedOn + (x.writtenSince ? ' &#183; written since' : ' &#183; STILL MISSING') + '</small></span>';
-  }).join('');
-}
-var open = m.everMissed.filter(function(x){ return !x.writtenSince; }).length;
-set('everMissedNote', open === 0
-  ? 'All of these have entries now. That fixed the dictionary. It did not undo the miss, and the miss is what this list is for.'
-  : open + ' of these still have no entry. They are the next thing to write.');
-
-var pHost = el('promises');
-var promises = t.promises || {};
-Object.keys(promises).forEach(function(k){
-  var li = document.createElement('li');
-  var sp = document.createElement('span');
-  sp.innerHTML = '<strong>' + (PROMISE_LABELS[k] || k) + '</strong><br>' + promises[k];
-  li.appendChild(sp); pHost.appendChild(li);
-});
-
-var tHost = el('trialRows');
-row(tHost, 'Pairs run', t.pairs === undefined ? 'unknown' : t.pairs);
-row(tHost, 'Pairs checked by a person', t.checkedByAPerson === undefined ? 'unknown' : t.checkedByAPerson);
-var arms = t.arms || {};
-var armNames = Object.keys(arms);
-if (!armNames.length) {
-  row(tHost, 'Promises kept, with the dictionary', 'nothing to report');
-  row(tHost, 'Promises kept, without it', 'nothing to report');
-} else {
-  armNames.forEach(function(a){
-    row(tHost, (ARM_LABELS[a] || a) + ' - promises kept',
-      arms[a].promisesKept + ' of ' + arms[a].promisesApplicable + ' (' + arms[a].keptPct + '%)');
-  });
-  armNames.forEach(function(a){
-    row(tHost, (ARM_LABELS[a] || a) + ' - jargon left standing', arms[a].jargonLeftStanding);
-  });
-}
-set('trialNote', t.note || '');
-
-set('qPic', q.withPicture + ' of ' + q.entries);
-set('qAct', q.withAction + ' of ' + q.entries);
-set('qFin', q.finished + ' of ' + q.entries + ' (' + q.finishedPct + '%)');
-set('qNote', q.unfinished.length === 0
-  ? 'Every entry is complete.'
-  : q.unfinished.length + ' entries are still short a part. Named, so they can be finished:');
-el('unfinished').innerHTML = q.unfinished.map(function(x){
-  return '<span class="gap calm">' + x + '</span>';
-}).join('');
-
-set('sLines', s.lines);
-set('sBuild', s.bySource['build-session'] || 0);
-set('sRep', s.bySource['representative'] || 0);
-set('sOutside', s.fromOutsideThisProject);
-
-set('invNote', i.note);
-set('iTerms', i.terms);
-set('iSections', i.sections);
-set('iAliases', i.aliases);
-set('iDec', i.decisionPhrases);
-set('iTells', i.tells);
-
-el('notProven').innerHTML = m.notProven.map(function(x){
-  return '<li>' + x + '</li>';
-}).join('');
-})
-.catch(function(){
-  set('stamp', 'could not load data/metrics.json');
-});
-})();
-</script>
-
 </body>
 </html>
