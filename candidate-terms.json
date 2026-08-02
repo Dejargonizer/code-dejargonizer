@@ -36,6 +36,17 @@
         6
       ],
       "status": "pending"
+    },
+    {
+      "term": "OCR",
+      "meaning": "The technology that reads text out of pictures. Used when a document is actually a scan (a photo of a page) instead of real digital text, so the words become searchable and editable instead of staying trapped in the image.",
+      "picture": "A scanner copies a printed page into an image; OCR is the translator that turns that image back into letters a computer can read.",
+      "note": "'This PDF needs OCR' means the document is a scan, so the agent has to use the slower picture-reading step to get the words out — versus a text-based PDF, where the words are already inside the file and reading them is instant.",
+      "count": 1,
+      "issues": [
+        7
+      ],
+      "status": "pending"
     }
   ]
 }
